@@ -255,7 +255,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1925711569270137338}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7128961593413427699}
+        m_TargetAssemblyTypeName: InventoryItemController, Assembly-CSharp
+        m_MethodName: UseItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7128961593413427699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d13051078bced4dab21a80c3601fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 16e69cd8f4a595849a15d599e39c3e5f, type: 2}
+  item: {fileID: 0}
   RemoveButton: {fileID: 8287183457963509491}
 --- !u!1 &4889190519023949771
 GameObject:
