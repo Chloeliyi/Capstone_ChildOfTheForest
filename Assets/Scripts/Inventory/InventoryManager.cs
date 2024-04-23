@@ -12,7 +12,11 @@ public class InventoryManager : MonoBehaviour
     public Transform ItemContent;
     public GameObject InventoryItem;
 
+    public Transform SmallItemContent;
+
     public Toggle EnableRemove;
+
+    public Toggle SmallEnableRemove;
 
     public InventoryItemController[] InventoryItems;
 
@@ -54,7 +58,28 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
+        foreach(Transform item in SmallItemContent)
+        {
+            Destroy(item.gameObject);
+        }
+        foreach (var item in Items)
+        {
+            GameObject obj = Instantiate(InventoryItem, SmallItemContent);
+            var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
+            var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
+            var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
+
+            itemName.text = item.itemName;
+            itemIcon.sprite = item.icon;
+
+            if (SmallEnableRemove.isOn)
+            {
+                removeButton.gameObject.SetActive(true);
+            }
+        }
+
         SetInventoryItems();
+        SetSmallInventoryItems();
     }
 
     public void EnableItemsRemove()
@@ -75,9 +100,41 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void EnableSmallItemsRemove()
+    {
+        if (SmallEnableRemove.isOn)
+        {
+            foreach (Transform item in SmallItemContent)
+            {
+                item.Find("RemoveButton").gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            foreach(Transform item in SmallItemContent)
+            {
+                item.Find("RemoveButton").gameObject.SetActive(false);
+            }
+        }
+    }
+
     public void SetInventoryItems()
     {
         InventoryItems = ItemContent.GetComponentsInChildren<InventoryItemController>();
+
+        //InventoryItems = SmallItemContent.GetComponentsInChildren<InventoryItemController>();
+
+        for (int i = 0; i < Items.Count; i++)
+        {
+            InventoryItems[i].AddItem(Items[i]);
+        }
+    }
+
+    public void SetSmallInventoryItems()
+    {
+        //InventoryItems = ItemContent.GetComponentsInChildren<InventoryItemController>();
+
+        InventoryItems = SmallItemContent.GetComponentsInChildren<InventoryItemController>();
 
         for (int i = 0; i < Items.Count; i++)
         {

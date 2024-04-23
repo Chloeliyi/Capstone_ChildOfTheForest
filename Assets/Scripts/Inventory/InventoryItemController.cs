@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryItemController : MonoBehaviour
 {
-    public Item item;
-
+    Item item;
 
     public Button RemoveButton;
 
@@ -20,5 +19,20 @@ public class InventoryItemController : MonoBehaviour
     public void AddItem(Item newItem)
     {
         item = newItem;
+    }
+
+    public void UseItem()
+    {
+        switch (item.itemType)
+        {
+            case Item.ItemType.Potion:
+            FPSController.Instance.IncreaseHealth(item.value);
+            break;
+            case Item.ItemType.Food:
+            FPSController.Instance.IncreaseFood(item.value);
+            break;
+        }
+
+        RemoveItem();
     }
 }

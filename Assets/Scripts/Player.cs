@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
@@ -21,10 +23,35 @@ public class FPSController : MonoBehaviour
     public bool canMove = true;
 
     CharacterController characterController;
-    // Start is called before the first frame update
+
+    public static FPSController Instance;
+
+    public int MaxHealth = 30;
+
+    public int CurrentHealth;
+
+    public int MaxFood = 30;
+
+    public int CurrentFood;
+
+    public TMP_Text HealthText;
+
+    public TMP_Text FoodText;
+
+    public Slider Healthslider;
+
+    public Slider Foodslider;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        CurrentHealth = MaxHealth;
+        Healthslider.value = CurrentHealth;
+        HealthText.text = $"HP:{CurrentHealth}";
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
     }
@@ -71,6 +98,57 @@ public class FPSController : MonoBehaviour
             Debug.Log("Quit");
             Application.Quit();
         }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            TakeDamage(3);
+        }
+    }
+
+    void TakeDamage(int damage)
+    {
+        CurrentHealth -= damage;
+        Healthslider.value = CurrentHealth;
+        HealthText.text = $"HP:{CurrentHealth}";
+    }
+
+    public void SetHealth()
+    {
+        Healthslider.value = CurrentHealth;
+        HealthText.text = $"HP:{CurrentHealth}";
+    }
+
+    public void SetMaxHealth()
+    {
+        Healthslider.maxValue = MaxHealth;
+        Healthslider.value = CurrentHealth;
+        HealthText.text = $"HP:{CurrentHealth}";
+    }
+
+    public void IncreaseHealth(int value)
+    {
+        CurrentHealth += value;
+        Healthslider.value = CurrentHealth;
+        HealthText.text = $"HP:{CurrentHealth}";
+    }
+
+    public void SetFood()
+    {
+        Foodslider.value = CurrentFood;
+        HealthText.text = $"HP:{CurrentHealth}";
+    }
+
+    public void SetMaxFood()
+    {
+        Healthslider.maxValue = MaxHealth;
+        Healthslider.value = CurrentHealth;
+        HealthText.text = $"HP:{CurrentHealth}";
+    }
+
+    public void IncreaseFood(int value)
+    {
+        CurrentFood += value;
+        FoodText.text = $"Food:{CurrentFood}";
     }
 }
 
