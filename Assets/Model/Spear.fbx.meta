@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9355fb4afc7dd5b4e86fba518d039b96
+guid: 816318b0c4246ad4eaa4184bc26a95be
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Axe1001
-    second: {fileID: 2100000, guid: 38be5c3b3236b154f9a1b9f31c3bb1f1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Axe1002
-    second: {fileID: 2100000, guid: 75c505013819b5a4ebd374031cca962a, type: 2}
+      name: Spear1001
+    second: {fileID: 2100000, guid: de10c808883e5b6459175ad406493c62, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
