@@ -42,18 +42,30 @@ public class FPSController : MonoBehaviour
 
     public Slider Foodslider;
 
+    public GameObject Axe;
+
+    public Transform parent;
+
+    public Quaternion rotation;
+
+    private GameObject childGameObject;
+
     private void Awake()
     {
         Instance = this;
     }
+    
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         CurrentHealth = MaxHealth;
         Healthslider.value = CurrentHealth;
         HealthText.text = $"HP:{CurrentHealth}";
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+
+        CurrentFood = MaxFood;
+        Foodslider.value = CurrentFood;
+        FoodText.text = $"Food:{CurrentFood}";
+
     }
 
     // Update is called once per frame
@@ -101,11 +113,30 @@ public class FPSController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            TakeDamage(3);
+            TakeHealthDamage(3);
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            TakeFoodDamage(3);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log("Axe is instantiated");
+
+            Vector3 position = new Vector3(0, 0, 1);
+
+            childGameObject = Instantiate(Axe, position, rotation ,parent);
+
+            childGameObject.name = "PlayerAxe";
+
+            Debug.Log(childGameObject.transform.position);
+        }
+
     }
 
-    void TakeDamage(int damage)
+    void TakeHealthDamage(int damage)
     {
         CurrentHealth -= damage;
         Healthslider.value = CurrentHealth;
@@ -132,23 +163,72 @@ public class FPSController : MonoBehaviour
         HealthText.text = $"HP:{CurrentHealth}";
     }
 
+    void TakeFoodDamage(int damage)
+    {
+        CurrentFood -= damage;
+        Foodslider.value = CurrentFood;
+        FoodText.text = $"Food:{CurrentFood}";
+    }
+
     public void SetFood()
     {
         Foodslider.value = CurrentFood;
-        HealthText.text = $"HP:{CurrentHealth}";
+        FoodText.text = $"Food:{CurrentFood}";
     }
 
     public void SetMaxFood()
     {
-        Healthslider.maxValue = MaxHealth;
-        Healthslider.value = CurrentHealth;
-        HealthText.text = $"HP:{CurrentHealth}";
+        Foodslider.maxValue = MaxFood;
+        Foodslider.value = CurrentFood;
+        FoodText.text = $"Food:{CurrentFood}";
     }
 
     public void IncreaseFood(int value)
     {
         CurrentFood += value;
+        Foodslider.value = CurrentFood;
         FoodText.text = $"Food:{CurrentFood}";
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Tree")
+        {
+            Debug.Log("Tree is within range");
+        }
+    }
+
+    public AxeController axeController;
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Tree")
+        {
+            if (childGameObject != null)
+            {
+                if(Input.GetKeyDown(KeyCode.M))
+                {
+                    Debug.Log("Tree is being cut");
+                    axeController.TakeAxeDamage();
+                }
+            }
+
+            else if (childGameObject == null)
+            {
+                if(Input.GetKeyDown(KeyCode.M))
+                {
+                    Debug.Log("No Axe");
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Tree")
+        {
+            Debug.Log("Too far from tree");
+        }
     }
 }
 
