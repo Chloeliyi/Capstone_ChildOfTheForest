@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExitHandler*/
 {
     public static InventoryManager Instance;
+
+    public GameObject SmallInventoryMenu;
+    [SerializeField] private bool menuActivated;
+
     public List<Item> Items = new List<Item>();
 
     public Transform ItemContent;
@@ -16,13 +21,29 @@ public class InventoryManager : MonoBehaviour
 
     public Toggle EnableRemove;
 
-    public Toggle SmallEnableRemove;
-
     public InventoryItemController[] InventoryItems;
 
     public void Awake()
     {
         Instance = this;
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.G) && menuActivated)
+        {
+            Time.timeScale = 1;
+            SmallInventoryMenu.gameObject.SetActive(false);
+            menuActivated = false;
+            EnableRemove.gameObject.SetActive(false);
+        }
+        else if(Input.GetKeyDown(KeyCode.G) && !menuActivated)
+        {
+            Time.timeScale = 0;
+            SmallInventoryMenu.gameObject.SetActive(true);
+            menuActivated = true;
+            EnableRemove.gameObject.SetActive(true);
+        }
     }
 
     public void Add(Item item)
@@ -35,6 +56,8 @@ public class InventoryManager : MonoBehaviour
         Items.Remove(item);
     }
 
+    private GameObject obj;
+
     public void ListItems()
     {
         //Clear content before open
@@ -44,7 +67,7 @@ public class InventoryManager : MonoBehaviour
         }
         foreach (var item in Items)
         {
-            GameObject obj = Instantiate(InventoryItem, ItemContent);
+            obj = Instantiate(InventoryItem, ItemContent);
             var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
             var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
             var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
@@ -58,6 +81,45 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
+        SetInventoryItems();
+    }
+
+    public TMP_Text DescName;
+
+    public Image DescIcon;
+
+    public TMP_Text Desc;
+
+    /*public void OnPointerEnter(PointerEventData pointerEventData)
+    {
+        var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
+        var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
+        DescName.text = itemName.text;
+        DescIcon.sprite = itemIcon.sprite;
+    }
+
+    public void OnPointerExit(PointerEventData pointerEventData)
+    {
+        DescName.text = "Empty";
+        DescIcon.sprite = null;
+    }*/
+
+    public void OnButtonHover()
+    {
+        var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
+        var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
+        DescName.text = itemName.text;
+        DescIcon.sprite = itemIcon.sprite;
+    }
+
+    public void OnButtonHoverExit()
+    {
+        DescName.text = "Empty";
+        DescIcon.sprite = null;
+    }
+
+    /*public void ListSmallInvenItems()
+    {
         foreach(Transform item in SmallItemContent)
         {
             Destroy(item.gameObject);
@@ -72,21 +134,25 @@ public class InventoryManager : MonoBehaviour
             itemName.text = item.itemName;
             itemIcon.sprite = item.icon;
 
-            if (SmallEnableRemove.isOn)
+            if (EnableRemove.isOn)
             {
                 removeButton.gameObject.SetActive(true);
             }
         }
 
-        SetInventoryItems();
         SetSmallInventoryItems();
-    }
+    }*/
 
     public void EnableItemsRemove()
     {
         if (EnableRemove.isOn)
         {
             foreach (Transform item in ItemContent)
+            {
+                item.Find("RemoveButton").gameObject.SetActive(true);
+            }
+
+            foreach (Transform item in SmallItemContent)
             {
                 item.Find("RemoveButton").gameObject.SetActive(true);
             }
@@ -97,48 +163,34 @@ public class InventoryManager : MonoBehaviour
             {
                 item.Find("RemoveButton").gameObject.SetActive(false);
             }
-        }
-    }
 
-    public void EnableSmallItemsRemove()
-    {
-        if (SmallEnableRemove.isOn)
-        {
-            foreach (Transform item in SmallItemContent)
-            {
-                item.Find("RemoveButton").gameObject.SetActive(true);
-            }
-        }
-        else
-        {
             foreach(Transform item in SmallItemContent)
             {
                 item.Find("RemoveButton").gameObject.SetActive(false);
             }
         }
+
+        
     }
 
     public void SetInventoryItems()
     {
         InventoryItems = ItemContent.GetComponentsInChildren<InventoryItemController>();
 
-        //InventoryItems = SmallItemContent.GetComponentsInChildren<InventoryItemController>();
-
         for (int i = 0; i < Items.Count; i++)
         {
             InventoryItems[i].AddItem(Items[i]);
         }
     }
 
-    public void SetSmallInventoryItems()
+    /*public void SetSmallInventoryItems()
     {
-        //InventoryItems = ItemContent.GetComponentsInChildren<InventoryItemController>();
-
         InventoryItems = SmallItemContent.GetComponentsInChildren<InventoryItemController>();
 
         for (int i = 0; i < Items.Count; i++)
         {
             InventoryItems[i].AddItem(Items[i]);
         }
-    }
+    }*/
+
 }

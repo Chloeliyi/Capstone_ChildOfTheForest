@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class InventoryItemController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class InventoryItemController : MonoBehaviour
 
     public void RemoveItem()
     {
+        //Debug.Log(item.itemName);
+
         InventoryManager.Instance.Remove(item);
 
         Destroy(gameObject);

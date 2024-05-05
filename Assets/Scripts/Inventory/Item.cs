@@ -17,6 +17,7 @@ public class Item : ScriptableObject
     {
         Potion,
         Weapon,
-        Food
+        Food,
+        Branch
     }
 }
