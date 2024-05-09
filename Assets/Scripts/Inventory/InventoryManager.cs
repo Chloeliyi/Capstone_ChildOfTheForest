@@ -23,6 +23,10 @@ public class InventoryManager : MonoBehaviour/*, IPointerEnterHandler, IPointerE
 
     public InventoryItemController[] InventoryItems;
 
+    public TMP_Text NameOfItem;
+
+    public Image IconOfItem;
+
     public void Awake()
     {
         Instance = this;
@@ -88,7 +92,7 @@ public class InventoryManager : MonoBehaviour/*, IPointerEnterHandler, IPointerE
 
     public Image DescIcon;
 
-    public TMP_Text Desc;
+    public TMP_Text DescText;
 
     /*public void OnPointerEnter(PointerEventData pointerEventData)
     {
@@ -104,12 +108,15 @@ public class InventoryManager : MonoBehaviour/*, IPointerEnterHandler, IPointerE
         DescIcon.sprite = null;
     }*/
 
-    public void OnButtonHover()
+    public void OnButtonClick()
     {
         var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
         var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
+
         DescName.text = itemName.text;
         DescIcon.sprite = itemIcon.sprite;
+
+        Debug.Log(itemName.text);
     }
 
     public void OnButtonHoverExit()

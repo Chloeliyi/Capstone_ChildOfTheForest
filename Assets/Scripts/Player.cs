@@ -48,7 +48,11 @@ public class FPSController : MonoBehaviour
 
     public Quaternion rotation;
 
-    private GameObject childGameObject;
+    private GameObject AxeGameObject;
+
+    public GameObject Spear;
+
+    public Transform attackPoint;
 
     private void Awake()
     {
@@ -123,17 +127,33 @@ public class FPSController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Debug.Log("Axe is instantiated");
+            if (AxeGameObject == null)
+            {
+                Debug.Log("Instaniate Axe");
 
-            Vector3 position = new Vector3(0, 0, 1);
+                AxeGameObject = Instantiate(Axe, parent);
+            
+                AxeGameObject.name = "PlayerAxe";
 
-            childGameObject = Instantiate(Axe, position, rotation ,parent);
-
-            childGameObject.name = "PlayerAxe";
-
-            Debug.Log(childGameObject.transform.position);
+                Debug.Log(AxeGameObject.transform.position);
+            }
+            else if (AxeGameObject != null)
+            {
+                if (AxeGameObject.activeSelf)
+                {
+                    AxeGameObject.gameObject.SetActive(false);
+                }
+                else if (!AxeGameObject.activeSelf)
+                {
+                    AxeGameObject.gameObject.SetActive(true);
+                }
+            }
         }
-
+        
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            GameObject projectile = Instantiate(Spear, attackPoint.position, playerCamera.transform.localRotation, parent);
+        }
     }
 
     void TakeHealthDamage(int damage)
@@ -204,7 +224,7 @@ public class FPSController : MonoBehaviour
     {
         if (other.gameObject.tag == "Tree")
         {
-            if (childGameObject != null)
+            if (AxeGameObject != null)
             {
                 if(Input.GetKeyDown(KeyCode.M))
                 {
@@ -213,7 +233,7 @@ public class FPSController : MonoBehaviour
                 }
             }
 
-            else if (childGameObject == null)
+            else if (AxeGameObject == null)
             {
                 if(Input.GetKeyDown(KeyCode.M))
                 {
