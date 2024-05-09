@@ -52,6 +52,8 @@ MonoBehaviour:
   SmallItemContent: {fileID: 0}
   EnableRemove: {fileID: 0}
   InventoryItems: []
+  NameOfItem: {fileID: 0}
+  IconOfItem: {fileID: 0}
   DescName: {fileID: 0}
   DescIcon: {fileID: 0}
   Desc: {fileID: 0}

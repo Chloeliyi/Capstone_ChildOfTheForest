@@ -282,6 +282,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RemoveButton: {fileID: 8287183457963509491}
+  DescName: {fileID: 0}
+  DescIcon: {fileID: 0}
+  DescText: {fileID: 0}
 --- !u!114 &5668109868848366473
 MonoBehaviour:
   m_ObjectHideFlags: 0
