@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2496559281381319138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 407364280379512241}
+  - component: {fileID: 1469536361621855191}
+  - component: {fileID: 5628329827598128583}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &407364280379512241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496559281381319138}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 245, y: 11.3, z: 585.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1469536361621855191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496559281381319138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c71dc9fad8c7944be39f429d45d0e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  MaxHealth: 30
+  CurrentHealth: 0
+  MaxFood: 30
+  CurrentFood: 0
+  HealthText: {fileID: 0}
+  FoodText: {fileID: 0}
+  Healthslider: {fileID: 0}
+  Foodslider: {fileID: 0}
+  SmallIvenMenu: {fileID: 0}
+  BigIvenMenu: {fileID: 0}
+  ItemDescMenu: {fileID: 0}
+  CraftMenu: {fileID: 0}
+  Axe: {fileID: 1933823782367938613, guid: e0739bbc04fdc1f4c92b4e7f3ec149e4, type: 3}
+  parent: {fileID: 0}
+  rotation: {x: 0, y: 0, z: 0, w: 0}
+  AxeGameObject: {fileID: 0}
+  Spear: {fileID: 605491109353154781, guid: f9e92e0d009fd3f42b4874a07883be02, type: 3}
+  attackPoint: {fileID: 0}
+  Tree: {fileID: 5346468408104027329, guid: d6ad62813bbeee245b58cf21f98692ae, type: 3}
+  totalThrows: 100
+  throwCooldown: 0.1
+  throwKey: 116
+  throwForce: 20
+  throwUpwardForce: 0
+--- !u!114 &5628329827598128583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496559281381319138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67a4273f281fa341a8ecfcaf516fcc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
