@@ -17,3 +17,4 @@ MonoBehaviour:
   value: 2
   icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   itemType: 2
+  itemDesc: This is a berry. Gives two food

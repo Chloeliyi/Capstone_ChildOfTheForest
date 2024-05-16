@@ -15,5 +15,7 @@ MonoBehaviour:
   id: 6
   itemName: Spear
   value: 3
+  durability: 40
   icon: {fileID: 0}
   itemType: 1
+  itemDesc: This is an axe. Does 3 damage and has 30 durability

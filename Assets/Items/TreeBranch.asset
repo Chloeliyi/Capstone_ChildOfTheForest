@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f68bc2a93a446e24a9a3c81226cffba0, type: 3}
-  m_Name: HealthPotion
+  m_Name: TreeBranch
   m_EditorClassIdentifier: 
-  id: 1
-  itemName: Health Potion
-  value: 3
-  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  itemType: 0
-  itemDesc: This is a health potion. Gives two health
+  id: 3
+  itemName: Branch
+  value: 10
+  icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  itemType: 3
+  itemDesc: This is a tree branch
