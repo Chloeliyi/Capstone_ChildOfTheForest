@@ -13,8 +13,6 @@ public class InventoryItemController : MonoBehaviour
 
     public void RemoveItem()
     {
-        //Debug.Log(item.itemName);
-
         InventoryManager.Instance.Remove(item);
 
         Destroy(gameObject);
@@ -25,15 +23,29 @@ public class InventoryItemController : MonoBehaviour
         item = newItem;
     }
 
+    public void OnButtonHover()
+    {
+        InventoryManager.Instance.DescName.text = item.itemName;
+        InventoryManager.Instance.DescIcon.sprite = item.icon;
+        InventoryManager.Instance.DescText.text = item.itemDesc;
+    }
+
+    public void OnButtonHoverExit()
+    {
+        InventoryManager.Instance.DescName.text = "Empty";
+        InventoryManager.Instance.DescIcon.sprite = null;
+        InventoryManager.Instance.DescText.text = "Empty";
+    }
+
     public void UseItem()
     {
         switch (item.itemType)
         {
             case Item.ItemType.Potion:
-            FPSController.Instance.IncreaseHealth(item.value);
+            GameManager.Instance.IncreaseHealth(item.value);
             break;
             case Item.ItemType.Food:
-            FPSController.Instance.IncreaseFood(item.value);
+            GameManager.Instance.IncreaseFood(item.value);
             break;
         }
 

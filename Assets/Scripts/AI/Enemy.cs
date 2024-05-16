@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
 
+        Debug.Log("Enemy health : " + health);
+
         if (health <= 0)
             DestroyEnemy();
     }

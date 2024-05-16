@@ -5,11 +5,12 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class InventoryManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExitHandler*/
+public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
-    public GameObject SmallInventoryMenu;
+    //public GameObject SmallInventoryMenu;
+
     [SerializeField] private bool menuActivated;
 
     public List<Item> Items = new List<Item>();
@@ -23,10 +24,18 @@ public class InventoryManager : MonoBehaviour/*, IPointerEnterHandler, IPointerE
 
     public InventoryItemController[] InventoryItems;
 
-    public TMP_Text NameOfItem;
+    public TMP_Text DescName;
 
-    public Image IconOfItem;
+    public Image DescIcon;
 
+    public TMP_Text DescText;
+
+    public void Start()
+    {
+        DescName.text = "Item";
+        DescIcon.sprite = null;
+        DescText.text = "Item Description";
+    }
     public void Awake()
     {
         Instance = this;
@@ -34,7 +43,7 @@ public class InventoryManager : MonoBehaviour/*, IPointerEnterHandler, IPointerE
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.G) && menuActivated)
+        /*if(Input.GetKeyDown(KeyCode.G) && menuActivated)
         {
             Time.timeScale = 1;
             SmallInventoryMenu.gameObject.SetActive(false);
@@ -47,7 +56,7 @@ public class InventoryManager : MonoBehaviour/*, IPointerEnterHandler, IPointerE
             SmallInventoryMenu.gameObject.SetActive(true);
             menuActivated = true;
             EnableRemove.gameObject.SetActive(true);
-        }
+        }*/
     }
 
     public void Add(Item item)
@@ -61,6 +70,8 @@ public class InventoryManager : MonoBehaviour/*, IPointerEnterHandler, IPointerE
     }
 
     private GameObject obj;
+
+    private GameObject desc;
 
     public void ListItems()
     {
@@ -86,43 +97,6 @@ public class InventoryManager : MonoBehaviour/*, IPointerEnterHandler, IPointerE
         }
 
         SetInventoryItems();
-    }
-
-    public TMP_Text DescName;
-
-    public Image DescIcon;
-
-    public TMP_Text DescText;
-
-    /*public void OnPointerEnter(PointerEventData pointerEventData)
-    {
-        var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
-        var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
-        DescName.text = itemName.text;
-        DescIcon.sprite = itemIcon.sprite;
-    }
-
-    public void OnPointerExit(PointerEventData pointerEventData)
-    {
-        DescName.text = "Empty";
-        DescIcon.sprite = null;
-    }*/
-
-    public void OnButtonClick()
-    {
-        var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
-        var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
-
-        DescName.text = itemName.text;
-        DescIcon.sprite = itemIcon.sprite;
-
-        Debug.Log(itemName.text);
-    }
-
-    public void OnButtonHoverExit()
-    {
-        DescName.text = "Empty";
-        DescIcon.sprite = null;
     }
 
     /*public void ListSmallInvenItems()
@@ -175,9 +149,7 @@ public class InventoryManager : MonoBehaviour/*, IPointerEnterHandler, IPointerE
             {
                 item.Find("RemoveButton").gameObject.SetActive(false);
             }
-        }
-
-        
+        }       
     }
 
     public void SetInventoryItems()
@@ -187,6 +159,7 @@ public class InventoryManager : MonoBehaviour/*, IPointerEnterHandler, IPointerE
         for (int i = 0; i < Items.Count; i++)
         {
             InventoryItems[i].AddItem(Items[i]);
+            Debug.Log(Items[i]);
         }
     }
 

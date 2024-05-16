@@ -26,34 +26,6 @@ public class FPSController : MonoBehaviour
 
     public static FPSController Instance;
 
-    public int MaxHealth = 30;
-
-    public int CurrentHealth;
-
-    public int MaxFood = 30;
-
-    public int CurrentFood;
-
-    public TMP_Text HealthText;
-
-    public TMP_Text FoodText;
-
-    public Slider Healthslider;
-
-    public Slider Foodslider;
-
-    public GameObject Axe;
-
-    public Transform parent;
-
-    public Quaternion rotation;
-
-    private GameObject AxeGameObject;
-
-    public GameObject Spear;
-
-    public Transform attackPoint;
-
     private void Awake()
     {
         Instance = this;
@@ -62,14 +34,6 @@ public class FPSController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        CurrentHealth = MaxHealth;
-        Healthslider.value = CurrentHealth;
-        HealthText.text = $"HP:{CurrentHealth}";
-
-        CurrentFood = MaxFood;
-        Foodslider.value = CurrentFood;
-        FoodText.text = $"Food:{CurrentFood}";
-
     }
 
     // Update is called once per frame
@@ -108,146 +72,21 @@ public class FPSController : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
-
-        if(Input.GetKey(KeyCode.Escape))
-        {
-            Debug.Log("Quit");
-            Application.Quit();
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            TakeHealthDamage(3);
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            TakeFoodDamage(3);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            if (AxeGameObject == null)
-            {
-                Debug.Log("Instaniate Axe");
-
-                AxeGameObject = Instantiate(Axe, parent);
-            
-                AxeGameObject.name = "PlayerAxe";
-
-                Debug.Log(AxeGameObject.transform.position);
-            }
-            else if (AxeGameObject != null)
-            {
-                if (AxeGameObject.activeSelf)
-                {
-                    AxeGameObject.gameObject.SetActive(false);
-                }
-                else if (!AxeGameObject.activeSelf)
-                {
-                    AxeGameObject.gameObject.SetActive(true);
-                }
-            }
-        }
-        
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            GameObject projectile = Instantiate(Spear, attackPoint.position, playerCamera.transform.localRotation, parent);
-        }
-    }
-
-    void TakeHealthDamage(int damage)
-    {
-        CurrentHealth -= damage;
-        Healthslider.value = CurrentHealth;
-        HealthText.text = $"HP:{CurrentHealth}";
-    }
-
-    public void SetHealth()
-    {
-        Healthslider.value = CurrentHealth;
-        HealthText.text = $"HP:{CurrentHealth}";
-    }
-
-    public void SetMaxHealth()
-    {
-        Healthslider.maxValue = MaxHealth;
-        Healthslider.value = CurrentHealth;
-        HealthText.text = $"HP:{CurrentHealth}";
-    }
-
-    public void IncreaseHealth(int value)
-    {
-        CurrentHealth += value;
-        Healthslider.value = CurrentHealth;
-        HealthText.text = $"HP:{CurrentHealth}";
-    }
-
-    void TakeFoodDamage(int damage)
-    {
-        CurrentFood -= damage;
-        Foodslider.value = CurrentFood;
-        FoodText.text = $"Food:{CurrentFood}";
-    }
-
-    public void SetFood()
-    {
-        Foodslider.value = CurrentFood;
-        FoodText.text = $"Food:{CurrentFood}";
-    }
-
-    public void SetMaxFood()
-    {
-        Foodslider.maxValue = MaxFood;
-        Foodslider.value = CurrentFood;
-        FoodText.text = $"Food:{CurrentFood}";
-    }
-
-    public void IncreaseFood(int value)
-    {
-        CurrentFood += value;
-        Foodslider.value = CurrentFood;
-        FoodText.text = $"Food:{CurrentFood}";
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Tree")
+        if(other.gameObject.tag == "Workbench")
         {
-            Debug.Log("Tree is within range");
-        }
-    }
-
-    public AxeController axeController;
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Tree")
-        {
-            if (AxeGameObject != null)
-            {
-                if(Input.GetKeyDown(KeyCode.M))
-                {
-                    Debug.Log("Tree is being cut");
-                    axeController.TakeAxeDamage();
-                }
-            }
-
-            else if (AxeGameObject == null)
-            {
-                if(Input.GetKeyDown(KeyCode.M))
-                {
-                    Debug.Log("No Axe");
-                }
-            }
+            GameManager.Instance.OpenCraftMenu();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Tree")
+        if(other.gameObject.tag == "Workbench")
         {
-            Debug.Log("Too far from tree");
+            GameManager.Instance.CloseCraftMenu();
         }
     }
 }
