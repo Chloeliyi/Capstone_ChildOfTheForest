@@ -19,7 +19,7 @@ public class TreeController : MonoBehaviour
 
     public GameObject Branch;
 
-    [SerializeField] public GameObject branchGameObject;
+    [SerializeField] private GameObject branchGameObject;
 
     void Start()
     {
@@ -30,7 +30,6 @@ public class TreeController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            axeInRange = true;
             Debug.Log("Player is within range of tree");
         }
     }
@@ -39,7 +38,6 @@ public class TreeController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            axeInRange = false;
             Debug.Log("Player is not within range of tree");
         }
     }
@@ -48,7 +46,6 @@ public class TreeController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-
             /*if(Input.GetKeyDown(KeyCode.M))
                 {
                     Debug.Log("Tree is being cut");
@@ -62,29 +59,35 @@ public class TreeController : MonoBehaviour
                         Destroy(tree);
                     }
                 }*/
-
-            if (gameManager.AxeGameObject != null)
+            if (GameManager.Instance.activeAxe == true)
             {
                 Debug.Log("Got Axe");
 
-                if(Input.GetKeyDown(KeyCode.M))
+                if(Input.GetKeyDown(KeyCode.N))
                 {
                     Debug.Log("Tree is being cut");
                     treeHealth -= axeController.AxeItem.value;
+                    axeController.AxeItem.durability -= axeController.AxeItem.value;
                     Debug.Log("Tree health : " + treeHealth);
+                    Debug.Log("Axe Durability : " + axeController.AxeItem.durability);
                     if (treeHealth <= 0)
                     {
                         Debug.Log("Tree has been cut");
                         SpawnBranch();
                         Destroy(tree);
                     }
+                    else if (axeController.AxeItem.durability <= 0)
+                    {
+                        //axeInRange = false;
+                        axeController.DestroyAxe();
+                    }
                 }
             }
-            else if (gameManager.AxeGameObject == null)
+            else if (GameManager.Instance.activeAxe == false)
             {
                 Debug.Log("No Axe");
 
-                if(Input.GetKeyDown(KeyCode.M))
+                if(Input.GetKeyDown(KeyCode.N))
                 {
                     Debug.Log("Tree cannot be cut");
                 }

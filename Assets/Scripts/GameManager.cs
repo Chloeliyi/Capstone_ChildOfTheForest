@@ -6,7 +6,6 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager Instance;
 
     /*public Camera MenuCam;
@@ -50,6 +49,14 @@ public class GameManager : MonoBehaviour
     public Transform attackPoint; 
 
     public GameObject Tree;
+
+    public TreeController treeController;
+
+    public GameObject WallObject;
+
+    public bool activeAxe;
+
+    public bool ActiveSpear;
 
     int AmountOfTrees = 1;
 
@@ -114,28 +121,84 @@ public class GameManager : MonoBehaviour
         {
             if (AxeGameObject == null)
             {
-
                 AxeGameObject = Instantiate(Axe, parent);
             
                 AxeGameObject.name = "PlayerAxe";
+                activeAxe = true;
             }
             else if (AxeGameObject != null)
             {
                 if (AxeGameObject.activeSelf)
                 {
                     AxeGameObject.gameObject.SetActive(false);
+                    activeAxe = false;
                 }
                 else if (!AxeGameObject.activeSelf)
                 {
                     AxeGameObject.gameObject.SetActive(true);
+                    activeAxe = true;
                 }
             }
         }
         
         if (Input.GetKeyDown(KeyCode.T))
         {
-            Throw();
+            if (projectile == null)
+            {
+                SpawnSpear();
+                Debug.Log("Spear is spawned");
+                ActiveSpear = true;
+            }
+            else if (projectile != null)
+            {
+                if (projectile.activeSelf)
+                {
+                    projectile.gameObject.SetActive(false);
+                    ActiveSpear = false;
+                }
+                else if (!projectile.activeSelf)
+                {
+                    projectile.gameObject.SetActive(true);
+                    ActiveSpear = true;
+                }
+            }
         }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log("K is pressed");
+            if (projectile != null)
+            {
+                Throw();
+                Debug.Log("Spear is thrown");
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+                if (projectile != null)
+            {
+                StartCoroutine(Stab());
+                Debug.Log("Stab with spear");
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            if (Wallpart == null)
+            {
+                SpawnWall();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (Wallpart != null)
+            {
+                PlaceWall();
+            }
+        }
+
     }
 
     public void OpenCraftMenu()
@@ -154,6 +217,22 @@ public class GameManager : MonoBehaviour
         CraftMenu.gameObject.SetActive(false);
     }
 
+    GameObject Wallpart;
+
+    public void SpawnWall()
+    {
+        Wallpart = Instantiate(WallObject, parent);
+    }
+
+    public void PlaceWall()
+    {
+        Wallpart.transform.SetParent(null);
+
+        float originalx = Wallpart.transform.position.x;
+        float xposition = originalx -= 1;
+        Wallpart.transform.Translate(new Vector3(0, xposition, 0));
+    }
+
     [Header("Settings")]
     public int totalThrows;
     public float throwCooldown;
@@ -165,16 +244,24 @@ public class GameManager : MonoBehaviour
 
     bool readyToThrow;
 
-    private void Throw()
+    [SerializeField] private GameObject projectile;
+
+    Rigidbody projectileRb;
+
+    public void SpawnSpear()
     {
         readyToThrow = false;
 
-        // instantiate object to throw
-        Quaternion rotation = Quaternion.Euler(0f, 90f, 0f);
-        GameObject projectile = Instantiate(Spear, attackPoint.position, rotation);
+        projectile = Instantiate(Spear, parent);
+        projectileRb = projectile.GetComponent<Rigidbody>();
+        projectileRb.constraints = RigidbodyConstraints.FreezeAll;
+        projectileRb.velocity = Vector3.zero;
+    }
 
-        // get rigidbody component
-        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+    private void Throw()
+    {
+        projectileRb.useGravity = true;
+        projectileRb.constraints = RigidbodyConstraints.None;
 
         // calculate direction
         Vector3 forceDirection = playerCamera.transform.forward;
@@ -193,6 +280,8 @@ public class GameManager : MonoBehaviour
 
         totalThrows--;
 
+        projectile = null;
+
         // implement throwCooldown
         Invoke(nameof(ResetThrow), throwCooldown);
     }
@@ -200,6 +289,20 @@ public class GameManager : MonoBehaviour
     private void ResetThrow()
     {
         readyToThrow = true;
+    }
+
+    float stabMotion = 1;
+
+    IEnumerator Stab()
+    {
+        projectileRb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionX;
+        stabMotion += 1;
+        projectile.transform.localPosition = new Vector3(0f, 0f, stabMotion);
+        yield return new WaitForSeconds(1f);
+        
+        stabMotion -= 1;
+        projectile.transform.localPosition = new Vector3(0f, 0f, stabMotion);
+        projectileRb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     void TakeHealthDamage(int damage)

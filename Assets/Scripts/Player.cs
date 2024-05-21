@@ -89,5 +89,7 @@ public class FPSController : MonoBehaviour
             GameManager.Instance.CloseCraftMenu();
         }
     }
+
+    
 }
 

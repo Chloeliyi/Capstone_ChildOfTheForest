@@ -5,37 +5,34 @@ using UnityEngine;
 public class ProjectileAddon : MonoBehaviour
 {
     public int damage;
-
+    
     private Rigidbody rb;
 
     private bool targetHit;
-
-    public ThrowingTutorial throwTut;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void Update()
     {
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
         if (collision.gameObject.tag == "Enemy")
         {
             rb.isKinematic = true;
-            //DeparentProjectile();
+            DeparentProjectile();
             Debug.Log("Enemy was hit");
 
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
             enemy.TakeDamage(damage);
 
-            Destroy(gameObject);
-
-        }
-        else
-        {
-            Destroy(gameObject);
+            //Destroy(gameObject);
 
         }
         /*else 
@@ -71,5 +68,15 @@ public class ProjectileAddon : MonoBehaviour
     public void DeparentProjectile()
     {
         gameObject.transform.SetParent(null);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Player is within range of spear");
+            Destroy(gameObject);
+            GameManager.Instance.SpawnSpear();
+        }
     }
 }

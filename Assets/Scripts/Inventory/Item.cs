@@ -20,6 +20,6 @@ public class Item : ScriptableObject
         Potion,
         Weapon,
         Food,
-        
+        Enemy
     }
 }

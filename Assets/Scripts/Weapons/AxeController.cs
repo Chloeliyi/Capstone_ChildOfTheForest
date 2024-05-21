@@ -6,4 +6,9 @@ public class AxeController : MonoBehaviour
 {
     public Item AxeItem;
 
+    public void DestroyAxe()
+    {
+        Destroy(gameObject);
+        GameManager.Instance.AxeGameObject = null;
+    }
 }
