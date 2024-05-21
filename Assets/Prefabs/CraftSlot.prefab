@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 8128697533089783613}
   - component: {fileID: 7903904542526497445}
   - component: {fileID: 310899905000042128}
+  - component: {fileID: 1777150972552048328}
   m_Layer: 0
   m_Name: CraftSlot
   m_TagString: Untagged
@@ -151,3 +152,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1777150972552048328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6197288431711882704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf92eb197b383346ace2e83f3e769d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftIcon: {fileID: 4145022498834221059}
+  ivenItem: {fileID: 7524904248831400331, guid: 682c53f60afac4f49bc4a1c117072e94, type: 3}

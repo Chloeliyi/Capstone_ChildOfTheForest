@@ -65,11 +65,14 @@ MonoBehaviour:
   Spear: {fileID: 605491109353154781, guid: f9e92e0d009fd3f42b4874a07883be02, type: 3}
   attackPoint: {fileID: 0}
   Tree: {fileID: 5346468408104027329, guid: d6ad62813bbeee245b58cf21f98692ae, type: 3}
+  treeController: {fileID: 253002678055134559, guid: aa00cc194f045244b9121492d89b14eb, type: 3}
+  WallObject: {fileID: 6913772783831019744, guid: ebe0d44376c4d89489deb31c3a72abc3, type: 3}
   totalThrows: 100
   throwCooldown: 0.1
   throwKey: 116
   throwForce: 20
   throwUpwardForce: 0
+  projectile: {fileID: 0}
 --- !u!114 &5628329827598128583
 MonoBehaviour:
   m_ObjectHideFlags: 0

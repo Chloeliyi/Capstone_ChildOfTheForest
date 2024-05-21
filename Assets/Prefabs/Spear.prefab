@@ -202,4 +202,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  throwTut: {fileID: 2020969019974208439, guid: 97ba4ca4158151443b86ac84028f0259, type: 3}

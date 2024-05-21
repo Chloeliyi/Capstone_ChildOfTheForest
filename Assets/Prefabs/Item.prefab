@@ -491,7 +491,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RemoveButton: {fileID: 8253676931091976551}
-  gameManager: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
 --- !u!114 &1163302400384032935
 MonoBehaviour:
   m_ObjectHideFlags: 0
