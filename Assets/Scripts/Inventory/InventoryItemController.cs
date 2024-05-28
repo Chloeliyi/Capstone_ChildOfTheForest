@@ -56,8 +56,8 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log(item.itemName + " end drag");
-        transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         transform.SetParent(parentAfterDrag);
+        transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         image.raycastTarget = true;
     }
     

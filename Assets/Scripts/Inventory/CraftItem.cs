@@ -8,9 +8,9 @@ public class CraftItem : MonoBehaviour, IDropHandler
 {
     /*public Image craftIcon;
 
-    public GameObject craftItem;
-
     public InventoryItemController ivenItem;*/
+
+    //public string craftItem;
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -21,19 +21,10 @@ public class CraftItem : MonoBehaviour, IDropHandler
             GameObject dropped = eventData.pointerDrag;
             InventoryItemController draggableItem = dropped.GetComponent<InventoryItemController>();
             draggableItem.parentAfterDrag = transform;
-            Debug.Log(draggableItem.parentAfterDrag);
+            //draggableItem.transform.position = new Vector3(0f, 0f, 0f);
+
+            //craftItem = "Branch";
+            //CraftManager.Instance.Add(craftItem);
         }
-        /*if (eventData.pointerDrag != null)
-        {
-            ivenItem.SetCraftItem(craftIcon);
-            ivenItem.RemoveItem();
-
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-        }*/
-    }
-
-    public void AddCraftItems(GameObject craftItem)
-    {
-        craftItem = craftItem;
     }
 }

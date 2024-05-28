@@ -6,32 +6,25 @@ using UnityEngine.EventSystems;
 
 public class CraftManager : MonoBehaviour
 {
+    public static CraftManager Instance;
 
-    public CraftItem[] CraftObjects;
+    public GameObject[] CraftObjects;
 
-    public List<CraftItem> craftItems = new List<CraftItem>();
+    public List<string> craftItems = new List<string>();
+    
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
+    
     }
 
-    /*public void AddCraftObjects(CraftItem craftItem)
+    public void Add(string craftItem)
     {
         craftItems.Add(craftItem);
     }
-
-    public void SetCraftObjects()
-    {
-        for (int i = 0; i < craftItems.Count; i++)
-        {
-            CraftObjects[i].AddCraftItems(craftItems[i]);
-            Debug.Log(craftItems[i]);
-        }
-    }*/
 }
