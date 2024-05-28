@@ -35,9 +35,9 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log(item.itemName + " begin drag");
-        parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
-        transform.SetAsLastSibling();
+        //parentAfterDrag = transform.parent;
+        //transform.SetParent(transform.root);
+        //transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -50,7 +50,7 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log(item.itemName + " end drag");
-        transform.SetParent(parentAfterDrag);
+        //transform.SetParent(parentAfterDrag);
     }
     
     public void OnButtonHover()
@@ -70,7 +70,7 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
     public void SetCraftItem(Image craftIcon/*, GameObject craftItem*/)
     {
         craftIcon.sprite = item.icon;
-        //craftItem = item.G;
+        //craftItem = ;
     }
 
     public void UseItem()
