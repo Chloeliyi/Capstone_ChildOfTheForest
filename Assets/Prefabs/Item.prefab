@@ -491,6 +491,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RemoveButton: {fileID: 8253676931091976551}
+  parentAfterDrag: {fileID: 0}
+  ivenMenu: {fileID: 2015596207980533396, guid: 1b0c208770c1d3d4c870a7f67795f87d, type: 3}
+  image: {fileID: 4883017235449768388}
 --- !u!114 &1163302400384032935
 MonoBehaviour:
   m_ObjectHideFlags: 0
