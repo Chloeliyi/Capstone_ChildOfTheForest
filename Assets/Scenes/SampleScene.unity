@@ -1113,6 +1113,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1446059897335245227}
     m_Modifications:
+    - target: {fileID: 1269738183502965498, guid: 6de8eec61da360a41b29aad5713f0693, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6197288431711882704, guid: 6de8eec61da360a41b29aad5713f0693, type: 3}
       propertyPath: m_Name
       value: CraftSlot
@@ -5024,7 +5028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 789312433291587286, guid: a2766f465c05fe943beac766e0279cb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00000023841858
+      value: 0.41
       objectReference: {fileID: 0}
     - target: {fileID: 789312433291587286, guid: a2766f465c05fe943beac766e0279cb5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6584,6 +6588,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1446059897335245227}
     m_Modifications:
+    - target: {fileID: 1269738183502965498, guid: 6de8eec61da360a41b29aad5713f0693, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6197288431711882704, guid: 6de8eec61da360a41b29aad5713f0693, type: 3}
       propertyPath: m_Name
       value: CraftSlot (1)
@@ -7254,6 +7262,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1446059897335245227}
     m_Modifications:
+    - target: {fileID: 1269738183502965498, guid: 6de8eec61da360a41b29aad5713f0693, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6197288431711882704, guid: 6de8eec61da360a41b29aad5713f0693, type: 3}
       propertyPath: m_Name
       value: CraftSlot (3)
@@ -8136,6 +8148,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1446059897335245227}
     m_Modifications:
+    - target: {fileID: 1269738183502965498, guid: 6de8eec61da360a41b29aad5713f0693, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6197288431711882704, guid: 6de8eec61da360a41b29aad5713f0693, type: 3}
       propertyPath: m_Name
       value: CraftSlot (2)
@@ -10798,7 +10814,7 @@ GameObject:
   - component: {fileID: 7664079218710646893}
   - component: {fileID: 5572181342217338399}
   - component: {fileID: 2642512248867651360}
-  - component: {fileID: 8187697234275936815}
+  - component: {fileID: 7664079218710646894}
   m_Layer: 0
   m_Name: InventorySlots
   m_TagString: Untagged
@@ -12190,7 +12206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3001522964271551991, guid: abd4410b73326364a9a54b7fd7b65f69, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7162755624070004945, guid: abd4410b73326364a9a54b7fd7b65f69, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12358,6 +12374,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7664079218710646894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4104403658229757729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 25
+    m_Right: 0
+    m_Top: 25
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 150, y: 150}
+  m_Spacing: {x: 25, y: 25}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!114 &7750959680858887486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17501,32 +17541,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &8187697234275936815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4104403658229757729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 25
-    m_Right: 25
-    m_Top: 25
-    m_Bottom: 25
-  m_ChildAlignment: 0
-  m_Spacing: 25
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!23 &8194197028309093764
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17729,7 +17743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1061516572825204470, guid: 3d4416c09ddd83944a4dbd10dc3ffb32, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5214551653439058056, guid: 3d4416c09ddd83944a4dbd10dc3ffb32, type: 3}
       propertyPath: inventoryManager
