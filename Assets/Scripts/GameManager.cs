@@ -207,6 +207,8 @@ public class GameManager : MonoBehaviour
         BigIvenMenu.gameObject.SetActive(true);
         ItemDescMenu.gameObject.SetActive(false);
         CraftMenu.gameObject.SetActive(true);
+
+        InventoryManager.Instance.ListItems();
     }
 
     public void CloseCraftMenu()
@@ -358,37 +360,4 @@ public class GameManager : MonoBehaviour
         Foodslider.value = CurrentFood;
         FoodText.text = $"Food:{CurrentFood}";
     }
-
-    /*public AxeController axeController;
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Tree")
-        {
-            if (AxeGameObject != null)
-            {
-                if(Input.GetKeyDown(KeyCode.M))
-                {
-                    Debug.Log("Tree is being cut");
-                    axeController.TakeAxeDamage();
-                }
-            }
-
-            else if (AxeGameObject == null)
-            {
-                if(Input.GetKeyDown(KeyCode.M))
-                {
-                    Debug.Log("No Axe");
-                }
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Tree")
-        {
-            Debug.Log("Too far from tree");
-        }
-    }*/
 }

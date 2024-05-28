@@ -15,6 +15,7 @@ MonoBehaviour:
   id: 3
   itemName: Branch
   value: 10
+  durability: 0
   icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  itemType: 3
+  itemType: 4
   itemDesc: This is a tree branch

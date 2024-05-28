@@ -35,9 +35,9 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log(item.itemName + " begin drag");
-        //parentAfterDrag = transform.parent;
-        //transform.SetParent(transform.root);
-        //transform.SetAsLastSibling();
+        parentAfterDrag = transform.parent;
+        transform.SetParent(transform.root);
+        transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -50,7 +50,7 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log(item.itemName + " end drag");
-        //transform.SetParent(parentAfterDrag);
+        transform.SetParent(parentAfterDrag);
     }
     
     public void OnButtonHover()
@@ -79,12 +79,14 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
         {
             case Item.ItemType.Potion:
             GameManager.Instance.IncreaseHealth(item.value);
+            RemoveItem();
             break;
             case Item.ItemType.Food:
             GameManager.Instance.IncreaseFood(item.value);
+            RemoveItem();
             break;
         }
 
-        RemoveItem();
+        //RemoveItem();
     }
 }
