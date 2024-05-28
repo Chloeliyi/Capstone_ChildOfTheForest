@@ -6,33 +6,30 @@ using UnityEngine.EventSystems;
 
 public class CraftItem : MonoBehaviour, IDropHandler
 {
-    public Image craftIcon;
+    /*public Image craftIcon;
 
     public GameObject craftItem;
 
-    public InventoryItemController ivenItem;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public InventoryItemController ivenItem;*/
 
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("On drop");
-        if (eventData.pointerDrag != null)
+        if (transform.childCount == 0) 
         {
-            ivenItem.SetCraftItem(craftIcon/*, craftItem*/);
+            Debug.Log("Item is in slot");
+            GameObject dropped = eventData.pointerDrag;
+            InventoryItemController draggableItem = dropped.GetComponent<InventoryItemController>();
+            draggableItem.parentAfterDrag = transform;
+            Debug.Log(draggableItem.parentAfterDrag);
+        }
+        /*if (eventData.pointerDrag != null)
+        {
+            ivenItem.SetCraftItem(craftIcon);
             ivenItem.RemoveItem();
 
-            //eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-        }
+            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+        }*/
     }
 
     public void AddCraftItems(GameObject craftItem)

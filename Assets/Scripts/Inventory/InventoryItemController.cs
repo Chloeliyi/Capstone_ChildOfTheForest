@@ -13,7 +13,11 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
 
     //private RectTransform rectTransform;
 
-    Transform parentAfterDrag;
+    public Transform parentAfterDrag;
+
+    //public Transform ivenMenu;
+
+    public Image image;
 
     void Awake()
     {
@@ -35,9 +39,11 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log(item.itemName + " begin drag");
-        //parentAfterDrag = transform.parent;
-        //transform.SetParent(transform.root);
-        //transform.SetAsLastSibling();
+        parentAfterDrag = transform.parent;
+        Debug.Log(parentAfterDrag);
+        transform.SetParent(transform.root);
+        transform.SetAsLastSibling();
+        image.raycastTarget = false;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -50,7 +56,9 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log(item.itemName + " end drag");
-        //transform.SetParent(parentAfterDrag);
+        transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+        transform.SetParent(parentAfterDrag);
+        image.raycastTarget = true;
     }
     
     public void OnButtonHover()

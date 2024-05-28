@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
 
     int AmountOfTrees = 1;
 
+    public string username;
+
     void Start()
     {        
         CurrentHealth = MaxHealth;
