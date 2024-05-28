@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class CraftManager : MonoBehaviour
 {
 
-    /*public CraftItem[] CraftObjects;
+    public CraftItem[] CraftObjects;
 
     public List<CraftItem> craftItems = new List<CraftItem>();
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class CraftManager : MonoBehaviour
     {
     }
 
-    public void AddCraftObjects(CraftItem craftItem)
+    /*public void AddCraftObjects(CraftItem craftItem)
     {
         craftItems.Add(craftItem);
     }

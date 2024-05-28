@@ -73,13 +73,17 @@ public class InventoryManager : MonoBehaviour
 
     private GameObject desc;
 
-    public void ListItems()
+    public void ClearContent()
     {
         //Clear content before open
         foreach(Transform item in ItemContent)
         {
             Destroy(item.gameObject);
         }
+    }
+
+    public void ListItems()
+    {
         foreach (var item in Items)
         {
             obj = Instantiate(InventoryItem, ItemContent);
