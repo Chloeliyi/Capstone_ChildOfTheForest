@@ -10,5 +10,6 @@ public class AxeController : MonoBehaviour
     {
         Destroy(gameObject);
         GameManager.Instance.AxeGameObject = null;
+        GameManager.Instance.activeAxe = false;
     }
 }

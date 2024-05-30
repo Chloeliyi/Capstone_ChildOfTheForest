@@ -46,19 +46,6 @@ public class TreeController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            /*if(Input.GetKeyDown(KeyCode.M))
-                {
-                    Debug.Log("Tree is being cut");
-                    treeHealth -= 2;
-                    Debug.Log("Tree health:" + treeHealth);
-
-                    if (treeHealth == 0)
-                    {
-                        Debug.Log("Tree has been cut");
-                        SpawnBranch();
-                        Destroy(tree);
-                    }
-                }*/
             if (GameManager.Instance.activeAxe == true)
             {
                 Debug.Log("Got Axe");

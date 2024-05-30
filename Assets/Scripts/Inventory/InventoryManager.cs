@@ -24,6 +24,8 @@ public class InventoryManager : MonoBehaviour
 
     public InventoryItemController[] InventoryItems;
 
+    public InventoryItemController[] SmallInventoryItems;
+
     public TMP_Text DescName;
 
     public Image DescIcon;
@@ -103,12 +105,16 @@ public class InventoryManager : MonoBehaviour
         SetInventoryItems();
     }
 
-    /*public void ListSmallInvenItems()
+    /*public void ClearSmallContent()
     {
         foreach(Transform item in SmallItemContent)
         {
             Destroy(item.gameObject);
         }
+    }
+
+    public void ListSmallInvenItems()
+    {
         foreach (var item in Items)
         {
             GameObject obj = Instantiate(InventoryItem, SmallItemContent);
@@ -169,11 +175,11 @@ public class InventoryManager : MonoBehaviour
 
     /*public void SetSmallInventoryItems()
     {
-        InventoryItems = SmallItemContent.GetComponentsInChildren<InventoryItemController>();
+        SmallInventoryItems = SmallItemContent.GetComponentsInChildren<InventoryItemController>();
 
         for (int i = 0; i < Items.Count; i++)
         {
-            InventoryItems[i].AddItem(Items[i]);
+            SmallInventoryItems[i].AddItem(Items[i]);
         }
     }*/
 

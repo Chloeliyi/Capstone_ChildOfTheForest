@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         Foodslider.value = CurrentFood;
         FoodText.text = $"Food:{CurrentFood}";
 
-        SpawnTrees();
+        //SpawnTrees();
 
         readyToThrow = true;
     }
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             TakeHealthDamage(3);
         }
@@ -219,6 +219,8 @@ public class GameManager : MonoBehaviour
         BigIvenMenu.gameObject.SetActive(false);
         ItemDescMenu.gameObject.SetActive(true);
         CraftMenu.gameObject.SetActive(false);
+
+        InventoryManager.Instance.ClearContent();
     }
 
     GameObject Wallpart;
@@ -248,7 +250,7 @@ public class GameManager : MonoBehaviour
 
     bool readyToThrow;
 
-    [SerializeField] private GameObject projectile;
+    public GameObject projectile;
 
     Rigidbody projectileRb;
 
