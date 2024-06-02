@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1029802041441",
+    "firebase_url": "https://childoftheforest-2024-default-rtdb.firebaseio.com",
+    "project_id": "childoftheforest-2024",
+    "storage_bucket": "childoftheforest-2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029802041441:android:797aab9fd0932e93b60a20",
+        "android_client_info": {
+          "package_name": "com.ChildOftheForest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1HaMPJgcPur2z2EJYG5cIfWVVezcQ6qE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
