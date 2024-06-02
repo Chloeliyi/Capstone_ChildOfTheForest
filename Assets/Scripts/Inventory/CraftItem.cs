@@ -6,11 +6,13 @@ using UnityEngine.EventSystems;
 
 public class CraftItem : MonoBehaviour, IDropHandler
 {
-    /*public Image craftIcon;
+    public static CraftItem Instance;
 
-    public InventoryItemController ivenItem;*/
+    public string craftItem;
 
-    //public string craftItem;
+    public CraftManager craftManager;
+
+    private InventoryItemController draggableItem;
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -19,12 +21,20 @@ public class CraftItem : MonoBehaviour, IDropHandler
         {
             Debug.Log("Item is in slot");
             GameObject dropped = eventData.pointerDrag;
-            InventoryItemController draggableItem = dropped.GetComponent<InventoryItemController>();
-            draggableItem.parentAfterDrag = transform;
+            draggableItem = dropped.GetComponent<InventoryItemController>();
+            draggableItem.IvenSlot = transform;
             //draggableItem.transform.position = new Vector3(0f, 0f, 0f);
 
-            //craftItem = "Branch";
-            //CraftManager.Instance.Add(craftItem);
+            Debug.Log(draggableItem.item.itemName);
+            craftItem = draggableItem.item.itemName;
+            craftManager.Add(craftItem);
+
+            craftManager.CreateItem();
         }
+    }
+
+    public void RemoveCraftItem()
+    {
+        draggableItem.RemoveItem();
     }
 }

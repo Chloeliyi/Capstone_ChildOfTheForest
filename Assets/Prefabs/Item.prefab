@@ -490,9 +490,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d13051078bced4dab21a80c3601fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
   RemoveButton: {fileID: 8253676931091976551}
-  parentAfterDrag: {fileID: 0}
+  IvenSlot: {fileID: 0}
+  IvenMenu: {fileID: 0}
   image: {fileID: 4883017235449768388}
+  craftManager: {fileID: 5457148235762341954, guid: fe82ece1ce6ad234eaa9ffe396e5c95c, type: 3}
 --- !u!114 &1163302400384032935
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class SpearController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void DestroySpear()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Destroy(gameObject);
+        GameManager.Instance.projectile = null;
+        GameManager.Instance.ActiveSpear = false;
     }
 }

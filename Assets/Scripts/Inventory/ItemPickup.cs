@@ -6,7 +6,7 @@ public class ItemPickup : MonoBehaviour
 {
     public Item Item;
 
-    public InventoryManager inventoryManager;
+    //public InventoryManager inventoryManager;
 
     void PickUp()
     {
@@ -18,6 +18,6 @@ public class ItemPickup : MonoBehaviour
     private void OnMouseDown()
     {
         PickUp();
-        //inventoryManager.ListSmallInvenItems();
+        //InventoryManager.Instance.ListSmallInvenItems();
     }
 }
