@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     int AmountOfTrees = 1;
 
-    public string username;
+    //public string username;
 
     void Start()
     {        

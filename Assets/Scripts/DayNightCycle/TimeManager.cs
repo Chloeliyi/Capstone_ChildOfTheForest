@@ -35,12 +35,13 @@ public class TimeManager : MonoBehaviour
  
     [SerializeField] private float tempSecond;
 
-    private Texture2D StartSkybox;
+    [SerializeField] private Texture2D StartSkybox;
 
-    private Texture2D NextSkybox;
+    [SerializeField] private Texture2D NextSkybox;
 
     void Start()
     {
+        Debug.Log("Start");
         hours = 5;
 
         OnHoursChange(hours);
@@ -69,7 +70,7 @@ public class TimeManager : MonoBehaviour
             RenderSettings.skybox.SetTexture("_Texture2", NextSkybox);
         }
 
-        else if (hours >= 20 && hours <= 6)
+        else if (hours >= 20 || hours <= 6)
         {
             Debug.Log("Night");
             StartSkybox = skyboxNight;
@@ -143,8 +144,8 @@ public class TimeManager : MonoBehaviour
         }
         else if (value == 20)
         {
-            StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, 10f));
-            StartCoroutine(LerpLight(graddientSunsetToNight, 10f));
+            StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, 5f));
+            StartCoroutine(LerpLight(graddientSunsetToNight, 5f));
         }
     }
  

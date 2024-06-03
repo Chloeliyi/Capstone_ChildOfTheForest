@@ -49,7 +49,7 @@ public class AuthManager : MonoBehaviour
         
     }
 
-    void Awake()
+    /*void Awake()
     {
         auth = FirebaseAuth.DefaultInstance;
         mDatabaseRef = FirebaseDatabase.DefaultInstance.RootReference;     
@@ -61,9 +61,9 @@ public class AuthManager : MonoBehaviour
         password = PasswordSignUp.text.Trim();
 
         SignUpUser(username, email, password);
-    }
+    }*/
 
-    private void SignUpUser(string username, string email, string password) 
+    /*private void SignUpUser(string username, string email, string password) 
     {
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
@@ -81,7 +81,7 @@ public class AuthManager : MonoBehaviour
                 {
 
                     Firebase.Auth.AuthResult newUser = task.Result;
-                    Debug.LogFormat("Welcome to DDA Games {0}", newUser.User.Email);
+                    Debug.LogFormat("Child Of The Forestst", newUser.User.Email);
                     //do anything you want after player creation eg. create new player
 
                     userId = newUser.User.UserId;
@@ -93,7 +93,7 @@ public class AuthManager : MonoBehaviour
                     mDatabaseRef.Child("Users").Child(userId).SetRawJsonValueAsync(json);
                     
                     GameManager gm = FindObjectOfType<GameManager>();
-                    gm.username = user.userName;
+                    gm.username = user.userName;*/
 
                     /*profileName.text = username;
 
@@ -104,17 +104,16 @@ public class AuthManager : MonoBehaviour
                     for (var i = 0; i <= passwordLength; i ++) {
                         profilePassword.text += "*";
                     }*/
-
-                    ClearSignUpFields();
                     
                     //ToggleSignUpForm();
                     //ToggleGameMenu();
+                    //ClearSignUpFields();
                     
-                }
-        });
-    }
+                //}
+        //});
+    //}
 
-    public void LogIn() {
+    /*public void LogIn() {
 
         string email = EmailLogIn.text.Trim();
         string password = PasswordLogIn.text.Trim();
@@ -270,5 +269,5 @@ public class AuthManager : MonoBehaviour
             }
         }
         return errorMsg;
-    }
+    }*/
 }
