@@ -8,8 +8,10 @@ public class Enemy : MonoBehaviour
     [Header("Stats")]
     public int health;
 
+    public int Enemydamage;
+
     public Transform playerTransform;
-    NavMeshAgent agent;
+    [SerializeField]private NavMeshAgent agent;
     Animator animator;
 
     public LayerMask whatIsGround, whatIsPlayer;
@@ -44,7 +46,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         //agent.destination = playerTransform.position;
-        animator.SetFloat("Speed", agent.velocity.magnitude);
+        //animator.SetFloat("Speed", agent.velocity.magnitude);
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -57,6 +59,8 @@ public class Enemy : MonoBehaviour
     public void Patroling()
     {
         Debug.Log("Patroling");
+        animator.SetFloat("Speed", 3f);
+        Debug.Log("Speed : " + agent.velocity.magnitude);
 
         if (!walkPointSet) SearchWalkPoint();
 
@@ -80,25 +84,31 @@ public class Enemy : MonoBehaviour
 
     public void ChasePlayer()
     {
-
+        animator.SetFloat("Speed", 4f);
         Debug.Log("Chasing");
+        Debug.Log("Speed : " + agent.velocity.magnitude);
         agent.SetDestination(playerTransform.position);
     }
 
     public void AttackPlayer()
     {
         Debug.Log("Attacking");
+        Debug.Log("Speed : " + agent.velocity.magnitude);
         agent.SetDestination(transform.position);
         transform.LookAt(playerTransform);
 
-        if (!alreadyAttacked)
+        animator.SetFloat("Speed", 4.5f);
+
+        GiveDamage();
+
+        /*if (!alreadyAttacked)
         {
             //Code
-            animator.Play(attackAnim);
+            //animator.Play(attackAnim);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
+        }*/
     }
 
     private void ResetAttack()
@@ -106,9 +116,9 @@ public class Enemy : MonoBehaviour
             alreadyAttacked = false;
         }
 
-    public void TakeDamage(int damage)
+    public void TakeSpearDamage(int Speardamage)
     {
-        health -= damage;
+        health -= Speardamage;
 
         Debug.Log("Enemy health : " + health);
 
@@ -119,5 +129,21 @@ public class Enemy : MonoBehaviour
     public void DestroyEnemy()
     {
         Destroy(gameObject);
+    }
+
+    public void GiveDamage()
+    {
+        float count = 0;
+        count += Enemydamage;
+        Debug.Log("Taking Damage" + count);
+
+        GameManager.Instance.TakeHealthDamage(Enemydamage);
+
+        StartCoroutine(AttackTime());
+    }
+
+    IEnumerator AttackTime()
+    {
+        yield return new WaitForSeconds(timeBetweenAttacks);
     }
 }

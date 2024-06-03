@@ -23,6 +23,8 @@ public class CraftItem : MonoBehaviour, IDropHandler
             GameObject dropped = eventData.pointerDrag;
             draggableItem = dropped.GetComponent<InventoryItemController>();
             draggableItem.IvenSlot = transform;
+            Debug.Log("transform: " + transform);
+            //draggableItem.IvenMenu = transform.parent;
             //draggableItem.transform.position = new Vector3(0f, 0f, 0f);
 
             Debug.Log(draggableItem.item.itemName);
@@ -30,11 +32,14 @@ public class CraftItem : MonoBehaviour, IDropHandler
             craftManager.Add(craftItem);
 
             craftManager.CreateItem();
+
+            //RemoveCraftItem();
         }
     }
 
     public void RemoveCraftItem()
     {
+        Debug.Log("Remove Craft Item");
         draggableItem.RemoveItem();
     }
 }

@@ -13,7 +13,7 @@ public class TreeController : MonoBehaviour
 
     public AxeController axeController;
 
-    public bool axeInRange;
+    //public bool axeInRange;
 
     [SerializeField] private GameObject tree;
 

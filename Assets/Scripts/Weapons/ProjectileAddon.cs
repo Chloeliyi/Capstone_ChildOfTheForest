@@ -30,7 +30,7 @@ public class ProjectileAddon : MonoBehaviour
 
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
-            enemy.TakeDamage(damage);
+            enemy.TakeSpearDamage(damage);
 
             //Destroy(gameObject);
 

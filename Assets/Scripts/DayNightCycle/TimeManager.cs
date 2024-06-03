@@ -22,10 +22,10 @@ public class TimeManager : MonoBehaviour
  
     public int Minutes
     { get { return minutes; } set { minutes = value; OnMinutesChange(value); } }
+
+    [SerializeField] private int hours;
  
-    [SerializeField] private int hours = 5;
- 
-     public int Hours
+    public int Hours
     { get { return hours; } set { hours = value; OnHoursChange(value); } }
  
     [SerializeField] private int days;
@@ -35,9 +35,68 @@ public class TimeManager : MonoBehaviour
  
     [SerializeField] private float tempSecond;
 
+    private Texture2D StartSkybox;
+
+    private Texture2D NextSkybox;
+
+    void Start()
+    {
+        hours = 5;
+
+        OnHoursChange(hours);
+
+        if (hours >= 8 && hours <= 18)
+        {
+            Debug.Log("Day");
+            StartSkybox = skyboxDay;
+
+            NextSkybox = skyboxSunset;
+
+            RenderSettings.skybox.SetTexture("_Texture1", StartSkybox);
+
+            RenderSettings.skybox.SetTexture("_Texture2", NextSkybox);
+        }
+
+        else if (hours >= 18 && hours <= 20 )
+        {
+            Debug.Log("Sunset");
+            StartSkybox = skyboxSunset;
+
+            NextSkybox = skyboxNight;
+
+            RenderSettings.skybox.SetTexture("_Texture1", StartSkybox);
+
+            RenderSettings.skybox.SetTexture("_Texture2", NextSkybox);
+        }
+
+        else if (hours >= 20 && hours <= 6)
+        {
+            Debug.Log("Night");
+            StartSkybox = skyboxNight;
+
+            NextSkybox = skyboxSunrise;
+
+            RenderSettings.skybox.SetTexture("_Texture1", StartSkybox);
+
+            RenderSettings.skybox.SetTexture("_Texture2", NextSkybox);
+        }
+
+        else if (hours >= 6 && hours <= 8)
+        {
+            Debug.Log("Sunrise");
+            StartSkybox = skyboxSunrise;
+
+            NextSkybox = skyboxDay;
+
+            RenderSettings.skybox.SetTexture("_Texture1", StartSkybox);
+
+            RenderSettings.skybox.SetTexture("_Texture2", NextSkybox);
+        }
+    }
+
     private void Awake()
     {
-        Time.timeScale = 4f;
+        Time.timeScale = 1f;
     }
     public void Update()
     {
@@ -52,7 +111,7 @@ public class TimeManager : MonoBehaviour
  
     private void OnMinutesChange(int value)
     {
-        //globalLight.transform.Rotate(Vector3.up, (1f / (1440f / 4f)) * 360f, Space.World);
+        globalLight.transform.Rotate(Vector3.up, (1f / (1440f / 4f)) * 360f, Space.World);
         if (value >= 60)
         {
             Hours++;
@@ -69,20 +128,20 @@ public class TimeManager : MonoBehaviour
     {
         if (value == 6)
         {
-            StartCoroutine(LerpSkybox(skyboxNight, skyboxSunrise, 10f));
-            StartCoroutine(LerpLight(graddientNightToSunrise, 10f));
+            StartCoroutine(LerpSkybox(skyboxNight, skyboxSunrise, 5f));
+            StartCoroutine(LerpLight(graddientNightToSunrise, 5f));
         }
         else if (value == 8)
         {
-            StartCoroutine(LerpSkybox(skyboxSunrise, skyboxDay, 10f));
-            StartCoroutine(LerpLight(graddientSunriseToDay, 10f));
+            StartCoroutine(LerpSkybox(skyboxSunrise, skyboxDay, 5f));
+            StartCoroutine(LerpLight(graddientSunriseToDay, 5f));
         }
         else if (value == 18)
         {
-            StartCoroutine(LerpSkybox(skyboxDay, skyboxSunset, 10f));
-            StartCoroutine(LerpLight(graddientDayToSunset, 10f));
+            StartCoroutine(LerpSkybox(skyboxDay, skyboxSunset, 5f));
+            StartCoroutine(LerpLight(graddientDayToSunset, 5f));
         }
-        else if (value == 22)
+        else if (value == 20)
         {
             StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, 10f));
             StartCoroutine(LerpLight(graddientSunsetToNight, 10f));

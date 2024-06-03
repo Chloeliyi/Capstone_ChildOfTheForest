@@ -28,6 +28,10 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
         InventoryManager.Instance.Remove(item);
 
         Destroy(gameObject);
+
+        InventoryManager.Instance.DescName.text = "Empty";
+        InventoryManager.Instance.DescIcon.sprite = null;
+        InventoryManager.Instance.DescText.text = "Empty";
     }
 
     public void AddItem(Item newItem)
@@ -39,9 +43,8 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
     {
         Debug.Log(item.itemName + " begin drag");
         IvenSlot = transform.parent;
-        Debug.Log("parentAfterDrag : " + IvenSlot);
-        Debug.Log("parentAfterDrag parent: " + IvenSlot.parent);
-        //transform.SetParent(IvenSlot.parent);
+        IvenMenu = IvenSlot.parent;
+        //transform.SetParent(IvenMenu);
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
         image.raycastTarget = false;
@@ -57,6 +60,7 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
     {
         Debug.Log(item.itemName + " end drag");
         transform.SetParent(IvenSlot);
+        Debug.Log("Parent : " + IvenSlot);
         transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         image.raycastTarget = true;
     }

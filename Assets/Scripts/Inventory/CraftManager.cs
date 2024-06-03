@@ -25,6 +25,8 @@ public class CraftManager : MonoBehaviour
 
     public TMP_Text CraftedName;
 
+    public bool GotItem = false;
+
     public void Add(string craftItem)
     {
         craftItems.Add(craftItem);
@@ -38,13 +40,7 @@ public class CraftManager : MonoBehaviour
              {
                 Debug.Log("Branch can create torch");
 
-                /*GameObject obj = Instantiate(CraftedItem, CraftedContent);
-                var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
-                var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
-                var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
-
-                itemName.text = CraftableItems[0].itemName;
-                itemIcon.sprite = CraftableItems[0].icon;*/
+                GotItem = true;
 
                 foreach (var item in CraftableItems)
                 {
@@ -56,35 +52,33 @@ public class CraftManager : MonoBehaviour
                     }
                 }
              }
-
-             //SetCraftedItem();
         }
     }
 
-    /*public void SetCraftedItem()
-    {
-        InventoryItems = CraftedContent.GetComponentsInChildren<InventoryItemController>();
-
-        for (int i = 0; i < CraftableItems.Count; i++)
-        {
-            InventoryItems[i].AddItem(CraftableItems[counter]);
-            Debug.Log(CraftableItems[counter]);
-        }
-    }*/
-
     public void AddToInventory()
     {
-        InventoryManager.Instance.Add(CraftableItems[counter]);
 
-        InventoryManager.Instance.ListItems();
+        if (GotItem == true)
+        {
+            Debug.Log("Add To Inventory");
+            InventoryManager.Instance.Add(CraftableItems[counter]);
 
-        craftItems.Clear();
+            InventoryManager.Instance.ListItems();
+
+            craftItems.Clear();
 
         CraftedName.text = null;
         CraftedIcon.sprite = null;
 
+        GotItem = false;
+
         //craftItem = CraftedContent.GetComponentInChildren<CraftItem>();
 
-        craftItem.RemoveCraftItem();
+        //craftItem.RemoveCraftItem();
+        }
+        else if (GotItem == false)
+        {
+            Debug.Log("Got nothing to add");
+        }
     }
 }

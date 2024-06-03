@@ -105,16 +105,18 @@ public class InventoryManager : MonoBehaviour
         SetInventoryItems();
     }
 
-    /*public void ClearSmallContent()
+    public void ClearSmallContent()
     {
         foreach(Transform item in SmallItemContent)
         {
             Destroy(item.gameObject);
         }
+
     }
 
     public void ListSmallInvenItems()
     {
+        //ClearSmallContent();
         foreach (var item in Items)
         {
             GameObject obj = Instantiate(InventoryItem, SmallItemContent);
@@ -132,7 +134,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         SetSmallInventoryItems();
-    }*/
+    }
 
     public void EnableItemsRemove()
     {
@@ -173,14 +175,16 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    /*public void SetSmallInventoryItems()
+    public int counter;
+
+    public void SetSmallInventoryItems()
     {
         SmallInventoryItems = SmallItemContent.GetComponentsInChildren<InventoryItemController>();
 
-        for (int i = 0; i < Items.Count; i++)
+        for (counter = 0; counter < Items.Count; counter++)
         {
-            SmallInventoryItems[i].AddItem(Items[i]);
+            SmallInventoryItems[counter].AddItem(Items[counter]);
         }
-    }*/
+    }
 
 }

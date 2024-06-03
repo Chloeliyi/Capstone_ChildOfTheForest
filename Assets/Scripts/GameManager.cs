@@ -311,7 +311,7 @@ public class GameManager : MonoBehaviour
         projectileRb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
-    void TakeHealthDamage(int damage)
+    public void TakeHealthDamage(int damage)
     {
         CurrentHealth -= damage;
         Healthslider.value = CurrentHealth;
