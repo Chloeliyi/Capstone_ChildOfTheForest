@@ -9,10 +9,10 @@ public class FPSController : MonoBehaviour
 {
 
     public Camera playerCamera;
-    public float walkSpeed = 1f;
-    public float runSpeed = 3f;
-    public float jumpPower = 4f;
-    public float gravity = 10f;
+    public float walkSpeed;
+    public float runSpeed;
+    public float jumpPower;
+    public float gravity;
 
     public float lookSpeed = 2f;
     public float lookXLimit = 45f;
@@ -25,6 +25,8 @@ public class FPSController : MonoBehaviour
     CharacterController characterController;
 
     public static FPSController Instance;
+
+    public bool IsCrouching;
 
     private void Awake()
     {

@@ -26,7 +26,7 @@ public class ProjectileAddon : MonoBehaviour
         {
             rb.isKinematic = true;
             DeparentProjectile();
-            Debug.Log("Enemy was hit");
+            Debug.Log("collision.gameObject.tag was hit");
 
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
@@ -34,6 +34,12 @@ public class ProjectileAddon : MonoBehaviour
 
             //Destroy(gameObject);
 
+        }
+        else if (collision.gameObject.tag == "Ground")
+        {
+            rb.isKinematic = true;
+            DeparentProjectile();
+            Debug.Log(collision.gameObject.tag + " was hit");
         }
         /*else 
         {
