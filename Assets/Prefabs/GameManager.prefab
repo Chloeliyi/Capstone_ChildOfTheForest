@@ -66,9 +66,10 @@ MonoBehaviour:
   Tree: {fileID: 5346468408104027329, guid: d6ad62813bbeee245b58cf21f98692ae, type: 3}
   treeController: {fileID: 253002678055134559, guid: aa00cc194f045244b9121492d89b14eb, type: 3}
   WallObject: {fileID: 6913772783831019744, guid: ebe0d44376c4d89489deb31c3a72abc3, type: 3}
+  Torch: {fileID: 5877592061824131560, guid: 8aec0e040557a2945aa874fd22c8a77a, type: 3}
   activeAxe: 0
   ActiveSpear: 0
-  username: 
+  enemy: {fileID: 0}
   totalThrows: 100
   throwCooldown: 0.1
   throwKey: 116

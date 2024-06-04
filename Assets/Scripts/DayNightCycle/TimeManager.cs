@@ -148,6 +148,9 @@ public class TimeManager : MonoBehaviour
         {
             StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, 1f));
             StartCoroutine(LerpLight(graddientSunsetToNight, 1f));
+
+            // Popup here;
+            Debug.Log("Night is coming");
         }
     }
  
