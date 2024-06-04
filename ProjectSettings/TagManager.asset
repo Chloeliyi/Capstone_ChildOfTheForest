@@ -10,6 +10,7 @@ TagManager:
   - Tree
   - Ground
   - Spear
+  - Bed
   layers:
   - Default
   - TransparentFX
