@@ -6,6 +6,9 @@ using UnityEngine.UI;
  
 public class TimeManager : MonoBehaviour
 {
+
+    public static TimeManager Instance;
+
     [SerializeField] private Texture2D skyboxNight;
     [SerializeField] private Texture2D skyboxSunrise;
     [SerializeField] private Texture2D skyboxDay;
@@ -23,7 +26,7 @@ public class TimeManager : MonoBehaviour
     public int Minutes
     { get { return minutes; } set { minutes = value; OnMinutesChange(value); } }
 
-    [SerializeField] private int hours;
+    public int hours;
  
     public int Hours
     { get { return hours; } set { hours = value; OnHoursChange(value); } }
@@ -41,8 +44,7 @@ public class TimeManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Start");
-        hours = 5;
+        hours = 12;
 
         OnHoursChange(hours);
 
@@ -129,23 +131,23 @@ public class TimeManager : MonoBehaviour
     {
         if (value == 6)
         {
-            StartCoroutine(LerpSkybox(skyboxNight, skyboxSunrise, 5f));
-            StartCoroutine(LerpLight(graddientNightToSunrise, 5f));
+            StartCoroutine(LerpSkybox(skyboxNight, skyboxSunrise, 1f));
+            StartCoroutine(LerpLight(graddientNightToSunrise, 1f));
         }
         else if (value == 8)
         {
-            StartCoroutine(LerpSkybox(skyboxSunrise, skyboxDay, 5f));
-            StartCoroutine(LerpLight(graddientSunriseToDay, 5f));
+            StartCoroutine(LerpSkybox(skyboxSunrise, skyboxDay, 1f));
+            StartCoroutine(LerpLight(graddientSunriseToDay, 1f));
         }
         else if (value == 18)
         {
-            StartCoroutine(LerpSkybox(skyboxDay, skyboxSunset, 5f));
-            StartCoroutine(LerpLight(graddientDayToSunset, 5f));
+            StartCoroutine(LerpSkybox(skyboxDay, skyboxSunset, 1f));
+            StartCoroutine(LerpLight(graddientDayToSunset, 1f));
         }
         else if (value == 20)
         {
-            StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, 5f));
-            StartCoroutine(LerpLight(graddientSunsetToNight, 5f));
+            StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, 1f));
+            StartCoroutine(LerpLight(graddientSunsetToNight, 1f));
         }
     }
  

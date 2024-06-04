@@ -201,6 +201,20 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            if (Enemy.Instance.activeWendigo == false)
+            {
+                Enemy.Instance.activeWendigo = true;
+                Debug.Log("Activate Wendigo");
+            }
+            else if (Enemy.Instance.activeWendigo == true)
+            {
+                Enemy.Instance.activeWendigo = false;
+                Debug.Log("Deactivate Wendigo");
+            }
+        }
+        
     }
 
     public void OpenCraftMenu()
@@ -237,6 +251,23 @@ public class GameManager : MonoBehaviour
         float originalx = Wallpart.transform.position.x;
         float xposition = originalx -= 1;
         Wallpart.transform.Translate(new Vector3(0, xposition, 0));
+    }
+
+    public void GoToBed()
+    {
+        if (TimeManager.Instance.hours >= 20 )
+        {
+            Debug.Log("Go To Bed");
+            TimeManager.Instance.hours = 7;
+        }
+        else if (TimeManager.Instance.hours <= 6)
+        {
+            TimeManager.Instance.hours = 7;
+        }
+        else
+        {
+            Debug.Log("To early for bed");
+        }
     }
 
     [Header("Settings")]
