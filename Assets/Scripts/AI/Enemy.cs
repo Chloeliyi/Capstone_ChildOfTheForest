@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-
     public static Enemy Instance;
     [Header("Stats")]
     public int health;
@@ -45,6 +44,15 @@ public class Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        /*if (TimeManager.Instance.hours >= 20 || TimeManager.Instance.hours <= 6)
+        {
+            activeWendigo = true;
+        } 
+        else
+        {
+            activeWendigo = false;
+        }*/
     }
 
     void Update()
@@ -65,6 +73,7 @@ public class Enemy : MonoBehaviour
         else
         {
             Debug.Log("Wendigo is not active");
+            animator.SetFloat("Speed", 0f);
         }
 
     }

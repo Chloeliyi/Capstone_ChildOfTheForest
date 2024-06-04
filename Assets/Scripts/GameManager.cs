@@ -54,11 +54,15 @@ public class GameManager : MonoBehaviour
 
     public GameObject WallObject;
 
+    public GameObject Torch;
+
     public bool activeAxe;
 
     public bool ActiveSpear;
 
     int AmountOfTrees = 1;
+
+    public Enemy enemy;
 
     //public string username;
 
@@ -203,16 +207,23 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            if (Enemy.Instance.activeWendigo == false)
+            if (enemy.activeWendigo == false)
             {
-                Enemy.Instance.activeWendigo = true;
+                enemy.activeWendigo = true;
                 Debug.Log("Activate Wendigo");
             }
-            else if (Enemy.Instance.activeWendigo == true)
+            else if (enemy.activeWendigo == true)
             {
-                Enemy.Instance.activeWendigo = false;
+                enemy.activeWendigo = false;
                 Debug.Log("Deactivate Wendigo");
             }
+        }
+
+        if (CurrentHealth == 0)
+        {
+            Time.timeScale = 0f;
+            FPSController.Instance.canMove = false;
+            Debug.Log("You have died");
         }
         
     }
@@ -255,19 +266,22 @@ public class GameManager : MonoBehaviour
 
     public void GoToBed()
     {
-        if (TimeManager.Instance.hours >= 20 )
+        if (TimeManager.Instance.hours >= 20 || TimeManager.Instance.hours <= 6)
         {
             Debug.Log("Go To Bed");
-            TimeManager.Instance.hours = 7;
-        }
-        else if (TimeManager.Instance.hours <= 6)
-        {
             TimeManager.Instance.hours = 7;
         }
         else
         {
             Debug.Log("To early for bed");
         }
+    }
+
+    GameObject torchObject;
+
+    public void SpawnTorch()
+    {
+        torchObject = Instantiate(Torch, parent);
     }
 
     [Header("Settings")]
