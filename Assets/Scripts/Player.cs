@@ -80,6 +80,12 @@ public class FPSController : MonoBehaviour
         {
             GameManager.Instance.OpenCraftMenu();
         }
+
+        else if(other.gameObject.tag == "Bed")
+        {
+            Debug.Log("Near Bed");
+            GameManager.Instance.GoToBed();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -88,8 +94,10 @@ public class FPSController : MonoBehaviour
         {
             GameManager.Instance.CloseCraftMenu();
         }
+        else if(other.gameObject.tag == "Bed")
+        {
+            Debug.Log("Not Near Bed");
+        }
     }
-
-    
 }
 
