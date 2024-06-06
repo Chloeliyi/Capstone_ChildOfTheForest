@@ -2444,6 +2444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7274932769462375358, guid: 97ba4ca4158151443b86ac84028f0259, type: 3}
+      propertyPath: far clip plane
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 7966272996677049803, guid: 97ba4ca4158151443b86ac84028f0259, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
