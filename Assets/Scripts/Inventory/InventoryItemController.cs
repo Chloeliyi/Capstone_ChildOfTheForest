@@ -95,6 +95,10 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
             GameManager.Instance.SpawnTorch();
             RemoveItem();
             break;
+            case Item.ItemType.Workbench:
+            GameManager.Instance.SpawnWorkbench();
+            RemoveItem();
+            break;
         }
 
         //RemoveItem();

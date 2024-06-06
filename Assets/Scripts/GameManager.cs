@@ -228,6 +228,26 @@ public class GameManager : MonoBehaviour
         
     }
 
+    GameObject Activebench;
+
+    public GameObject Workbench;
+
+    public void SpawnWorkbench()
+    {
+        Activebench = Instantiate(Workbench, parent);
+    }
+
+    public void PlaceWorkbench()
+    {
+       Activebench.transform.SetParent(null);
+
+       Activebench.tag = "Workbench";
+
+        float originalx = Activebench.transform.position.x;
+        float xposition = originalx -= 1;
+        Activebench.transform.Translate(new Vector3(0, xposition, 0));
+    }
+
     public void OpenCraftMenu()
     {
         SmallIvenMenu.gameObject.SetActive(false);

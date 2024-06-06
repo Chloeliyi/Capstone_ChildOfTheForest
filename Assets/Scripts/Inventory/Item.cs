@@ -21,6 +21,7 @@ public class Item : ScriptableObject
         Weapon,
         Food,
         Enemy,
+        Workbench,
         Craftable,
         Crafted
     }
