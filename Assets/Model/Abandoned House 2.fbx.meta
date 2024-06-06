@@ -1,0 +1,314 @@
+fileFormatVersion: 2
+guid: 0a5bb9e1211f27044a2ff028f39d2ea2
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1001
+    second: {fileID: 2100000, guid: 4107aabf2db5541428e011945ffd0223, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1002
+    second: {fileID: 2100000, guid: f2efdafe4ce9be749bb06904adbdd376, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1003
+    second: {fileID: 2100000, guid: 2c4d6d8bbde4d634381f54117d07631f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1004
+    second: {fileID: 2100000, guid: ab08bc64f4a08da40a1309027ea8ebac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1005
+    second: {fileID: 2100000, guid: 0e4d9d62e808ef84a88b7a3e4ae62d92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1011
+    second: {fileID: 2100000, guid: 4b3735fe218deb0418af7192e49ebf2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1012
+    second: {fileID: 2100000, guid: df5481acedd28444c82e6630265016f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1013
+    second: {fileID: 2100000, guid: 213a3c8097b6eec44bb354604cc87e47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1014
+    second: {fileID: 2100000, guid: ec02c74c614c8db40afdb2a28c92e6e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1015
+    second: {fileID: 2100000, guid: fe6299a881599c548b6fb39f901166a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1021
+    second: {fileID: 2100000, guid: 14be3839c3a5c7641b4949eecdaa960b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1022
+    second: {fileID: 2100000, guid: b6fb144622604ec469e5859a72009353, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1023
+    second: {fileID: 2100000, guid: e4a759bcf0a2e7f489c8c88d8ca63189, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1024
+    second: {fileID: 2100000, guid: 6a1dd4fd2c9997a47b055d8574e1246f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1025
+    second: {fileID: 2100000, guid: 01dab2bcddf7c8e43ace9fa6eb376ed2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1031
+    second: {fileID: 2100000, guid: ffa5753096964334ca80e6489a0ac873, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1032
+    second: {fileID: 2100000, guid: bdb915881489e324db846dc83e372b7a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1033
+    second: {fileID: 2100000, guid: 15830da18d1a73c43b2f7df6e43a6a32, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1034
+    second: {fileID: 2100000, guid: b67bb55a664e8684ea2005090802d5cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1035
+    second: {fileID: 2100000, guid: f687c3af85fb2674db5b028f321cee5b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1041
+    second: {fileID: 2100000, guid: 4bde6113a861fe64ab2440a9b9c65f56, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1001
+    second: {fileID: 2800000, guid: 5cf12dcff5a5a0d4f9d16189cbb97098, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1002
+    second: {fileID: 2800000, guid: 04e5061cbb6532e419dfb91b85209d09, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1003
+    second: {fileID: 2800000, guid: fb53926d9c011ff468f00345c6212245, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1004
+    second: {fileID: 2800000, guid: 46107072d31425c4483227ce334219c2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1005
+    second: {fileID: 2800000, guid: d89e2d82a01fbee469760ae0d1856a5b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1011
+    second: {fileID: 2800000, guid: 26f8da08e3a3b6c4492d0e18c07e1f38, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1012
+    second: {fileID: 2800000, guid: 35ba8eb4cf830aa45b3d1764248c628d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1013
+    second: {fileID: 2800000, guid: c7c3fb2c9cf8a8843aa778c6c7879cd9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1014
+    second: {fileID: 2800000, guid: 5935d79a2522c8c4e8f5b2d08370b9ca, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1015
+    second: {fileID: 2800000, guid: 379c9a2d316423d4a8deea2217ed1071, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1021
+    second: {fileID: 2800000, guid: 6657fe8828fdc8042a67ea2a8497acee, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1022
+    second: {fileID: 2800000, guid: 1515caba4e644a34db0cccb57744a862, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1023
+    second: {fileID: 2800000, guid: 99c633d7c677bda40842108132644577, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1024
+    second: {fileID: 2800000, guid: 4a0c6ed4a9a9767478188ef4ddd2ed98, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1025
+    second: {fileID: 2800000, guid: 62205226f54f8c540a6736ffbc32fa83, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1031
+    second: {fileID: 2800000, guid: 69e8b3caecb10c24ca08ef5ce16dc9a4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1032
+    second: {fileID: 2800000, guid: 603ba93e7ffb9dc49a2902ea16b47086, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1033
+    second: {fileID: 2800000, guid: 11ab936c4e141734c8eeae16f0635687, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1034
+    second: {fileID: 2800000, guid: 025a035bca39fe24ea0d659f45589ae2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VillageHouseLo_lambert1_BaseColor.1035
+    second: {fileID: 2800000, guid: b94d2036c2c73054a9a1bc05f6ee9a17, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1.5
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1.5
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
