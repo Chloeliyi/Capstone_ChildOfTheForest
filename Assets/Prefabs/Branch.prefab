@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3641572897062212097}
   m_Layer: 0
   m_Name: Branch
-  m_TagString: Untagged
+  m_TagString: InteractiveObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,4 +133,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: 4576f97e53bf85241869a85f2f52e347, type: 2}
-  inventoryManager: {fileID: 5733727472063859308, guid: 63e8d43a743ad70459177e3d10c607ba, type: 3}
