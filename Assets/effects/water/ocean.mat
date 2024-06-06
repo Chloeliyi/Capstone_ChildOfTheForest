@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ocean
-  m_Shader: {fileID: -6465566751694194690, guid: aed7b516e7244164cb3c9b55f0e10cb6,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: aed7b516e7244164cb3c9b55f0e10cb6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -53,8 +52,8 @@ Material:
     - _Depth: 1
     - _Displacement: 1
     - _Foam_Depth: 10
-    - _Foam_Strength: 2
-    - _Foam_Tile: -100
+    - _Foam_Strength: 0.11
+    - _Foam_Tile: -80.82
     - _Normal_Strength: 1
     - _QueueControl: 0
     - _QueueOffset: 0
