@@ -115,10 +115,15 @@ public class TimeManager : MonoBehaviour
     private void OnMinutesChange(int value)
     {
         globalLight.transform.Rotate(Vector3.up, (1f / (1440f / 4f)) * 360f, Space.World);
+        if (value == 30)
+        {
+            
+        }
         if (value >= 60)
         {
             Hours++;
             minutes = 0;
+            //GameManager.Instance.TakeFoodDamage(2);
         }
         if (Hours >= 24)
         {

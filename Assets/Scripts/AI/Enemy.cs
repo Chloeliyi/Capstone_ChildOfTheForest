@@ -159,7 +159,7 @@ public class Enemy : MonoBehaviour
         count += Enemydamage;
         Debug.Log("Taking Damage" + count);
 
-        GameManager.Instance.TakeHealthDamage(Enemydamage);
+        //GameManager.Instance.TakeHealthDamage(Enemydamage);
 
         StartCoroutine(AttackTime());
     }

@@ -20,13 +20,21 @@ public class GameManager : MonoBehaviour
 
     public int CurrentFood;
 
+    public int MaxStamina = 30;
+
+    public int CurrentStamina;
+
     public TMP_Text HealthText;
 
     public TMP_Text FoodText;
 
+    public TMP_Text StaminaText;
+
     public Slider Healthslider;
 
     public Slider Foodslider;
+
+    public Slider Staminaslider;
 
     public GameObject SmallIvenMenu;
 
@@ -64,6 +72,8 @@ public class GameManager : MonoBehaviour
 
     public Enemy enemy;
 
+    public bool TakeDamage;
+
     //public string username;
 
     void Start()
@@ -76,9 +86,13 @@ public class GameManager : MonoBehaviour
         Foodslider.value = CurrentFood;
         FoodText.text = $"Food:{CurrentFood}";
 
+        CurrentStamina = MaxStamina;
+        Staminaslider.value = CurrentStamina;
+        StaminaText.text = $"Stamina:{CurrentStamina}";
+
         //SpawnTrees();
 
-        readyToThrow = true;
+        //readyToThrow = true;
     }
 
     public void Awake()
@@ -113,15 +127,41 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
+        /*if (Input.GetKeyDown(KeyCode.G))
         {
             TakeHealthDamage(3);
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            TakeFoodDamage(3);
+            TakeFoodDamage(2);
         }
+
+        if (CurrentFood <= 10)
+        {
+
+            if (CurrentHealth > 0)
+            {
+                TakeDamage = true;
+                TakeHealthDamage(2);
+            }
+
+        }
+
+
+        /*if (CurrentFood == MaxFood)
+        {
+            Debug.Log("Food full");
+            if (CurrentHealth <= MaxHealth)
+            {
+                Debug.Log("Health is not full");
+                StartCoroutine(HealthAttackIncrease(2));
+            }
+            else
+            {
+                Debug.Log("Health is full");
+            }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -376,11 +416,29 @@ public class GameManager : MonoBehaviour
         projectileRb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
+    Coroutine damageInProgress;
+
+    IEnumerator TimeBetween(int damage)
+    {
+        while (TakeDamage == true)
+        {
+            int count = 0;
+            count += damage;
+            Debug.Log("Damage : " + count);
+            CurrentHealth -= damage;
+            Healthslider.value = CurrentHealth;
+            HealthText.text = $"HP:{CurrentHealth}";
+            yield return new WaitForSeconds(5f);
+            Debug.Log("Next damage");
+        }
+    }
+
     public void TakeHealthDamage(int damage)
     {
-        CurrentHealth -= damage;
+        StartCoroutine(TimeBetween(damage));
+        /*CurrentHealth -= damage;
         Healthslider.value = CurrentHealth;
-        HealthText.text = $"HP:{CurrentHealth}";
+        HealthText.text = $"HP:{CurrentHealth}";*/
     }
 
     public void SetHealth()
@@ -394,6 +452,13 @@ public class GameManager : MonoBehaviour
         Healthslider.maxValue = MaxHealth;
         Healthslider.value = CurrentHealth;
         HealthText.text = $"HP:{CurrentHealth}";
+    }
+
+    IEnumerator HealthAttackIncrease(int value)
+    {
+        yield return new WaitForSeconds(5f);
+        Debug.Log("Increase health");
+        IncreaseHealth(value);
     }
 
     public void IncreaseHealth(int value)
@@ -429,4 +494,32 @@ public class GameManager : MonoBehaviour
         Foodslider.value = CurrentFood;
         FoodText.text = $"Food:{CurrentFood}";
     }
+
+    void TakeStaminaDamage(int damage)
+    {
+        CurrentStamina -= damage;
+        Staminaslider.value = CurrentStamina;
+        StaminaText.text = $"Stamina:{CurrentStamina}";
+    }
+
+    public void SetStamina()
+    {
+        Staminaslider.value = CurrentStamina;
+        StaminaText.text = $"Stamina:{CurrentStamina}";
+    }
+
+    public void SetMaxStamina()
+    {
+        Staminaslider.maxValue = MaxStamina;
+        Staminaslider.value = CurrentStamina;
+        StaminaText.text = $"Stamina:{CurrentStamina}";
+    }
+
+    public void IncreaseStamina(int value)
+    {
+        CurrentStamina += value;
+        Staminaslider.value = CurrentStamina;
+        StaminaText.text = $"Stamina:{CurrentStamina}";
+    }
+
 }

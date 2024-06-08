@@ -1,23 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ProjectileAddon : MonoBehaviour
 {
+
+    public static ProjectileAddon Instance;
+
     public int damage;
     
     private Rigidbody rb;
 
     private bool targetHit;
 
+    public BoxCollider box;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        //box = GetComponent<BoxCollider>();
     }
 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("E is pressed");
+            if (PickUpSpear == true)
+            {
+                Destroy(gameObject);
+                GameManager.Instance.SpawnSpear();
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -32,6 +47,8 @@ public class ProjectileAddon : MonoBehaviour
 
             enemy.TakeSpearDamage(damage);
 
+            box.isTrigger = true;
+
             //Destroy(gameObject);
 
         }
@@ -40,6 +57,8 @@ public class ProjectileAddon : MonoBehaviour
             rb.isKinematic = true;
             DeparentProjectile();
             Debug.Log(collision.gameObject.tag + " was hit");
+
+            box.isTrigger = true;
         }
         /*else 
         {
@@ -76,13 +95,25 @@ public class ProjectileAddon : MonoBehaviour
         gameObject.transform.SetParent(null);
     }
 
+    public bool PickUpSpear;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("Player is within range of spear");
-            Destroy(gameObject);
-            GameManager.Instance.SpawnSpear();
+            PickUpSpear = true;
+            /*Destroy(gameObject);
+            GameManager.Instance.SpawnSpear();*/
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Player is not within range of spear");
+            PickUpSpear = false;
         }
     }
 }
