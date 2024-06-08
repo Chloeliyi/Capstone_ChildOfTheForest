@@ -434,7 +434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   Enemydamage: 5
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 2928223840503572832, guid: 97ba4ca4158151443b86ac84028f0259, type: 3}
   agent: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
@@ -450,3 +450,4 @@ MonoBehaviour:
   attackRange: 2
   playerInSightRange: 0
   playerInAttackRange: 0
+  activeWendigo: 0
