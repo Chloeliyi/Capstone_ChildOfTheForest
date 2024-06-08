@@ -19,5 +19,13 @@ public class ItemPickup : MonoBehaviour
     {
         PickUp();
     }*/
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PickUp();
+        }
+    }
     
 }
