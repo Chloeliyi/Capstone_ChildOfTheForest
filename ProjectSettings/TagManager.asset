@@ -11,6 +11,8 @@ TagManager:
   - Ground
   - Spear
   - Bed
+  - InteractiveObject
+  - Bonfire
   layers:
   - Default
   - TransparentFX
