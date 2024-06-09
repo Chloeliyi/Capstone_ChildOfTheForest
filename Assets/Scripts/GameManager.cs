@@ -20,21 +20,21 @@ public class GameManager : MonoBehaviour
 
     public int CurrentFood;
 
-    public int MaxStamina = 30;
+    public int MaxWater = 30;
 
-    public int CurrentStamina;
+    public int CurrentWater;
 
-    public TMP_Text HealthText;
+    //public TMP_Text HealthText;
 
-    public TMP_Text FoodText;
+    //public TMP_Text FoodText;
 
-    public TMP_Text StaminaText;
+    //public TMP_Text StaminaText;
 
     public Slider Healthslider;
 
     public Slider Foodslider;
 
-    public Slider Staminaslider;
+    public Slider Waterslider;
 
     public GameObject SmallIvenMenu;
 
@@ -72,7 +72,13 @@ public class GameManager : MonoBehaviour
 
     public Enemy enemy;
 
-    public bool TakeDamage;
+    public int TakeHealthDamage;
+
+    public int TakeHealthIncrease;
+
+    Coroutine damageInProgress;
+
+    Coroutine increaseInProgress;
 
     //public string username;
 
@@ -80,19 +86,17 @@ public class GameManager : MonoBehaviour
     {        
         CurrentHealth = MaxHealth;
         Healthslider.value = CurrentHealth;
-        HealthText.text = $"HP:{CurrentHealth}";
+        //HealthText.text = $"HP:{CurrentHealth}";
 
         CurrentFood = MaxFood;
         Foodslider.value = CurrentFood;
-        FoodText.text = $"Food:{CurrentFood}";
+        //FoodText.text = $"Food:{CurrentFood}";
 
-        CurrentStamina = MaxStamina;
-        Staminaslider.value = CurrentStamina;
-        StaminaText.text = $"Stamina:{CurrentStamina}";
+        CurrentWater = MaxWater;
+        Waterslider.value = CurrentWater;
+        //StaminaText.text = $"Stamina:{CurrentStamina}";
 
         //SpawnTrees();
-
-        //readyToThrow = true;
     }
 
     public void Awake()
@@ -115,7 +119,6 @@ public class GameManager : MonoBehaviour
          for (var i = 0; i <= AmountOfTrees; i++)
         {
             Vector3 SpawnPosition = new Vector3(Random.Range(-13, 13), 0, Random.Range(-13, 13));
-
             Instantiate(Tree, SpawnPosition, Quaternion.identity);
         }
     }
@@ -127,40 +130,38 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
 
-        /*if (Input.GetKeyDown(KeyCode.G))
+        if (CurrentFood <= 10 || CurrentWater <= 10)
         {
-            TakeHealthDamage(3);
-        }*/
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            TakeFoodDamage(2);
-        }
-
-        if (CurrentFood <= 10)
-        {
-
             if (CurrentHealth > 0)
             {
-                TakeDamage = true;
-                TakeHealthDamage(2);
+                TakeHealthDamage ++;
+                if (damageInProgress == null)
+                {
+                    damageInProgress = StartCoroutine(TimeBetweenDamage(5));
+                }
             }
-
         }
 
-
-        /*if (CurrentFood == MaxFood)
+        if (CurrentHealth < MaxHealth)
         {
-            Debug.Log("Food full");
-            if (CurrentHealth <= MaxHealth)
+            if (CurrentFood >= 20 && CurrentWater >= 20)
             {
-                Debug.Log("Health is not full");
-                StartCoroutine(HealthAttackIncrease(2));
+                TakeHealthIncrease ++;
+                if (increaseInProgress == null)
+                {
+                    increaseInProgress = StartCoroutine(TimeBetweenIncrease(5));
+                }
             }
-            else
-            {
-                Debug.Log("Health is full");
-            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            SpawnTorch();
+        }
+
+        /*if (Input.GetKeyDown(KeyCode.F))
+        {
+            TakeWaterDamage(2);
         }*/
 
         if (Input.GetKeyDown(KeyCode.Z))
@@ -247,7 +248,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            if (enemy.activeWendigo == false)
+            /*if (enemy.activeWendigo == false)
             {
                 enemy.activeWendigo = true;
                 Debug.Log("Activate Wendigo");
@@ -256,6 +257,15 @@ public class GameManager : MonoBehaviour
             {
                 enemy.activeWendigo = false;
                 Debug.Log("Deactivate Wendigo");
+            }*/
+
+            if (Activebench == null)
+            {
+                SpawnWorkbench();
+            }
+            else if (Activebench != null)
+            {
+                PlaceWorkbench();
             }
         }
 
@@ -280,21 +290,20 @@ public class GameManager : MonoBehaviour
     public void PlaceWorkbench()
     {
        Activebench.transform.SetParent(null);
-
        Activebench.tag = "Workbench";
-
-        float originalx = Activebench.transform.position.x;
-        float xposition = originalx -= 1;
-        Activebench.transform.Translate(new Vector3(0, xposition, 0));
+       float originalx = Activebench.transform.position.x;
+       float xposition = originalx -= 1;
+       Activebench.transform.Translate(new Vector3(0, xposition, 0));
     }
 
     public void OpenCraftMenu()
     {
+        Time.timeScale = 0f;
+
         SmallIvenMenu.gameObject.SetActive(false);
         BigIvenMenu.gameObject.SetActive(true);
         ItemDescMenu.gameObject.SetActive(false);
         CraftMenu.gameObject.SetActive(true);
-
         InventoryManager.Instance.ListItems();
     }
 
@@ -304,7 +313,6 @@ public class GameManager : MonoBehaviour
         BigIvenMenu.gameObject.SetActive(false);
         ItemDescMenu.gameObject.SetActive(true);
         CraftMenu.gameObject.SetActive(false);
-
         InventoryManager.Instance.ClearContent();
     }
 
@@ -318,7 +326,6 @@ public class GameManager : MonoBehaviour
     public void PlaceWall()
     {
         Wallpart.transform.SetParent(null);
-
         float originalx = Wallpart.transform.position.x;
         float xposition = originalx -= 1;
         Wallpart.transform.Translate(new Vector3(0, xposition, 0));
@@ -342,6 +349,12 @@ public class GameManager : MonoBehaviour
     public void SpawnTorch()
     {
         torchObject = Instantiate(Torch, parent);
+        //torchObject.GetComponentInChildren<ParticleSystem>().Stop();
+    }
+
+    public void LightTorch()
+    {
+        //torchObject.GetComponentInChildren<ParticleSystem>().Play();
     }
 
     [Header("Settings")]
@@ -362,7 +375,6 @@ public class GameManager : MonoBehaviour
     public void SpawnSpear()
     {
         readyToThrow = false;
-
         projectile = Instantiate(Spear, parent);
         projectileRb = projectile.GetComponent<Rigidbody>();
         projectileRb.constraints = RigidbodyConstraints.FreezeAll;
@@ -416,110 +428,112 @@ public class GameManager : MonoBehaviour
         projectileRb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
-    Coroutine damageInProgress;
-
-    IEnumerator TimeBetween(int damage)
+    IEnumerator TimeBetweenDamage(int time)
     {
-        while (TakeDamage == true)
+        while (TakeHealthDamage > 0)
         {
-            int count = 0;
-            count += damage;
-            Debug.Log("Damage : " + count);
-            CurrentHealth -= damage;
-            Healthslider.value = CurrentHealth;
-            HealthText.text = $"HP:{CurrentHealth}";
-            yield return new WaitForSeconds(5f);
-            Debug.Log("Next damage");
+            HealthDamage(2);
+            yield return new WaitForSeconds(time);
         }
+        damageInProgress = null;
     }
 
-    public void TakeHealthDamage(int damage)
-    {
-        StartCoroutine(TimeBetween(damage));
-        /*CurrentHealth -= damage;
+    public void HealthDamage(int damage)
+    {  
+        CurrentHealth -= damage;
         Healthslider.value = CurrentHealth;
-        HealthText.text = $"HP:{CurrentHealth}";*/
+        //HealthText.text = $"HP:{CurrentHealth}";
+        Debug.Log("HP:" + CurrentHealth);  
     }
 
     public void SetHealth()
     {
         Healthslider.value = CurrentHealth;
-        HealthText.text = $"HP:{CurrentHealth}";
+        //HealthText.text = $"HP:{CurrentHealth}";
+        Debug.Log("HP:" + CurrentHealth);
     }
 
     public void SetMaxHealth()
     {
         Healthslider.maxValue = MaxHealth;
         Healthslider.value = CurrentHealth;
-        HealthText.text = $"HP:{CurrentHealth}";
+        //HealthText.text = $"HP:{CurrentHealth}";
+        Debug.Log("HP:" + CurrentHealth);
     }
 
-    IEnumerator HealthAttackIncrease(int value)
+    IEnumerator TimeBetweenIncrease(int time)
     {
-        yield return new WaitForSeconds(5f);
-        Debug.Log("Increase health");
-        IncreaseHealth(value);
+        while (TakeHealthIncrease > 0)
+        {
+            IncreaseHealth(2);
+            yield return new WaitForSeconds(time);
+        }
+        increaseInProgress = null;
     }
 
     public void IncreaseHealth(int value)
     {
         CurrentHealth += value;
         Healthslider.value = CurrentHealth;
-        HealthText.text = $"HP:{CurrentHealth}";
+        //HealthText.text = $"HP:{CurrentHealth}";
+        Debug.Log("HP:" + CurrentHealth);
     }
 
-    void TakeFoodDamage(int damage)
+    public void TakeFoodDamage(int damage)
     {
         CurrentFood -= damage;
         Foodslider.value = CurrentFood;
-        FoodText.text = $"Food:{CurrentFood}";
+        //FoodText.text = $"Food:{CurrentFood}";
+        Debug.Log("Food:" + CurrentFood);
     }
 
     public void SetFood()
     {
         Foodslider.value = CurrentFood;
-        FoodText.text = $"Food:{CurrentFood}";
+        //FoodText.text = $"Food:{CurrentFood}";
+        Debug.Log("Food:" + CurrentFood);
     }
 
     public void SetMaxFood()
     {
         Foodslider.maxValue = MaxFood;
         Foodslider.value = CurrentFood;
-        FoodText.text = $"Food:{CurrentFood}";
+        //FoodText.text = $"Food:{CurrentFood}";
+        Debug.Log("Food:" + CurrentFood);
     }
 
     public void IncreaseFood(int value)
     {
         CurrentFood += value;
         Foodslider.value = CurrentFood;
-        FoodText.text = $"Food:{CurrentFood}";
+        //FoodText.text = $"Food:{CurrentFood}";
+        Debug.Log("Food:" + CurrentFood);
     }
 
-    void TakeStaminaDamage(int damage)
+    public void TakeWaterDamage(int damage)
     {
-        CurrentStamina -= damage;
-        Staminaslider.value = CurrentStamina;
-        StaminaText.text = $"Stamina:{CurrentStamina}";
+        CurrentWater -= damage;
+        Waterslider.value = CurrentWater;
+        //StaminaText.text = $"Stamina:{CurrentStamina}";
     }
 
-    public void SetStamina()
+    public void SetWater()
     {
-        Staminaslider.value = CurrentStamina;
-        StaminaText.text = $"Stamina:{CurrentStamina}";
+        Waterslider.value = CurrentWater;
+        //StaminaText.text = $"Stamina:{CurrentStamina}";
     }
 
-    public void SetMaxStamina()
+    public void SetMaxWater()
     {
-        Staminaslider.maxValue = MaxStamina;
-        Staminaslider.value = CurrentStamina;
-        StaminaText.text = $"Stamina:{CurrentStamina}";
+        Waterslider.maxValue = MaxWater;
+        Waterslider.value = CurrentWater;
+        //StaminaText.text = $"Stamina:{CurrentStamina}";
     }
 
-    public void IncreaseStamina(int value)
+    public void IncreaseWater(int value)
     {
-        CurrentStamina += value;
-        Staminaslider.value = CurrentStamina;
-        StaminaText.text = $"Stamina:{CurrentStamina}";
+        CurrentWater += value;
+        Waterslider.value = CurrentWater;
+        //StaminaText.text = $"Stamina:{CurrentStamina}";
     }
-
 }

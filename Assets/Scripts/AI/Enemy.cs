@@ -45,14 +45,14 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
-        /*if (TimeManager.Instance.hours >= 20 || TimeManager.Instance.hours <= 6)
+        if (TimeManager.Instance.hours >= 20 || TimeManager.Instance.hours <= 6)
         {
             activeWendigo = true;
         } 
         else
         {
             activeWendigo = false;
-        }*/
+        }
     }
 
     void Update()

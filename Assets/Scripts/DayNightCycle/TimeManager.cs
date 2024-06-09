@@ -123,7 +123,10 @@ public class TimeManager : MonoBehaviour
         {
             Hours++;
             minutes = 0;
-            //GameManager.Instance.TakeFoodDamage(2);
+            Debug.Log("Take food damage");
+            Debug.Log("Take Water damage");
+            GameManager.Instance.TakeFoodDamage(2);
+            GameManager.Instance.TakeWaterDamage(2);
         }
         if (Hours >= 24)
         {
