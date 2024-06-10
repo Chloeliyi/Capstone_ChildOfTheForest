@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class CraftItem : MonoBehaviour, IDropHandler
 {
-    public static CraftItem Instance;
+    //public static CraftItem Instance;
 
     public string craftItem;
 

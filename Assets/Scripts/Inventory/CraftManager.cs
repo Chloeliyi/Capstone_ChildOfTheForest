@@ -13,7 +13,6 @@ public class CraftManager : MonoBehaviour
 
     public List<string> craftItems = new List<string>();
 
-    //public InventoryItemController[] InventoryItems;
 
     public Transform CraftedContent;
 
@@ -52,6 +51,22 @@ public class CraftManager : MonoBehaviour
                     }
                 }
              }
+
+             /*else if ()
+             {
+                Debug.Log("Can create axe");
+                GotItem = true;
+
+                foreach (var item in CraftableItems)
+                {
+                    if (item.itemName == "Axe")
+                    {
+                        counter = 1;
+                        CraftedName.text = CraftableItems[counter].itemName;
+                        CraftedIcon.sprite = CraftableItems[counter].icon;
+                    }
+                }
+             }*/
         }
     }
 

@@ -39,7 +39,7 @@ public class CrystalController : MonoBehaviour
             if (GameManager.Instance.activeAxe == true)
             {
                 Debug.Log("Have axe");
-                if(Input.GetKeyDown(KeyCode.C))
+                if(Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log("Crystal is being chopped");
                     crystalValue -= axeController.AxeItem.value;

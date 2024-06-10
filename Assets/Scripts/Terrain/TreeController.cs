@@ -12,7 +12,6 @@ public class TreeController : MonoBehaviour
 
     public AxeController axeController;
 
-    //public bool axeInRange;
 
     [SerializeField] private GameObject tree;
 
@@ -49,12 +48,11 @@ public class TreeController : MonoBehaviour
             {
                 Debug.Log("Got Axe");
 
-                if(Input.GetKeyDown(KeyCode.N))
+                if(Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log("Tree is being cut");
                     treeHealth -= axeController.AxeItem.value;
-                    axeController.AxeItem.durability -= axeController.AxeItem.value;
-                    GameManager.Instance.AxeDamage(axeController.AxeItem.value);
+                    axeController.AxeDamage();
                     Debug.Log("Tree health : " + treeHealth);
                     Debug.Log("Axe Durability : " + axeController.AxeItem.durability);
                     if (treeHealth <= 0)
@@ -63,7 +61,7 @@ public class TreeController : MonoBehaviour
                         SpawnBranch();
                         Destroy(tree);
                     }
-                    else if (axeController.AxeItem.durability <= 0)
+                    else if (axeController.AxeDurability <= 0)
                     {
                         //axeInRange = false;
                         axeController.DestroyAxe();
@@ -76,10 +74,8 @@ public class TreeController : MonoBehaviour
             }
         }
     }
-
     public void SpawnBranch()
     {
         branchGameObject = Instantiate(Branch, tree.gameObject.transform.position, tree.gameObject.transform.rotation);
     }
-
 }

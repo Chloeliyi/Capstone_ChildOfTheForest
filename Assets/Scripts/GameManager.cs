@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public int MaxSpearDurability = 100;
     public int MaxAxeDurability = 30;
     public int CurrentDurability;
+    public int CurrentSpearDurability;
 
     //public TMP_Text HealthText;
 
@@ -41,6 +42,14 @@ public class GameManager : MonoBehaviour
     public Slider Waterslider;
 
     public Slider Weapondurability;
+
+    public Image WeaponIcon;
+
+    public Sprite[] WeaponsSprite;
+
+    public TMP_Text RepairCounter;
+
+    public int Repaircount;
 
     public GameObject SmallIvenMenu;
 
@@ -102,6 +111,8 @@ public class GameManager : MonoBehaviour
         Waterslider.value = CurrentWater;
         //StaminaText.text = $"Stamina:{CurrentStamina}";
 
+        RepairCounter.text = $"{Repaircount}";
+
         //SpawnTrees();
     }
 
@@ -160,16 +171,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            SpawnTorch();
-        }
-
-        /*if (Input.GetKeyDown(KeyCode.F))
-        {
-            TakeWaterDamage(2);
-        }*/
-
         if (Input.GetKeyDown(KeyCode.Z))
         {
             if (AxeGameObject == null)
@@ -182,11 +183,13 @@ public class GameManager : MonoBehaviour
                 {
                     AxeGameObject.gameObject.SetActive(false);
                     activeAxe = false;
+                    HideWeaponDurability();
                 }
                 else if (!AxeGameObject.activeSelf)
                 {
                     AxeGameObject.gameObject.SetActive(true);
                     activeAxe = true;
+                    OpenWeaponDurability();
                 }
             }
         }
@@ -196,7 +199,6 @@ public class GameManager : MonoBehaviour
             if (projectile == null)
             {
                 //SpawnSpear();
-                Debug.Log("Spear is spawned");
             }
             else if (projectile != null)
             {
@@ -204,11 +206,13 @@ public class GameManager : MonoBehaviour
                 {
                     projectile.gameObject.SetActive(false);
                     ActiveSpear = false;
+                    HideWeaponDurability();
                 }
                 else if (!projectile.activeSelf)
                 {
                     projectile.gameObject.SetActive(true);
                     ActiveSpear = true;
+                    OpenWeaponDurability();
                 }
             }
         }
@@ -351,12 +355,12 @@ public class GameManager : MonoBehaviour
     public void SpawnTorch()
     {
         torchObject = Instantiate(Torch, parent);
-        //torchObject.GetComponentInChildren<ParticleSystem>().Stop();
+        torchObject.GetComponentInChildren<ParticleSystem>().Stop();
     }
 
     public void LightTorch()
     {
-        //torchObject.GetComponentInChildren<ParticleSystem>().Play();
+        torchObject.GetComponentInChildren<ParticleSystem>().Play();
     }
 
     public void SpawnAxe(int durability)
@@ -367,12 +371,43 @@ public class GameManager : MonoBehaviour
         CurrentDurability = durability;
         Weapondurability.maxValue = MaxAxeDurability;
         Weapondurability.value = CurrentDurability;
+        WeaponIcon.sprite = WeaponsSprite[0];
+
     }
 
     public void AxeDamage(int damage)
     {
         CurrentDurability -= damage;
         Weapondurability.value = CurrentDurability;
+    }
+
+    public void Repair()
+    {
+        Repaircount ++;
+        RepairCounter.text = $"{Repaircount}";
+    }
+
+    public void HideWeaponDurability()
+    {
+        WeaponIcon.sprite = null;
+        Weapondurability.maxValue = 1;
+        Weapondurability.value = 1;
+    }
+
+    public void OpenWeaponDurability()
+    {
+        if (activeAxe == true)
+        {
+            WeaponIcon.sprite = WeaponsSprite[0];
+            Weapondurability.maxValue = MaxAxeDurability;
+            Weapondurability.value = CurrentDurability;
+        }
+        else if (ActiveSpear == true)
+        {
+            WeaponIcon.sprite = WeaponsSprite[1];
+            Weapondurability.maxValue = MaxSpearDurability;
+            Weapondurability.value = CurrentSpearDurability;
+        }
     }
 
     [Header("Settings")]
@@ -400,15 +435,16 @@ public class GameManager : MonoBehaviour
 
         ActiveSpear = true;
 
-        CurrentDurability = durability;
+        CurrentSpearDurability = durability;
         Weapondurability.maxValue = MaxSpearDurability;
-        Weapondurability.value = CurrentDurability;
+        Weapondurability.value = CurrentSpearDurability;
+        WeaponIcon.sprite = WeaponsSprite[1];
     }
 
     public void SpearDamage(int damage)
     {
-        CurrentDurability -= damage;
-        Weapondurability.value = CurrentDurability;
+        CurrentSpearDurability -= damage;
+        Weapondurability.value = CurrentSpearDurability;
     }
 
     private void Throw()

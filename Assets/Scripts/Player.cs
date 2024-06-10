@@ -63,37 +63,6 @@ public class FPSController : MonoBehaviour
         
         if (canMove)
         {
-            // Create a new Vector3
-            /*Vector3 movementVector = Vector3.zero;
-
-            // Add the forward direction of the player multiplied by the user's up/down input.
-            movementVector += transform.forward * moveDirection.y;
-
-            // Add the right direction of the player multiplied by the user's right/left input.
-            movementVector += transform.right * moveDirection.x;
-
-            // increases movement speed when sprint is held down
-            if (isRunning && Staminaslider.value > 0)
-            {
-                Debug.Log("Player is running");
-                GetComponent<Rigidbody>().MovePosition(transform.position + ((transform.right * moveDirection.x) + (transform.forward * moveDirection.y)) * runSpeed);
-                Staminaslider.value -= 0.25f * Time.deltaTime;
-            }
-
-            // reduces movement speed to normal walking speed when stamina runs out
-            else if (isRunning && Staminaslider.value <= 0)
-            {
-                Debug.Log("No stamina left");
-                GetComponent<Rigidbody>().MovePosition(transform.position + ((transform.right * moveDirection.x) + (transform.forward * moveDirection.y)) * walkSpeed);
-            }
-
-            // reduces movement speed to normal walking speed when shift key is not held down
-            else if (!isRunning && Staminaslider.value >= 0)
-            {
-                Debug.Log("Player is walking");
-                GetComponent<Rigidbody>().MovePosition(transform.position + ((transform.right * moveDirection.x) + (transform.forward * moveDirection.y)) * walkSpeed);
-                Staminaslider.value += 0.35f * Time.deltaTime;
-            }*/
 
             if (isRunning && Staminaslider.value > 0)
             {

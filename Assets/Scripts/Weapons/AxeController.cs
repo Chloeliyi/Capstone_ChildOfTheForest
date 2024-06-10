@@ -10,9 +10,12 @@ public class AxeController : MonoBehaviour
 
     public BoxCollider box;
 
+    public int AxeDurability;
+
     void Start()
     {
         box.isTrigger = true;
+        AxeDurability = AxeItem.durability;
     }
 
     void Update()
@@ -23,7 +26,7 @@ public class AxeController : MonoBehaviour
             if (PickUpAxe == true)
             {
                 Destroy(gameObject);
-                GameManager.Instance.SpawnAxe(AxeItem.durability);
+                GameManager.Instance.SpawnAxe(AxeDurability);
                 box.isTrigger = false;
             }
         }
@@ -47,11 +50,19 @@ public class AxeController : MonoBehaviour
         }
     }
 
+    public void AxeDamage()
+    {
+        AxeDurability -= AxeItem.value;
+        GameManager.Instance.AxeDamage(AxeItem.value);
+    }
+
 
     public void DestroyAxe()
     {
         Destroy(gameObject);
         GameManager.Instance.AxeGameObject = null;
         GameManager.Instance.activeAxe = false;
+        GameManager.Instance.WeaponIcon = null;
+        GameManager.Instance.Weapondurability.value = GameManager.Instance.MaxAxeDurability;
     }
 }

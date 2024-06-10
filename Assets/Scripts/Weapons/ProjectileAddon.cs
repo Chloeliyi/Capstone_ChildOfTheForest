@@ -16,13 +16,15 @@ public class ProjectileAddon : MonoBehaviour
 
     public BoxCollider box;
 
+    [SerializeField] private int SpearDurability;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         //box = GetComponent<BoxCollider>();
         box.isTrigger = true;
 
-        SpearItem.durability = 100;
+        SpearDurability = SpearItem.durability;
     }
 
     void Update()
@@ -33,12 +35,12 @@ public class ProjectileAddon : MonoBehaviour
             if (PickUpSpear == true)
             {
                 Destroy(gameObject);
-                GameManager.Instance.SpawnSpear(SpearItem.durability);
+                GameManager.Instance.SpawnSpear(SpearDurability);
                 box.isTrigger = false;
             }
         }
 
-        if (SpearItem.durability == 0)
+        if (SpearDurability <= 0)
         {
             Destroy(gameObject);
             GameManager.Instance.projectile = null;
@@ -54,8 +56,8 @@ public class ProjectileAddon : MonoBehaviour
             DeparentProjectile();
             Debug.Log(collision.gameObject.tag + " was hit");
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            SpearDamage();
             enemy.TakeSpearDamage(SpearItem.value);
-            SpearItem.durability -= SpearItem.value;
             box.isTrigger = true;
 
             //Destroy(gameObject);
@@ -66,7 +68,7 @@ public class ProjectileAddon : MonoBehaviour
             rb.isKinematic = true;
             DeparentProjectile();
             Debug.Log(collision.gameObject.tag + " was hit");
-            SpearItem.durability -= SpearItem.value;
+            SpearDamage();
             box.isTrigger = true;
         }
         /*else 
@@ -97,6 +99,12 @@ public class ProjectileAddon : MonoBehaviour
 
         // make sure projectile moves with target
         transform.SetParent(collision.transform);*/
+    }
+
+    public void SpearDamage()
+    {
+        SpearDurability -= SpearItem.value;
+        GameManager.Instance.SpearDamage(SpearItem.value);
     }
 
     public void DeparentProjectile()
