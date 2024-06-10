@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd540eca8b88fe40abab26c091d99f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpearItem: {fileID: 11400000, guid: 42404f5830ab0d6488ebe7a2765c2b5b, type: 2}
   damage: 10
   box: {fileID: 1175423577997164403}
   PickUpSpear: 0
