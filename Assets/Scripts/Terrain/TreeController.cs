@@ -6,7 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class TreeController : MonoBehaviour
 {
-
     public int treeHealth;
 
     public GameManager gameManager;
@@ -55,6 +54,7 @@ public class TreeController : MonoBehaviour
                     Debug.Log("Tree is being cut");
                     treeHealth -= axeController.AxeItem.value;
                     axeController.AxeItem.durability -= axeController.AxeItem.value;
+                    GameManager.Instance.AxeDamage(axeController.AxeItem.value);
                     Debug.Log("Tree health : " + treeHealth);
                     Debug.Log("Axe Durability : " + axeController.AxeItem.durability);
                     if (treeHealth <= 0)
@@ -73,11 +73,6 @@ public class TreeController : MonoBehaviour
             else if (GameManager.Instance.activeAxe == false)
             {
                 Debug.Log("No Axe");
-
-                if(Input.GetKeyDown(KeyCode.N))
-                {
-                    Debug.Log("Tree cannot be cut");
-                }
             }
         }
     }

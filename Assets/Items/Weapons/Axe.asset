@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 5
   itemName: Axe
   value: 2
-  durability: 40
+  durability: 30
   icon: {fileID: 0}
   itemType: 1
   itemDesc: This is an axe. Does 2 damage and has 40 durability

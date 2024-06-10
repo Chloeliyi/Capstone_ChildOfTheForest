@@ -158,6 +158,11 @@ public class FPSController : MonoBehaviour
             Debug.Log("Near bonfire");
             GameManager.Instance.LightTorch();
         }
+        else if (other.gameObject.tag == "Axe")
+        {
+            Debug.Log("Near axe");
+            GameManager.Instance.AxeGameObject = other.gameObject;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -169,6 +174,15 @@ public class FPSController : MonoBehaviour
         else if(other.gameObject.tag == "Bed")
         {
             Debug.Log("Not Near Bed");
+        }
+        else if (other.gameObject.tag == "Bonfire")
+        {
+            Debug.Log("Not near bonfire");
+        }
+        else if (other.gameObject.tag == "Axe")
+        {
+            Debug.Log("Not near axe");
+            GameManager.Instance.AxeGameObject = null;
         }
     }
 }
