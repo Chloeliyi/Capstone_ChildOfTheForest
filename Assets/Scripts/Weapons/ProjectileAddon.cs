@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class ProjectileAddon : MonoBehaviour
 {
 
-    public static ProjectileAddon Instance;
+    //public static ProjectileAddon Instance;
 
-    public int damage;
+    public Item SpearItem;
     
     private Rigidbody rb;
 
@@ -20,6 +20,9 @@ public class ProjectileAddon : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         //box = GetComponent<BoxCollider>();
+        box.isTrigger = true;
+
+        SpearItem.durability = 100;
     }
 
     void Update()
@@ -30,8 +33,16 @@ public class ProjectileAddon : MonoBehaviour
             if (PickUpSpear == true)
             {
                 Destroy(gameObject);
-                GameManager.Instance.SpawnSpear();
+                GameManager.Instance.SpawnSpear(SpearItem.durability);
+                box.isTrigger = false;
             }
+        }
+
+        if (SpearItem.durability == 0)
+        {
+            Destroy(gameObject);
+            GameManager.Instance.projectile = null;
+            GameManager.Instance.ActiveSpear = false;
         }
     }
 
@@ -41,12 +52,10 @@ public class ProjectileAddon : MonoBehaviour
         {
             rb.isKinematic = true;
             DeparentProjectile();
-            Debug.Log("collision.gameObject.tag was hit");
-
+            Debug.Log(collision.gameObject.tag + " was hit");
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-
-            enemy.TakeSpearDamage(damage);
-
+            enemy.TakeSpearDamage(SpearItem.value);
+            SpearItem.durability -= SpearItem.value;
             box.isTrigger = true;
 
             //Destroy(gameObject);
@@ -57,7 +66,7 @@ public class ProjectileAddon : MonoBehaviour
             rb.isKinematic = true;
             DeparentProjectile();
             Debug.Log(collision.gameObject.tag + " was hit");
-
+            SpearItem.durability -= SpearItem.value;
             box.isTrigger = true;
         }
         /*else 
@@ -103,8 +112,6 @@ public class ProjectileAddon : MonoBehaviour
         {
             Debug.Log("Player is within range of spear");
             PickUpSpear = true;
-            /*Destroy(gameObject);
-            GameManager.Instance.SpawnSpear();*/
         }
     }
 

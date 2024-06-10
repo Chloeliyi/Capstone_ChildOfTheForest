@@ -44,7 +44,7 @@ public class TimeManager : MonoBehaviour
 
     void Start()
     {
-        hours = 12;
+        hours = 19;
 
         OnHoursChange(hours);
 

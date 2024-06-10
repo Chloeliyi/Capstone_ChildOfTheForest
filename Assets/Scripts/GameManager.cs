@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
 
     public int CurrentWater;
 
+    public int MaxSpearDurability = 100;
+    public int MaxAxeDurability = 30;
+    public int CurrentDurability;
+
     //public TMP_Text HealthText;
 
     //public TMP_Text FoodText;
@@ -35,6 +39,8 @@ public class GameManager : MonoBehaviour
     public Slider Foodslider;
 
     public Slider Waterslider;
+
+    public Slider Weapondurability;
 
     public GameObject SmallIvenMenu;
 
@@ -168,10 +174,7 @@ public class GameManager : MonoBehaviour
         {
             if (AxeGameObject == null)
             {
-                AxeGameObject = Instantiate(Axe, parent);
-            
-                AxeGameObject.name = "PlayerAxe";
-                activeAxe = true;
+                //SpawnAxe();
             }
             else if (AxeGameObject != null)
             {
@@ -192,9 +195,8 @@ public class GameManager : MonoBehaviour
         {
             if (projectile == null)
             {
-                SpawnSpear();
+                //SpawnSpear();
                 Debug.Log("Spear is spawned");
-                ActiveSpear = true;
             }
             else if (projectile != null)
             {
@@ -357,6 +359,22 @@ public class GameManager : MonoBehaviour
         //torchObject.GetComponentInChildren<ParticleSystem>().Play();
     }
 
+    public void SpawnAxe(int durability)
+    {
+        AxeGameObject = Instantiate(Axe, parent);
+        activeAxe = true;
+
+        CurrentDurability = durability;
+        Weapondurability.maxValue = MaxAxeDurability;
+        Weapondurability.value = CurrentDurability;
+    }
+
+    public void AxeDamage(int damage)
+    {
+        CurrentDurability -= damage;
+        Weapondurability.value = CurrentDurability;
+    }
+
     [Header("Settings")]
     public int totalThrows;
     public float throwCooldown;
@@ -372,13 +390,25 @@ public class GameManager : MonoBehaviour
 
     Rigidbody projectileRb;
 
-    public void SpawnSpear()
+    public void SpawnSpear(int durability)
     {
         readyToThrow = false;
         projectile = Instantiate(Spear, parent);
         projectileRb = projectile.GetComponent<Rigidbody>();
         projectileRb.constraints = RigidbodyConstraints.FreezeAll;
         projectileRb.velocity = Vector3.zero;
+
+        ActiveSpear = true;
+
+        CurrentDurability = durability;
+        Weapondurability.maxValue = MaxSpearDurability;
+        Weapondurability.value = CurrentDurability;
+    }
+
+    public void SpearDamage(int damage)
+    {
+        CurrentDurability -= damage;
+        Weapondurability.value = CurrentDurability;
     }
 
     private void Throw()

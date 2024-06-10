@@ -6,10 +6,47 @@ public class AxeController : MonoBehaviour
 {
     public Item AxeItem;
 
+    public bool PickUpAxe;
+
+    public BoxCollider box;
+
     void Start()
     {
-        AxeItem.durability = 40;
+        box.isTrigger = true;
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("E is pressed");
+            if (PickUpAxe == true)
+            {
+                Destroy(gameObject);
+                GameManager.Instance.SpawnAxe(AxeItem.durability);
+                box.isTrigger = false;
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Player is within range of axe");
+            PickUpAxe = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Player is not within range of axe");
+            PickUpAxe= false;
+        }
+    }
+
 
     public void DestroyAxe()
     {
