@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 816318b0c4246ad4eaa4184bc26a95be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: -16.613617
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 816318b0c4246ad4eaa4184bc26a95be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 1.799
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 816318b0c4246ad4eaa4184bc26a95be, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 5.445045
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 816318b0c4246ad4eaa4184bc26a95be, type: 3}
       propertyPath: m_LocalRotation.w
@@ -187,7 +187,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -205,8 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpearItem: {fileID: 11400000, guid: 42404f5830ab0d6488ebe7a2765c2b5b, type: 2}
-  damage: 10
   box: {fileID: 1175423577997164403}
+  SpearDurability: 0
   PickUpSpear: 0
 --- !u!65 &1175423577997164403
 BoxCollider:
