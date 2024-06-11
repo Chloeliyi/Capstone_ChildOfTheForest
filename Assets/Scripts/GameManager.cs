@@ -274,9 +274,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Y))
+        /*if (Input.GetKeyDown(KeyCode.Y))
         {
-            /*if (enemy.activeWendigo == false)
+            if (enemy.activeWendigo == false)
             {
                 enemy.activeWendigo = true;
                 Debug.Log("Activate Wendigo");
@@ -285,13 +285,13 @@ public class GameManager : MonoBehaviour
             {
                 enemy.activeWendigo = false;
                 Debug.Log("Deactivate Wendigo");
-            }*/
+            }
 
-            /*if (Activebench == null)
+            if (Activebench == null)
             {
                 SpawnWorkbench();
-            }*/
-        }
+            }
+        }*/
 
         if (CurrentHealth == 0)
         {
