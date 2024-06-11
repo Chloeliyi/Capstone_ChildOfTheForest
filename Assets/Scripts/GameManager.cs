@@ -238,7 +238,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             Debug.Log("K is pressed");
-            if (projectile != null)
+            if (projectile != null && projectile.activeSelf)
             {
                 Throw();
                 Debug.Log("Spear is thrown");
@@ -247,7 +247,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.J))
         {
-                if (projectile != null)
+                if (projectile != null && projectile.activeSelf)
             {
                 StartCoroutine(Stab());
                 Debug.Log("Stab with spear");
