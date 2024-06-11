@@ -44,16 +44,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c71dc9fad8c7944be39f429d45d0e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 2928223840503572832, guid: 97ba4ca4158151443b86ac84028f0259, type: 3}
+  playerCamera: {fileID: 0}
   MaxHealth: 30
   CurrentHealth: 0
-  MaxFood: 30
+  MaxFood: 31
   CurrentFood: 0
   MaxWater: 30
   CurrentWater: 0
+  MaxSpearDurability: 100
+  MaxAxeDurability: 30
+  CurrentDurability: 0
+  CurrentSpearDurability: 0
   Healthslider: {fileID: 0}
   Foodslider: {fileID: 0}
   Waterslider: {fileID: 0}
+  Weapondurability: {fileID: 0}
+  WeaponIcon: {fileID: 0}
+  WeaponsSprite:
+  - {fileID: 21300000, guid: bbef5a254948f16478757f66f7d42f7b, type: 3}
+  - {fileID: 21300000, guid: 0473bb44c4489184aa1a3a6f12e3951d, type: 3}
+  RepairCounter: {fileID: 0}
+  Repaircount: 0
   SmallIvenMenu: {fileID: 0}
   BigIvenMenu: {fileID: 0}
   ItemDescMenu: {fileID: 0}
@@ -74,7 +85,6 @@ MonoBehaviour:
   TakeHealthDamage: 0
   TakeHealthIncrease: 0
   Workbench: {fileID: 4616199695562428655, guid: b9050f8e44767de42832aae7cb3f25c9, type: 3}
-  cartoonFire: {fileID: 1290164503653308019, guid: f6c618075dd212640a66c910f908e658, type: 3}
   totalThrows: 100
   throwCooldown: 0.1
   throwKey: 116
