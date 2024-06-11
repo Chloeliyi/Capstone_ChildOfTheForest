@@ -13,6 +13,9 @@ TagManager:
   - Bed
   - InteractiveObject
   - Bonfire
+  - Crystal
+  - Torch
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -23,7 +26,7 @@ TagManager:
   - Ground
   - Player
   - Enemy
-  - 
+  - House
   - 
   - 
   - 
