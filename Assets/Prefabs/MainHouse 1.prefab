@@ -459,7 +459,7 @@ Transform:
   - {fileID: 7619724923461531502}
   - {fileID: 3153392978657513410}
   - {fileID: 3454304578600666784}
-  - {fileID: 5741492897809343091}
+  - {fileID: 2264017275150395872}
   - {fileID: 5186223680373019501}
   - {fileID: 1904153490821898588}
   - {fileID: 705726896687804772}
@@ -911,6 +911,8 @@ GameObject:
   - component: {fileID: 6572554551331337405}
   - component: {fileID: 5801871368921155072}
   - component: {fileID: 3368358008492919370}
+  - component: {fileID: 7292673143979084669}
+  - component: {fileID: 8508804138182439288}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -926,12 +928,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4271675314739697201}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6200653, y: 0.9140414, z: -0.0707357}
-  m_LocalScale: {x: 0.88533586, y: 0.88533586, z: 0.88533586}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.6200723, y: -0.041959465, z: -0.07073018}
+  m_LocalScale: {x: 0.8853359, y: 0.8853359, z: 0.8853359}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3227606159811863351}
+  m_Father: {fileID: 2264017275150395872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6572554551331337405
 MeshFilter:
@@ -1005,6 +1007,43 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2619086233303812490, guid: 2064f43d95138c1498eea6d6e7774d7c, type: 3}
+--- !u!114 &7292673143979084669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4271675314739697201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6957d3059daf9d84e8e12b9e132b75c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Door: {fileID: 5423598057171439828}
+  DoorOpen: DoorOpen
+  waitTimer: 3
+  PlayOnce: 0
+--- !u!65 &8508804138182439288
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4271675314739697201}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.3470569, y: 1.8933183, z: 2}
+  m_Center: {x: -0.000030517578, y: 0.0000038146973, z: -0.0000000055879354}
 --- !u!1 &5535157078255999107
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,6 +1468,60 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1308970011329837496, guid: 2064f43d95138c1498eea6d6e7774d7c, type: 3}
+--- !u!1 &8187649818864033135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2264017275150395872}
+  - component: {fileID: 5423598057171439828}
+  m_Layer: 0
+  m_Name: DoorPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2264017275150395872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8187649818864033135}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.956, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5741492897809343091}
+  m_Father: {fileID: 3227606159811863351}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &5423598057171439828
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8187649818864033135}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fb1a99506bec13f4ea75c0c894f06dff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8262696118716402711
 GameObject:
   m_ObjectHideFlags: 0
