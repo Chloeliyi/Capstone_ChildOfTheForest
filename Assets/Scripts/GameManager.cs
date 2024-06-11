@@ -199,13 +199,13 @@ public class GameManager : MonoBehaviour
             {
                 if (AxeGameObject.activeSelf)
                 {
-                    AxeGameObject.gameObject.SetActive(false);
+                    AxeGameObject.SetActive(false);
                     activeAxe = false;
                     HideWeaponDurability();
                 }
                 else if (!AxeGameObject.activeSelf)
                 {
-                    AxeGameObject.gameObject.SetActive(true);
+                    AxeGameObject.SetActive(true);
                     activeAxe = true;
                     OpenWeaponDurability();
                 }
@@ -222,13 +222,13 @@ public class GameManager : MonoBehaviour
             {
                 if (projectile.activeSelf)
                 {
-                    projectile.gameObject.SetActive(false);
+                    projectile.SetActive(false);
                     ActiveSpear = false;
                     HideWeaponDurability();
                 }
                 else if (!projectile.activeSelf)
                 {
-                    projectile.gameObject.SetActive(true);
+                    projectile.SetActive(true);
                     ActiveSpear = true;
                     OpenWeaponDurability();
                 }
@@ -254,19 +254,23 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
+        /*if (Input.GetKeyDown(KeyCode.L))
         {
             if (Wallpart == null)
             {
                 SpawnWall();
             }
-        }
+        }*/
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (Wallpart != null)
             {
                 PlaceWall();
+            }
+            else if (Activebench != null)
+            {
+                PlaceWorkbench();
             }
         }
 
@@ -283,14 +287,10 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Deactivate Wendigo");
             }*/
 
-            if (Activebench == null)
+            /*if (Activebench == null)
             {
                 SpawnWorkbench();
-            }
-            else if (Activebench != null)
-            {
-                PlaceWorkbench();
-            }
+            }*/
         }
 
         if (CurrentHealth == 0)
@@ -309,6 +309,26 @@ public class GameManager : MonoBehaviour
     public void SpawnWorkbench()
     {
         Activebench = Instantiate(Workbench, parent);
+        if (Wallpart.activeSelf)
+        {
+            Wallpart.SetActive(false);
+        }
+        else if (projectile.activeSelf)
+        {
+            projectile.SetActive(false);
+            ActiveSpear = false;
+            HideWeaponDurability();
+        }
+        else if (AxeGameObject.activeSelf)
+        {
+            AxeGameObject.SetActive(false);
+            activeAxe = false;
+            HideWeaponDurability();
+        }
+        else if (torchObject.activeSelf)
+        {
+            torchObject.SetActive(false);
+        }
     }
 
     public void PlaceWorkbench()
@@ -345,6 +365,26 @@ public class GameManager : MonoBehaviour
     public void SpawnWall()
     {
         Wallpart = Instantiate(WallObject, parent);
+        if (Activebench.activeSelf)
+        {
+            Activebench.SetActive(false);
+        }
+        else if (projectile.activeSelf)
+        {
+            projectile.SetActive(false);
+            ActiveSpear = false;
+            HideWeaponDurability();
+        }
+        else if (AxeGameObject.activeSelf)
+        {
+            AxeGameObject.SetActive(false);
+            activeAxe = false;
+            HideWeaponDurability();
+        }
+        else if (torchObject.activeSelf)
+        {
+            torchObject.SetActive(false);
+        }
     }
 
     public void PlaceWall()
@@ -374,6 +414,26 @@ public class GameManager : MonoBehaviour
     {
         torchObject = Instantiate(Torch, parent);
         torchObject.GetComponentInChildren<ParticleSystem>().Stop();
+        if (Activebench.activeSelf)
+        {
+            Activebench.SetActive(false);
+        }
+        else if (Wallpart.activeSelf)
+        {
+            Wallpart.SetActive(false);
+        }
+        else if (projectile.activeSelf)
+        {
+            projectile.SetActive(false);
+            ActiveSpear = false;
+            HideWeaponDurability();
+        }
+        else if (AxeGameObject.activeSelf)
+        {
+            AxeGameObject.SetActive(false);
+            activeAxe = false;
+            HideWeaponDurability();
+        }
     }
 
     public void LightTorch()
@@ -391,6 +451,24 @@ public class GameManager : MonoBehaviour
         Weapondurability.value = CurrentDurability;
         WeaponIcon.sprite = WeaponsSprite[0];
 
+        if (Activebench.activeSelf)
+        {
+            Activebench.SetActive(false);
+        }
+        else if (Wallpart.activeSelf)
+        {
+            Wallpart.SetActive(false);
+        }
+        else if (projectile.activeSelf)
+        {
+            projectile.SetActive(false);
+            ActiveSpear = false;
+            HideWeaponDurability();
+        }
+        else if (torchObject.activeSelf)
+        {
+            torchObject.SetActive(false);
+        }
     }
 
     public void AxeDamage(int damage)
@@ -457,6 +535,25 @@ public class GameManager : MonoBehaviour
         Weapondurability.maxValue = MaxSpearDurability;
         Weapondurability.value = CurrentSpearDurability;
         WeaponIcon.sprite = WeaponsSprite[1];
+
+        if (Activebench.activeSelf)
+        {
+            Activebench.SetActive(false);
+        }
+        else if (Wallpart.activeSelf)
+        {
+            Wallpart.SetActive(false);
+        }
+        else if (AxeGameObject.activeSelf)
+        {
+            AxeGameObject.SetActive(false);
+            activeAxe = false;
+            HideWeaponDurability();
+        }
+        else if (torchObject.activeSelf)
+        {
+            torchObject.SetActive(false);
+        }
     }
 
     public void SpearDamage(int damage)
