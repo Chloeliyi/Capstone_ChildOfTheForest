@@ -19,10 +19,6 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
 
     public CraftManager craftManager;
 
-    void Awake()
-    {
-    }
-
     public void RemoveItem()
     {
         InventoryManager.Instance.Remove(item);
@@ -67,6 +63,7 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
     
     public void OnButtonHover()
     {
+        Debug.Log("On hover");
         InventoryManager.Instance.DescName.text = item.itemName;
         InventoryManager.Instance.DescIcon.sprite = item.icon;
         InventoryManager.Instance.DescText.text = item.itemDesc;
@@ -74,9 +71,15 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
 
     public void OnButtonHoverExit()
     {
+        Debug.Log("No hover");
         InventoryManager.Instance.DescName.text = "Empty";
         InventoryManager.Instance.DescIcon.sprite = null;
         InventoryManager.Instance.DescText.text = "Empty";
+    }
+
+    public void Test()
+    {
+        Debug.Log("Clicking item");
     }
 
     public void UseItem()
@@ -89,7 +92,7 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
             break;
             case Item.ItemType.Food:
             GameManager.Instance.IncreaseFood(item.value);
-            RemoveItem();
+            //RemoveItem();
             break;
             case Item.ItemType.Weapon:
             GameManager.Instance.SpawnTorch();

@@ -113,6 +113,8 @@ public class GameManager : MonoBehaviour
 
         RepairCounter.text = $"{Repaircount}";
 
+        BigIvenMenu.SetActive(false);
+
         //SpawnTrees();
     }
 
@@ -168,6 +170,22 @@ public class GameManager : MonoBehaviour
                 {
                     increaseInProgress = StartCoroutine(TimeBetweenIncrease(5));
                 }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (!BigIvenMenu.activeSelf)
+            {
+                Debug.Log("Open Inventory");
+                InventoryManager.Instance.ListItems();
+                BigIvenMenu.SetActive(true);
+            }
+            else if (BigIvenMenu.activeSelf)
+            {
+                Debug.Log("Close Inventory");
+                InventoryManager.Instance.ClearContent();
+                BigIvenMenu.SetActive(false);
             }
         }
 
@@ -568,12 +586,27 @@ public class GameManager : MonoBehaviour
         Debug.Log("Food:" + CurrentFood);
     }
 
+    public InventoryItemController inventoryItemController;
+
     public void IncreaseFood(int value)
     {
-        CurrentFood += value;
-        Foodslider.value = CurrentFood;
-        //FoodText.text = $"Food:{CurrentFood}";
-        Debug.Log("Food:" + CurrentFood);
+        if (CurrentFood <= MaxFood)
+        {
+            CurrentFood += value;
+            if (CurrentFood >= MaxFood)
+            {
+                CurrentFood = MaxFood;
+                Foodslider.value = CurrentFood;
+            }
+            else
+            {
+                Foodslider.value = CurrentFood;
+                //FoodText.text = $"Food:{CurrentFood}";
+                Debug.Log("Food:" + CurrentFood);
+
+                inventoryItemController.RemoveItem();
+            }
+        }
     }
 
     public void TakeWaterDamage(int damage)
