@@ -6,7 +6,7 @@ public class DoorController : MonoBehaviour
 {
     public Animator Door;
     [SerializeField] private string DoorOpen = "DoorOpen";
-    [SerializeField] private int waitTimer = 3;
+    [SerializeField] private int waitTimer = 2;
     [SerializeField] private bool PlayOnce = false;
     // Start is called before the first frame update
     void Start()
