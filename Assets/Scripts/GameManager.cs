@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     public int Repaircount;
 
-    public GameObject SmallIvenMenu;
+    //public GameObject SmallIvenMenu;
 
     public GameObject BigIvenMenu;
 
@@ -324,7 +324,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
 
-        SmallIvenMenu.gameObject.SetActive(false);
+        //SmallIvenMenu.gameObject.SetActive(false);
         BigIvenMenu.gameObject.SetActive(true);
         ItemDescMenu.gameObject.SetActive(false);
         CraftMenu.gameObject.SetActive(true);
@@ -333,7 +333,7 @@ public class GameManager : MonoBehaviour
 
     public void CloseCraftMenu()
     {
-        SmallIvenMenu.gameObject.SetActive(true);
+        //SmallIvenMenu.gameObject.SetActive(true);
         BigIvenMenu.gameObject.SetActive(false);
         ItemDescMenu.gameObject.SetActive(true);
         CraftMenu.gameObject.SetActive(false);
