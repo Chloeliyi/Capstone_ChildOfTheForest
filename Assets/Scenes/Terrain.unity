@@ -7661,6 +7661,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3984910968214206834, guid: da27879372aded9419d31d8ad3af935a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4325408122518070216, guid: da27879372aded9419d31d8ad3af935a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 93.837036
@@ -12567,6 +12571,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4618906413473807109, guid: 06cf2705b64d2ca4eac89ac3c66ba98e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4727728065677737281, guid: 06cf2705b64d2ca4eac89ac3c66ba98e, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -16668,6 +16676,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5287728941114695117, guid: 604e5c4ff9269744580628ccee9b48df, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5936084078991129624, guid: 604e5c4ff9269744580628ccee9b48df, type: 3}
       propertyPath: m_Name
       value: bonFire
@@ -16675,6 +16687,10 @@ PrefabInstance:
     - target: {fileID: 5936084078991129624, guid: 604e5c4ff9269744580628ccee9b48df, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936084078991129624, guid: 604e5c4ff9269744580628ccee9b48df, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6425200330256836258, guid: 604e5c4ff9269744580628ccee9b48df, type: 3}
       propertyPath: m_LocalScale.x
@@ -37155,7 +37171,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 1143
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
