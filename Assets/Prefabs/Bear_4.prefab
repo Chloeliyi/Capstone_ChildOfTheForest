@@ -1974,7 +1974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   Beardamage: 5
-  playerTransform: {fileID: 2928223840503572832, guid: 97ba4ca4158151443b86ac84028f0259, type: 3}
+  playerTransform: {fileID: 0}
   agent: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
@@ -1985,7 +1985,7 @@ MonoBehaviour:
   timeManager: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
-  timeBetweenAttacks: 2
+  timeBetweenAttacks: 1
   sightRange: 10
   attackRange: 2
   playerInSightRange: 0
