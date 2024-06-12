@@ -16314,9 +16314,6 @@ Transform:
   - {fileID: 1144659614}
   - {fileID: 1281574088}
   - {fileID: 387581329}
-  - {fileID: 1467211682}
-  - {fileID: 1042968734}
-  - {fileID: 1708733041}
   - {fileID: 944721077}
   - {fileID: 1233878449}
   - {fileID: 1270228776}
@@ -17499,68 +17496,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5657055756908882394, guid: ffe719d23a46ac548a83145575e17973, type: 3}
   m_PrefabInstance: {fileID: 1041373501}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1042968733
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 984572334}
-    m_Modifications:
-    - target: {fileID: 3984910968214206834, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_Name
-      value: Abandoned House 2 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 71.80777
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 9.222893
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 477.71118
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.20165311
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9794571
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 203.267
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
---- !u!4 &1042968734 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-  m_PrefabInstance: {fileID: 1042968733}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1044173655
 PrefabInstance:
@@ -25203,68 +25138,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4325408122518070216, guid: da27879372aded9419d31d8ad3af935a, type: 3}
   m_PrefabInstance: {fileID: 1467197279}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1467211681
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 984572334}
-    m_Modifications:
-    - target: {fileID: 3984910968214206834, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_Name
-      value: Abandoned House 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 88.10776
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 9.222893
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 468.71118
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.24796219
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9687697
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 208.714
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
---- !u!4 &1467211682 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-  m_PrefabInstance: {fileID: 1467211681}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1478237160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29106,68 +28979,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5657055756908882394, guid: ffe719d23a46ac548a83145575e17973, type: 3}
   m_PrefabInstance: {fileID: 1708641830}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1708733040
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 984572334}
-    m_Modifications:
-    - target: {fileID: 3984910968214206834, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_Name
-      value: Abandoned House 2 (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 16.067749
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 13.512894
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 479.93115
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.100744046
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9949124
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 168.436
-      objectReference: {fileID: 0}
-    - target: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
---- !u!4 &1708733041 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4325408122518070216, guid: 3cf75851c322c8a4f9dbecb60885be23, type: 3}
-  m_PrefabInstance: {fileID: 1708733040}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1709963582
 PrefabInstance:
@@ -33338,6 +33149,10 @@ PrefabInstance:
     - target: {fileID: 5962503812524420456, guid: 97ba4ca4158151443b86ac84028f0259, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274932769462375358, guid: 97ba4ca4158151443b86ac84028f0259, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 1399
       objectReference: {fileID: 0}
     - target: {fileID: 7456792933537053762, guid: 97ba4ca4158151443b86ac84028f0259, type: 3}
       propertyPath: m_AnchorMax.x
