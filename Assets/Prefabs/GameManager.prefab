@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
-  MaxHealth: 30
+  MaxHealth: 50
   CurrentHealth: 0
-  MaxFood: 31
+  MaxFood: 30
   CurrentFood: 0
   MaxWater: 30
   CurrentWater: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
   ItemDescMenu: {fileID: 0}
   CraftMenu: {fileID: 0}
   Axe: {fileID: 1933823782367938613, guid: e0739bbc04fdc1f4c92b4e7f3ec149e4, type: 3}
-  parent: {fileID: 2928223840503572832, guid: 97ba4ca4158151443b86ac84028f0259, type: 3}
+  parent: {fileID: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   AxeGameObject: {fileID: 0}
   Spear: {fileID: 605491109353154781, guid: f9e92e0d009fd3f42b4874a07883be02, type: 3}
