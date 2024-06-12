@@ -119,6 +119,8 @@ public class BearController : MonoBehaviour
 
     [SerializeField] private int attackCounter;
 
+    [SerializeField] private string attackName;
+
     public void AttackPlayer()
     {
         //Debug.Log("Speed : " + agent.velocity.magnitude);
@@ -131,23 +133,29 @@ public class BearController : MonoBehaviour
         if (!alreadyAttacked)
         {
             //Code
+            animator.SetBool("Run Forward", false);
+
             attackCounter =  Random.Range(0, 3);
             Debug.Log("Attack: " + attackCounter);
 
             if (attackCounter == 0)
             {
+                attackName = "Attack1";
                 animator.SetTrigger("Attack1");
             }
             else if (attackCounter == 1)
             {
+                attackName = "Attack2";
                 animator.SetTrigger("Attack2");
             }
             else if (attackCounter == 2)
             {
+                attackName = "Attack3";
                 animator.SetTrigger("Attack3");
             }
             else if (attackCounter == 3)
             {
+                attackName = "Attack5";
                 animator.SetTrigger("Attack5");
             }
 
@@ -165,6 +173,7 @@ public class BearController : MonoBehaviour
 
     public void TakeSpearDamage(int Speardamage)
     {
+        animator.SetTrigger("Hit Front");
         health -= Speardamage;
 
         Debug.Log("Enemy health : " + health);
@@ -180,13 +189,18 @@ public class BearController : MonoBehaviour
 
     public void GiveDamage()
     {
-        float count = 0;
-        count += Beardamage;
-        Debug.Log("Taking Damage" + count);
+        //float count = 0;
+        //count += Beardamage;
+        //Debug.Log("Taking Damage" + count);
+        GameManager.Instance.HealthDamage(Beardamage);
 
-        //GameManager.Instance.TakeHealthDamage(Beardamage);
+        if (GameManager.Instance.CurrentHealth <= 0)
+        {
+            Debug.Log("Animal stop");
+            animator.SetBool("Idle", true);
+        }
 
-        StartCoroutine(AttackTime());
+        //StartCoroutine(AttackTime());
     }
 
     IEnumerator AttackTime()

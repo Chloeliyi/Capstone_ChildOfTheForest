@@ -121,18 +121,16 @@ public class Enemy : MonoBehaviour
         agent.SetDestination(transform.position);
         transform.LookAt(playerTransform);
 
-        animator.SetFloat("Speed", 4.5f);
-
-        GiveDamage();
-
-        /*if (!alreadyAttacked)
+        if (!alreadyAttacked)
         {
             //Code
-            //animator.Play(attackAnim);
+            //animator.SetFloat("Speed", 4.5f);
+            animator.SetTrigger(attackAnim);
+            GiveDamage();
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }*/
+        }
     }
 
     private void ResetAttack()
@@ -160,10 +158,9 @@ public class Enemy : MonoBehaviour
         float count = 0;
         count += Enemydamage;
         Debug.Log("Taking Damage" + count);
+        GameManager.Instance.HealthDamage(Enemydamage);
 
-        //GameManager.Instance.TakeHealthDamage(Enemydamage);
-
-        StartCoroutine(AttackTime());
+        //StartCoroutine(AttackTime());
     }
 
     IEnumerator AttackTime()

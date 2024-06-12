@@ -143,11 +143,14 @@ public class WolfController : MonoBehaviour
 
     public void ChasePlayer()
     {
-        //animator.SetBool("RunForward", true);
         Debug.Log("Chasing");
+        animator.SetBool("WalkForward", false);
+        animator.SetBool("Run Forward", true);
         //Debug.Log("Speed : " + agent.velocity.magnitude);
         agent.SetDestination(playerTransform.position);
     }
+
+    [SerializeField] private int attackCounter;
 
     public void AttackPlayer()
     {
@@ -156,16 +159,51 @@ public class WolfController : MonoBehaviour
         agent.SetDestination(transform.position);
         transform.LookAt(playerTransform);
 
-        GiveDamage();
-
-        /*if (!alreadyAttacked)
+        if (!alreadyAttacked)
         {
             //Code
-            //animator.Play(attackAnim);
+            animator.SetBool("Run Forward", false);
+
+            attackCounter =  Random.Range(0, 7);
+            Debug.Log("Attack: " + attackCounter);
+
+            if (attackCounter == 0)
+            {
+                animator.SetTrigger("Attack1");
+            }
+            else if (attackCounter == 1)
+            {
+                animator.SetTrigger("Attack2");
+            }
+            else if (attackCounter == 2)
+            {
+                animator.SetTrigger("Attack3");
+            }
+            else if (attackCounter == 3)
+            {
+                animator.SetTrigger("Attack4");
+            }
+            else if (attackCounter == 4)
+            {
+                animator.SetTrigger("Attack5");
+            }
+            else if (attackCounter == 5)
+            {
+                animator.SetTrigger("Attack6");
+            }
+            else if (attackCounter == 6)
+            {
+                animator.SetTrigger("Attack7");
+            }
+            else if (attackCounter == 7)
+            {
+                animator.SetTrigger("Attack8");
+            }
+            GiveDamage();
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }*/
+        }
     }
 
     private void ResetAttack()
@@ -193,10 +231,9 @@ public class WolfController : MonoBehaviour
         float count = 0;
         count += Wolfdamage;
         Debug.Log("Taking Damage" + count);
+        GameManager.Instance.HealthDamage(Wolfdamage);
 
-        //GameManager.Instance.TakeHealthDamage(Wolfdamage);
-
-        StartCoroutine(AttackTime());
+        //StartCoroutine(AttackTime());
     }
 
     IEnumerator AttackTime()

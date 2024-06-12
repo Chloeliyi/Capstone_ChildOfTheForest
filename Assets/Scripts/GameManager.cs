@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
                 TakeHealthIncrease ++;
                 if (increaseInProgress == null)
                 {
-                    increaseInProgress = StartCoroutine(TimeBetweenIncrease(5));
+                    increaseInProgress = StartCoroutine(TimeBetweenIncrease(10));
                 }
             }
         }
@@ -294,8 +294,9 @@ public class GameManager : MonoBehaviour
             }
         }*/
 
-        if (CurrentHealth == 0)
+        if (CurrentHealth <= 0)
         {
+            Healthslider.value = 0;
             Time.timeScale = 0f;
             FPSController.Instance.canMove = false;
             Debug.Log("You have died");
