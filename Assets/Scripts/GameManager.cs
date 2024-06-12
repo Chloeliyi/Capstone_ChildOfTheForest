@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject StartMenu;*/
     public Transform playerCamera;
 
-    public int MaxHealth = 30;
+    public int MaxHealth = 50;
 
     public int CurrentHealth;
 
@@ -100,15 +100,16 @@ public class GameManager : MonoBehaviour
     void Start()
     {        
         CurrentHealth = MaxHealth;
-        Healthslider.value = CurrentHealth;
+        SetMaxHealth();
         //HealthText.text = $"HP:{CurrentHealth}";
 
         CurrentFood = MaxFood;
-        Foodslider.value = CurrentFood;
+        Debug.Log("Start food is: " + MaxFood);
+        SetMaxFood();
         //FoodText.text = $"Food:{CurrentFood}";
 
         CurrentWater = MaxWater;
-        Waterslider.value = CurrentWater;
+        SetMaxWater();
         //StaminaText.text = $"Stamina:{CurrentStamina}";
 
         RepairCounter.text = $"{Repaircount}";
@@ -723,6 +724,7 @@ public class GameManager : MonoBehaviour
     {
         Waterslider.maxValue = MaxWater;
         Waterslider.value = CurrentWater;
+        Debug.Log("Water:" + CurrentWater);
         //StaminaText.text = $"Stamina:{CurrentStamina}";
     }
 

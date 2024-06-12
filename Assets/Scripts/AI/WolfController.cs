@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BearController : MonoBehaviour
+public class WolfController : MonoBehaviour
 {
-    public static BearController Instance;
+    public static WolfController Instance;
     [Header("Stats")]
     public int health;
 
-    public int Beardamage;
+    public int Wolfdamage;
 
     public Transform playerTransform;
     [SerializeField]private NavMeshAgent agent;
     Animator animator;
 
-    public LayerMask whatIsGround, whatIsPlayer;
-
     public TimeManager timeManager;
+
+    public LayerMask whatIsGround, whatIsPlayer;
 
     /// <summary>
     /// Patroling
@@ -38,8 +38,11 @@ public class BearController : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    public bool activeBear;
+    public bool NormalWolf;
+    public bool CorruptWolf;
 
+    public bool activeWolf;
+    public bool activeCorruptWolf;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -53,27 +56,59 @@ public class BearController : MonoBehaviour
 
         if (timeManager.hours >= 8 || timeManager.hours <= 18)
         {
-            activeBear = true;
+            if (NormalWolf)
+            {
+                activeWolf = true;
+            }
         } 
         else
         {
-            activeBear = false;
+            if (NormalWolf)
+            {
+                activeWolf = false;
+            }
+        }
+
+        if (timeManager.hours >= 20 || timeManager.hours <= 6)
+        {
+            if (CorruptWolf)
+            {
+                activeCorruptWolf = true;
+            }
+        } 
+        else
+        {
+            if (CorruptWolf)
+            {
+                activeCorruptWolf = false;
+            }
         }
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (activeBear == true)
+        if (activeWolf == true)
         {
-            Debug.Log("Bear is active");
+            Debug.Log("Wolf is active");
             if (!playerInSightRange && !playerInAttackRange) Patroling();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInSightRange && playerInAttackRange) AttackPlayer();
         }
-        else
+        else if (activeWolf != true)
         {
-            Debug.Log("Bear is not active");
-            //animator.SetFloat("Speed", 0f);
+            Debug.Log("Wolf is not active");
+            animator.SetBool("Sleep", true);
+        }
+        if (activeCorruptWolf == true)
+        {
+            Debug.Log("Corrupt Wolf is active");
+            if (!playerInSightRange && !playerInAttackRange) Patroling();
+            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        }
+        else if (activeCorruptWolf != true)
+        {
+            Debug.Log("Corrupt Wolf is not active");
             animator.SetBool("Sleep", true);
         }
 
@@ -81,9 +116,8 @@ public class BearController : MonoBehaviour
 
     public void Patroling()
     {
-        //animator.SetFloat("Speed", 3f);
-        //Debug.Log("Speed : " + agent.velocity.magnitude);
         Debug.Log("Patroling");
+        //Debug.Log("Speed : " + agent.velocity.magnitude);
         animator.SetBool("Sleep", false);
         animator.SetBool("WalkForward", true);
 
@@ -109,53 +143,29 @@ public class BearController : MonoBehaviour
 
     public void ChasePlayer()
     {
-        //animator.SetFloat("Speed", 4f);
-        //Debug.Log("Speed : " + agent.velocity.magnitude);
+        //animator.SetBool("RunForward", true);
         Debug.Log("Chasing");
-        animator.SetBool("WalkForward", false);
-        animator.SetBool("Run Forward", true);
+        //Debug.Log("Speed : " + agent.velocity.magnitude);
         agent.SetDestination(playerTransform.position);
     }
 
-    [SerializeField] private int attackCounter;
-
     public void AttackPlayer()
     {
-        //Debug.Log("Speed : " + agent.velocity.magnitude);
         Debug.Log("Attacking");
+        //Debug.Log("Speed : " + agent.velocity.magnitude);
         agent.SetDestination(transform.position);
         transform.LookAt(playerTransform);
 
-        //animator.SetFloat("Speed", 4.5f);
+        GiveDamage();
 
-        if (!alreadyAttacked)
+        /*if (!alreadyAttacked)
         {
             //Code
-            attackCounter =  Random.Range(0, 3);
-            Debug.Log("Attack: " + attackCounter);
-
-            if (attackCounter == 0)
-            {
-                animator.SetTrigger("Attack1");
-            }
-            else if (attackCounter == 1)
-            {
-                animator.SetTrigger("Attack2");
-            }
-            else if (attackCounter == 2)
-            {
-                animator.SetTrigger("Attack3");
-            }
-            else if (attackCounter == 3)
-            {
-                animator.SetTrigger("Attack5");
-            }
-
-            GiveDamage();
+            //animator.Play(attackAnim);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
+        }*/
     }
 
     private void ResetAttack()
@@ -181,10 +191,10 @@ public class BearController : MonoBehaviour
     public void GiveDamage()
     {
         float count = 0;
-        count += Beardamage;
+        count += Wolfdamage;
         Debug.Log("Taking Damage" + count);
 
-        //GameManager.Instance.TakeHealthDamage(Beardamage);
+        //GameManager.Instance.TakeHealthDamage(Wolfdamage);
 
         StartCoroutine(AttackTime());
     }

@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    public TimeManager timeManager;
+
     [SerializeField] private string attackAnim = "Attack";
 
     /// <summary>
@@ -44,8 +46,14 @@ public class Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+    }
 
-        if (TimeManager.Instance.hours >= 20 || TimeManager.Instance.hours <= 6)
+    void Update()
+    {
+        //agent.destination = playerTransform.position;
+        //animator.SetFloat("Speed", agent.velocity.magnitude);
+
+        if (timeManager.hours >= 20 || timeManager.hours <= 6)
         {
             activeWendigo = true;
         } 
@@ -53,12 +61,6 @@ public class Enemy : MonoBehaviour
         {
             activeWendigo = false;
         }
-    }
-
-    void Update()
-    {
-        //agent.destination = playerTransform.position;
-        //animator.SetFloat("Speed", agent.velocity.magnitude);
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);

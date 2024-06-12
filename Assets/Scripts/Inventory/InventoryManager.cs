@@ -18,13 +18,13 @@ public class InventoryManager : MonoBehaviour
     public Transform ItemContent;
     public GameObject InventoryItem;
 
-    public Transform SmallItemContent;
+    //public Transform SmallItemContent;
 
     public Toggle EnableRemove;
 
     public InventoryItemController[] InventoryItems;
 
-    public InventoryItemController[] SmallInventoryItems;
+    //public InventoryItemController[] SmallInventoryItems;
 
     public TMP_Text DescName;
 
@@ -105,7 +105,7 @@ public class InventoryManager : MonoBehaviour
         SetInventoryItems();
     }
 
-    public void ClearSmallContent()
+    /*public void ClearSmallContent()
     {
         foreach(Transform item in SmallItemContent)
         {
@@ -134,7 +134,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         SetSmallInventoryItems();
-    }
+    }*/
 
     public void EnableItemsRemove()
     {
@@ -145,10 +145,10 @@ public class InventoryManager : MonoBehaviour
                 item.Find("RemoveButton").gameObject.SetActive(true);
             }
 
-            foreach (Transform item in SmallItemContent)
+            /*foreach (Transform item in SmallItemContent)
             {
                 item.Find("RemoveButton").gameObject.SetActive(true);
-            }
+            }*/
         }
         else
         {
@@ -157,10 +157,10 @@ public class InventoryManager : MonoBehaviour
                 item.Find("RemoveButton").gameObject.SetActive(false);
             }
 
-            foreach(Transform item in SmallItemContent)
+            /*foreach(Transform item in SmallItemContent)
             {
                 item.Find("RemoveButton").gameObject.SetActive(false);
-            }
+            }*/
         }       
     }
 
@@ -175,7 +175,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public int counter;
+    /*public int counter;
 
     public void SetSmallInventoryItems()
     {
@@ -185,6 +185,5 @@ public class InventoryManager : MonoBehaviour
         {
             SmallInventoryItems[counter].AddItem(Items[counter]);
         }
-    }
-
+    }*/
 }
