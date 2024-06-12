@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ade05db2dc0e59c4683e349780389dbd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.1447067
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ade05db2dc0e59c4683e349780389dbd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ade05db2dc0e59c4683e349780389dbd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.33
+      value: 4.7243915
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ade05db2dc0e59c4683e349780389dbd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -442,6 +442,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  timeManager: {fileID: 0}
   attackAnim: Attack
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
