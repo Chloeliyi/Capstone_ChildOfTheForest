@@ -70,6 +70,11 @@ public class CraftManager : MonoBehaviour
         }
     }
 
+    public void RemoveFromInventory()
+    {
+        
+    }
+
     public void AddToInventory()
     {
 
@@ -88,7 +93,6 @@ public class CraftManager : MonoBehaviour
         GotItem = false;
 
         //craftItem = CraftedContent.GetComponentInChildren<CraftItem>();
-
         //craftItem.RemoveCraftItem();
         }
         else if (GotItem == false)

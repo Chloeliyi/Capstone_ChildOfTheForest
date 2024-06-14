@@ -164,14 +164,14 @@ public class WolfController : MonoBehaviour
             //Code
             animator.SetBool("Run Forward", false);
 
-            attackCounter =  Random.Range(0, 7);
+            attackCounter =  Random.Range(1, 7);
             Debug.Log("Attack: " + attackCounter);
 
-            if (attackCounter == 0)
+            /*if (attackCounter == 0)
             {
                 animator.SetTrigger("Attack1");
-            }
-            else if (attackCounter == 1)
+            }*/
+            if (attackCounter == 1)
             {
                 animator.SetTrigger("Attack2");
             }
@@ -209,6 +209,8 @@ public class WolfController : MonoBehaviour
     private void ResetAttack()
         {
             alreadyAttacked = false;
+            attackCounter =  Random.Range(1, 7);
+            Debug.Log("Attack: " + attackCounter);
         }
 
     public void TakeSpearDamage(int Speardamage)

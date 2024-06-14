@@ -69,7 +69,7 @@ public class FPSController : MonoBehaviour
                 //runSpeed = runSpeed;
                 Staminaslider.value -= 1f * Time.deltaTime;
                 Debug.Log("Player is running");
-                Debug.Log(Staminaslider.value);
+                //Debug.Log(Staminaslider.value);
 
             }
 
@@ -87,7 +87,7 @@ public class FPSController : MonoBehaviour
                 Debug.Log("Player is walking");
                 //runSpeed = runSpeed;
                 Staminaslider.value += 1f * Time.deltaTime;
-                Debug.Log(Staminaslider.value);
+                //Debug.Log(Staminaslider.value);
             }
 
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;

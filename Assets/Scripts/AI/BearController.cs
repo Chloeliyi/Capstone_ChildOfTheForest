@@ -169,6 +169,8 @@ public class BearController : MonoBehaviour
     private void ResetAttack()
         {
             alreadyAttacked = false;
+            attackCounter =  Random.Range(0, 3);
+            Debug.Log("Attack: " + attackCounter);
         }
 
     public void TakeSpearDamage(int Speardamage)
