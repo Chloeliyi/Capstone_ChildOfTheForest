@@ -77,11 +77,6 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
         InventoryManager.Instance.DescText.text = "Empty";
     }
 
-    public void Test()
-    {
-        Debug.Log("Clicking item");
-    }
-
     public void UseItem()
     {
         switch (item.itemType)
@@ -92,7 +87,7 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
             break;
             case Item.ItemType.Food:
             GameManager.Instance.IncreaseFood(item.value);
-            //RemoveItem();
+            RemoveItem();
             break;
             case Item.ItemType.Weapon:
             GameManager.Instance.SpawnTorch();
@@ -102,7 +97,7 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
             GameManager.Instance.SpawnWorkbench();
             RemoveItem();
             break;
-            case Item.ItemType.Crafted:
+            case Item.ItemType.Wall:
             GameManager.Instance.SpawnWall();
             RemoveItem();
             break;

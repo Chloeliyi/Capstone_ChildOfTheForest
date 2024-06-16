@@ -132,6 +132,11 @@ public class FPSController : MonoBehaviour
             Debug.Log("Near axe");
             GameManager.Instance.AxeGameObject = other.gameObject;
         }
+        else if (other.gameObject.tag == "Spear")
+        {
+            Debug.Log("Near spear");
+            GameManager.Instance.projectile = other.gameObject;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -152,6 +157,11 @@ public class FPSController : MonoBehaviour
         {
             Debug.Log("Not near axe");
             GameManager.Instance.AxeGameObject = null;
+        }
+        else if (other.gameObject.tag == "Spear")
+        {
+            Debug.Log("Near spear");
+            GameManager.Instance.projectile = null;
         }
     }
 }

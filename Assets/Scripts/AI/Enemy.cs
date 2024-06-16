@@ -42,6 +42,8 @@ public class Enemy : MonoBehaviour
 
     public bool activeWendigo;
 
+    public GameObject Meat;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -148,9 +150,20 @@ public class Enemy : MonoBehaviour
             DestroyEnemy();
     }
 
+    public void TakeAxeDamage(int axedamage)
+    {
+        health -= axedamage;
+
+        Debug.Log("Enemy health : " + health);
+
+        if (health <= 0)
+            DestroyEnemy();
+    }
+
     public void DestroyEnemy()
     {
         Destroy(gameObject);
+        Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
     }
 
     public void GiveDamage()

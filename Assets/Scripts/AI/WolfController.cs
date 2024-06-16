@@ -12,12 +12,15 @@ public class WolfController : MonoBehaviour
     public int Wolfdamage;
 
     public Transform playerTransform;
+    public Transform Wolfleader;
     [SerializeField]private NavMeshAgent agent;
     Animator animator;
 
     public TimeManager timeManager;
 
     public LayerMask whatIsGround, whatIsPlayer;
+
+    public LayerMask whatIsLeader;
 
     /// <summary>
     /// Patroling
@@ -38,11 +41,18 @@ public class WolfController : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    public float wolfsightRange;
+    public bool wolfInSightRange;
+
+    public bool Leader;
+
     public bool NormalWolf;
     public bool CorruptWolf;
 
     public bool activeWolf;
     public bool activeCorruptWolf;
+
+    public GameObject Meat;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -86,6 +96,7 @@ public class WolfController : MonoBehaviour
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        wolfInSightRange = Physics.CheckSphere(transform.position, wolfsightRange, whatIsLeader);
 
         if (activeWolf == true)
         {
@@ -97,7 +108,7 @@ public class WolfController : MonoBehaviour
         else if (activeWolf != true)
         {
             Debug.Log("Wolf is not active");
-            animator.SetBool("Sleep", true);
+            //animator.SetBool("Sleep", true);
         }
         if (activeCorruptWolf == true)
         {
@@ -109,26 +120,32 @@ public class WolfController : MonoBehaviour
         else if (activeCorruptWolf != true)
         {
             Debug.Log("Corrupt Wolf is not active");
-            animator.SetBool("Sleep", true);
+            //animator.SetBool("Sleep", true);
         }
-
     }
 
     public void Patroling()
     {
-        Debug.Log("Patroling");
-        //Debug.Log("Speed : " + agent.velocity.magnitude);
-        animator.SetBool("Sleep", false);
-        animator.SetBool("WalkForward", true);
+        if (Leader)
+        {
+            Debug.Log("Patroling");
+            //animator.SetBool("Sleep", false);
+            animator.SetBool("WalkForward", true);
 
-        if (!walkPointSet) SearchWalkPoint();
+            if (!walkPointSet) SearchWalkPoint();
+            if (walkPointSet) agent.SetDestination(walkPoint);
+            Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-         if (walkPointSet) agent.SetDestination(walkPoint);
-
-         Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        //Walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f) walkPointSet = false;
+            //Walkpoint reached
+            if (distanceToWalkPoint.magnitude < 1f) walkPointSet = false;
+        }
+        else
+        {
+            Debug.Log("Following leader");
+            agent.SetDestination(Wolfleader.transform.position);
+            //animator.SetBool("Sleep", false);
+            animator.SetBool("WalkForward", true);
+        }
     }
 
      private void SearchWalkPoint()
@@ -143,11 +160,21 @@ public class WolfController : MonoBehaviour
 
     public void ChasePlayer()
     {
-        Debug.Log("Chasing");
-        animator.SetBool("WalkForward", false);
-        animator.SetBool("Run Forward", true);
-        //Debug.Log("Speed : " + agent.velocity.magnitude);
-        agent.SetDestination(playerTransform.position);
+        if (Leader)
+        {
+            Debug.Log("Chasing");
+            //animator.SetBool("WalkForward", false);
+            animator.SetBool("Run Forward", true);
+            //Debug.Log("Speed : " + agent.velocity.magnitude);
+            agent.SetDestination(playerTransform.position);
+        }
+        else
+        {
+            Debug.Log("Following leader");
+            agent.SetDestination(Wolfleader.transform.position);
+            //animator.SetBool("WalkForward", false);
+            animator.SetBool("Run Forward", true);
+        }
     }
 
     [SerializeField] private int attackCounter;
@@ -223,9 +250,20 @@ public class WolfController : MonoBehaviour
             DestroyEnemy();
     }
 
+    public void TakeAxeDamage(int axedamage)
+    {
+        health -= axedamage;
+
+        Debug.Log("Enemy health : " + health);
+
+        if (health <= 0)
+            DestroyEnemy();
+    }
+
     public void DestroyEnemy()
     {
         Destroy(gameObject);
+        Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
     }
 
     public void GiveDamage()

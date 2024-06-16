@@ -40,6 +40,8 @@ public class BearController : MonoBehaviour
 
     public bool activeBear;
 
+    public GameObject Meat;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -81,8 +83,6 @@ public class BearController : MonoBehaviour
 
     public void Patroling()
     {
-        //animator.SetFloat("Speed", 3f);
-        //Debug.Log("Speed : " + agent.velocity.magnitude);
         Debug.Log("Patroling");
         animator.SetBool("Sleep", false);
         animator.SetBool("WalkForward", true);
@@ -184,9 +184,20 @@ public class BearController : MonoBehaviour
             DestroyEnemy();
     }
 
+    public void TakeAxeDamage(int axedamage)
+    {
+        health -= axedamage;
+
+        Debug.Log("Enemy health : " + health);
+
+        if (health <= 0)
+            DestroyEnemy();
+    }
+
     public void DestroyEnemy()
     {
         Destroy(gameObject);
+        Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
     }
 
     public void GiveDamage()

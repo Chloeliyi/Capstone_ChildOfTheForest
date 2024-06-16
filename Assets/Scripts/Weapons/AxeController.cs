@@ -31,6 +31,24 @@ public class AxeController : MonoBehaviour
             }
         }
     }
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Near enemy");
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (GameManager.Instance.activeAxe)
+                {
+                    Debug.Log(collision.gameObject.tag + " was hit");
+                    Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                    AxeDamage();
+                    enemy.TakeAxeDamage(AxeItem.value);
+                }
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

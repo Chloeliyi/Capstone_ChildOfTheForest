@@ -19,18 +19,21 @@ public class DoorController : MonoBehaviour
         //Door = gameObject.GetComponent<Animator>();
     }
 
-    void OnTriggerEnter(Collider coll)
+    void OnTriggerStay(Collider coll)
     {
         if (coll.tag == "Player")
         {
             Debug.Log("Player is in range of door");
-            if (!PlayOnce)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                Door.Play(DoorOpen, 0, 0.0f);
-                Debug.Log("Door Is Open");
-                PlayOnce = true;
-                Debug.Log("PlayOnce is : " + PlayOnce);
-                StartCoroutine(PauseDoorInteraction());
+                if (!PlayOnce)
+                {
+                    Door.Play(DoorOpen, 0, 0.0f);
+                    Debug.Log("Door Is Open");
+                    PlayOnce = true;
+                    Debug.Log("PlayOnce is : " + PlayOnce);
+                    StartCoroutine(PauseDoorInteraction());
+                }  
             }
         }
     }
