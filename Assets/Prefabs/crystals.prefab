@@ -165,5 +165,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crystalValue: 20
   axeController: {fileID: 2372684999125296255, guid: e0739bbc04fdc1f4c92b4e7f3ec149e4, type: 3}
-  crystalDrop: {fileID: 0}
+  crystalDrop: {fileID: 3165419527728845142, guid: e5cb1a3feb2d05940a8e97c0231c6ca9, type: 3}
   crystalDropObject: {fileID: 0}
