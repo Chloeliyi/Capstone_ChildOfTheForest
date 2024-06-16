@@ -17,5 +17,5 @@ MonoBehaviour:
   value: 0
   durability: 0
   icon: {fileID: 0}
-  itemType: 6
+  itemType: 8
   itemDesc: This is a wall
