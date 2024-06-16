@@ -105,6 +105,8 @@ MonoBehaviour:
   health: 100
   Wolfdamage: 5
   playerTransform: {fileID: 2928223840503572832, guid: 97ba4ca4158151443b86ac84028f0259, type: 3}
+  player: {fileID: 0}
+  Wolfleader: {fileID: 0}
   agent: {fileID: 0}
   timeManager: {fileID: 0}
   whatIsGround:
@@ -113,6 +115,9 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  whatIsLeader:
+    serializedVersion: 2
+    m_Bits: 256
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 2
@@ -120,10 +125,14 @@ MonoBehaviour:
   attackRange: 2
   playerInSightRange: 0
   playerInAttackRange: 0
+  wolfsightRange: 0
+  wolfInSightRange: 0
+  Leader: 0
   NormalWolf: 1
   CorruptWolf: 0
   activeWolf: 0
   activeCorruptWolf: 0
+  Meat: {fileID: 1289443223031083034, guid: bb7f0bfbc681a28428cf63b1ee8c4f6f, type: 3}
   attackCounter: 0
 --- !u!65 &6098415139227961368
 BoxCollider:

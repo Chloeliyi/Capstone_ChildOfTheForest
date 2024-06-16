@@ -1975,6 +1975,7 @@ MonoBehaviour:
   health: 100
   Beardamage: 5
   playerTransform: {fileID: 0}
+  player: {fileID: 0}
   agent: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
@@ -1991,7 +1992,9 @@ MonoBehaviour:
   playerInSightRange: 0
   playerInAttackRange: 0
   activeBear: 0
+  Meat: {fileID: 1289443223031083034, guid: bb7f0bfbc681a28428cf63b1ee8c4f6f, type: 3}
   attackCounter: 0
+  attackName: 
 --- !u!195 &6271116152310606463
 NavMeshAgent:
   m_ObjectHideFlags: 0

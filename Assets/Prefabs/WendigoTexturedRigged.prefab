@@ -435,6 +435,7 @@ MonoBehaviour:
   health: 100
   Enemydamage: 5
   playerTransform: {fileID: 2928223840503572832, guid: 97ba4ca4158151443b86ac84028f0259, type: 3}
+  player: {fileID: 0}
   agent: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
@@ -452,3 +453,4 @@ MonoBehaviour:
   playerInSightRange: 0
   playerInAttackRange: 0
   activeWendigo: 0
+  Meat: {fileID: 1289443223031083034, guid: bb7f0bfbc681a28428cf63b1ee8c4f6f, type: 3}
