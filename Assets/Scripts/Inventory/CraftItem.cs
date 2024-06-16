@@ -23,9 +23,10 @@ public class CraftItem : MonoBehaviour, IDropHandler
             GameObject dropped = eventData.pointerDrag;
             draggableItem = dropped.GetComponent<InventoryItemController>();
             draggableItem.IvenSlot = transform;
-            Debug.Log("transform: " + transform);
+            Debug.Log("transform: " + transform.position);
+            Debug.Log("transform: " + draggableItem.IvenSlot.transform.position);
             //draggableItem.IvenMenu = transform.parent;
-            //draggableItem.transform.position = new Vector3(0f, 0f, 0f);
+            draggableItem.transform.position = new Vector3(0f, 0f, 0f);
 
             Debug.Log(draggableItem.item.itemName);
             craftItem = draggableItem.item.itemName;

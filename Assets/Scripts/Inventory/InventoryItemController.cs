@@ -37,7 +37,7 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log(item.itemName + " begin drag");
+        //Debug.Log(item.itemName + " begin drag");
         IvenSlot = transform.parent;
         IvenMenu = IvenSlot.parent;
         //transform.SetParent(IvenMenu);
@@ -48,15 +48,15 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log(item.itemName + " being dragged");
+        //Debug.Log(item.itemName + " being dragged");
         transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log(item.itemName + " end drag");
+        //Debug.Log(item.itemName + " end drag");
         transform.SetParent(IvenSlot);
-        Debug.Log("Parent : " + IvenSlot);
+        //Debug.Log("Parent : " + IvenSlot);
         transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         image.raycastTarget = true;
     }

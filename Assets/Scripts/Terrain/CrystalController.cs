@@ -63,8 +63,8 @@ public class CrystalController : MonoBehaviour
 
     public void SpawnCrystalDrop()
     {
-        //crystalDropObject = Instantiate(crystalDrop, gameObject.transform.position, gameObject.transform.rotation);
-        GameManager.Instance.Repair();
+        crystalDropObject = Instantiate(crystalDrop, gameObject.transform.position, gameObject.transform.rotation);
+        //GameManager.Instance.Repair();
     }
 
     private void OnTriggerExit(Collider other)

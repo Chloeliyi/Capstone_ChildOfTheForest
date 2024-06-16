@@ -38,9 +38,7 @@ public class CraftManager : MonoBehaviour
              if(craftItems[i] == "Branch")
              {
                 Debug.Log("Branch can create torch");
-
                 GotItem = true;
-
                 foreach (var item in CraftableItems)
                 {
                     if (item.itemName == "Torch")

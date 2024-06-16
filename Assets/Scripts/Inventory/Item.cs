@@ -22,6 +22,9 @@ public class Item : ScriptableObject
         Food,
         Enemy,
         Workbench,
+        Branch,
+        Crystal,
+        Wall,
         Craftable,
         Crafted
     }
