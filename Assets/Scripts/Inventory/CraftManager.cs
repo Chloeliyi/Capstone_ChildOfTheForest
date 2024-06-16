@@ -72,7 +72,9 @@ public class CraftManager : MonoBehaviour
 
     public void RemoveFromInventory()
     {
-        
+        craftItem = CraftedContent.GetComponentInChildren<CraftItem>();
+        craftItem.RemoveCraftItem();
+        InventoryManager.Instance.ListItems();
     }
 
     public void AddToInventory()
@@ -83,8 +85,6 @@ public class CraftManager : MonoBehaviour
             Debug.Log("Add To Inventory");
             InventoryManager.Instance.Add(CraftableItems[counter]);
 
-            InventoryManager.Instance.ListItems();
-
             craftItems.Clear();
 
         CraftedName.text = null;
@@ -92,8 +92,8 @@ public class CraftManager : MonoBehaviour
 
         GotItem = false;
 
-        //craftItem = CraftedContent.GetComponentInChildren<CraftItem>();
-        //craftItem.RemoveCraftItem();
+        RemoveFromInventory();
+
         }
         else if (GotItem == false)
         {

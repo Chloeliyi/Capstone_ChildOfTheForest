@@ -32,8 +32,6 @@ public class CraftItem : MonoBehaviour, IDropHandler
             craftManager.Add(craftItem);
 
             craftManager.CreateItem();
-
-            //RemoveCraftItem();
         }
     }
 
@@ -41,5 +39,6 @@ public class CraftItem : MonoBehaviour, IDropHandler
     {
         Debug.Log("Remove Craft Item");
         draggableItem.RemoveItem();
+        InventoryManager.Instance.ClearContent();
     }
 }
