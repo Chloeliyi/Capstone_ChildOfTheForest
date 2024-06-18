@@ -16,6 +16,7 @@ TagManager:
   - Crystal
   - Torch
   - Door
+  - Hint
   layers:
   - Default
   - TransparentFX
