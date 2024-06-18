@@ -21,9 +21,7 @@ public class ProjectileAddon : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        //box = GetComponent<BoxCollider>();
-        box.isTrigger = true;
-
+        //box.isTrigger = true;
         SpearDurability = SpearItem.durability;
     }
 
@@ -36,7 +34,7 @@ public class ProjectileAddon : MonoBehaviour
             {
                 Destroy(gameObject);
                 GameManager.Instance.SpawnSpear(SpearDurability);
-                box.isTrigger = false;
+                //box.isTrigger = false;
             }
         }
 
@@ -130,5 +128,12 @@ public class ProjectileAddon : MonoBehaviour
             Debug.Log("Player is not within range of spear");
             PickUpSpear = false;
         }
+    }
+
+    public void DestroySpear()
+    {
+        Destroy(gameObject);
+        GameManager.Instance.projectile = null;
+        GameManager.Instance.ActiveSpear = false;
     }
 }

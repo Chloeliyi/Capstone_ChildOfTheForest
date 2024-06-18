@@ -14,20 +14,20 @@ public class AxeController : MonoBehaviour
 
     void Start()
     {
-        box.isTrigger = true;
+        //box.isTrigger = true;
         AxeDurability = AxeItem.durability;
+        PickUpAxe = false;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("E is pressed");
             if (PickUpAxe == true)
             {
+                //box.isTrigger = false;
                 Destroy(gameObject);
                 GameManager.Instance.SpawnAxe(AxeDurability);
-                box.isTrigger = false;
             }
         }
     }
@@ -71,6 +71,7 @@ public class AxeController : MonoBehaviour
     public void AxeDamage()
     {
         AxeDurability -= AxeItem.value;
+        Debug.Log("Axe Durability : " + AxeDurability);
         GameManager.Instance.AxeDamage(AxeItem.value);
     }
 

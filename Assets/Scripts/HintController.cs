@@ -1,140 +1,181 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class HintController : MonoBehaviour
 {
-    public GameObject player;
-    public Transform holdPos;
-    //if you copy from below this point, you are legally required to like the video
-    public float pickUpRange = 1f; //how far the player can pickup the object from
-    private float rotationSensitivity = 1f; //how fast/slow the object is rotated in relation to mouse movement
-    private GameObject heldObj; //object which we pick up
-    private Rigidbody heldObjRb; //rigidbody of object we pick up
-    private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
-    private int LayerNumber; //layer index
+    public GameObject offset;
+    private PlayerInput _playerInput;
+    [SerializeField] GameObject targetObject;
 
-    public Vector3 oldTransform;
-    // Start is called before the first frame update
+    public Camera playerCamera;
+
+    public bool isExamining = false;
+
+    public Canvas _canva;
+
+    public GameObject tableObject;
+
+    private Vector3 lastMousePosition;
+
+    private Transform examinedObject; // Store the currently examined object
+
+
+    //List of position and rotation of the interactble objects 
+    private Dictionary<Transform, Vector3> originalPositions = new Dictionary<Transform, Vector3>();
+    private Dictionary<Transform, Quaternion> originalRotations = new Dictionary<Transform, Quaternion>();
+
+    //public TreeController treeController;
+    //public AxeController axeController;
     void Start()
     {
-        LayerNumber = LayerMask.NameToLayer("holdLayer");
+        _canva.enabled = false;
+        targetObject = GameObject.Find("Player");
+        _playerInput = targetObject.GetComponent<PlayerInput>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) //change E to whichever key you want to press to pick up
+        // it performs a raycast from the camera to the mouse position and checks if it hits an object tagged as "Object."
+        // If it does, it toggles the examination state and stores the examined object's original position and rotation.
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (heldObj == null) //if currently not holding anything
+            Debug.Log("Press E");
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            ToggleExamination();
+
+        if (Physics.Raycast(ray, out hit))
             {
-                //perform raycast to check if player is looking at object within pickuprange
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
-                {
-                    //make sure pickup tag is attached
-                    if (hit.transform.gameObject.tag == "Hint")
+                if (hit.collider.CompareTag("Hint"))
+                {   
+                    Debug.Log("Hint");
+                    // Store the currently examined object and its original position and rotation
+                    if (isExamining)
                     {
-                        //pass in object hit into the PickUpObject function
-                        oldTransform = transform.position;
-                        PickUpObject(hit.transform.gameObject);
+                        examinedObject = hit.transform;
+                        originalPositions[examinedObject] = examinedObject.position;
+                        originalRotations[examinedObject] = examinedObject.rotation;
                     }
                 }
+                /*else if (hit.collider.CompareTag("Axe"))
+                {
+                    axeController.SpawnAxe();
+                }
+                else if (hit.collider.CompareTag("Tree"))
+                {   
+                    Debug.Log("Tree");
+                    if (GameManager.Instance.activeAxe == true)
+                    {
+                        Debug.Log("Can cut down tree");
+                        treeController.CutDownTree();
+                    }
+                    else
+                    {
+                        Debug.Log("Cannot cut down tree");
+                    }
+                }*/
+            }
+        }
+        //It then checks if the player is close to an interactable object using the CheckUserClose() method.
+        //If the player is close, it calls either Examine() or NonExamine() and enables or disables the canvas component accordingly.
+        if (CheckUserClose())
+        {
+            if (isExamining)
+            {
+                _canva.enabled = false;
+                Examine(); StartExamination();
             }
             else
             {
-                if(canDrop == true)
-                {
-                    StopClipping(); //prevents object from clipping through walls
-                    DropObject();
-                }
+                _canva.enabled = true;
+                NonExamine(); StopExamination();
             }
         }
-        if (heldObj != null) //if player is holding object
+    else _canva.enabled = false;
+    }
+
+    public void ToggleExamination()
+    {
+        isExamining = !isExamining;
+    }
+    
+    // This method is called when the player starts examining an object. It locks the cursor,
+    // makes it visible, and disables the PlayerInput component to prevent player movement during examination.
+
+    void StartExamination()
+    {
+        lastMousePosition = Input.mousePosition;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        _playerInput.enabled = false;
+    }
+
+    //This method is called when the player stops examining an object. It locks the cursor again,
+    //hides it, and re-enables the PlayerInput component to allow player movement.
+
+    void StopExamination()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        _playerInput.enabled = true;
+    }
+
+    // This method is called when the player is examining an object.
+    // It moves the examined object towards the offset object and allows the player to rotate it based on mouse movement.
+
+    void Examine()
+    {
+        if (examinedObject != null)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            examinedObject.position = Vector3.Lerp(examinedObject.position, offset.transform.position, 0.2f);
+
+            Vector3 deltaMouse = Input.mousePosition - lastMousePosition;
+            float rotationSpeed = 1.0f;
+            examinedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);
+            examinedObject.Rotate(deltaMouse.y * rotationSpeed * Vector3.left, Space.World);
+            lastMousePosition = Input.mousePosition;
+        }
+    }
+
+    //This method is called when the player is not examining an object.
+    //It resets the position and rotation of the examined object to its original values stored in the dictionaries.
+
+    void NonExamine()
+    {
+        if (examinedObject != null)
+        {
+            // Reset the position and rotation of the examined object to its original values
+            if (originalPositions.ContainsKey(examinedObject))
             {
-                Debug.Log("Place object down");
+                examinedObject.position = Vector3.Lerp(examinedObject.position, originalPositions[examinedObject], 0.2f);
             }
-            else
+            if (originalRotations.ContainsKey(examinedObject))
             {
-                MoveObject(); //keep object position at holdPos
-                RotateObject();
-                if (Input.GetKeyDown(KeyCode.Mouse0) && canDrop == true) //Mous0 (leftclick) is used to throw, change this if you want another button to be used)
-                {
-                    StopClipping();
-                }
+                examinedObject.rotation = Quaternion.Slerp(examinedObject.rotation, originalRotations[examinedObject], 0.2f);
             }
         }
     }
-    void PickUpObject(GameObject pickUpObj)
+
+
+   // This method calculates the distance between the player(targetObject) and 
+   // an object called tableObject.If the distance is less than 2 units, it returns true, indicating that the player is close to the object.
+    bool CheckUserClose()
     {
-        if (pickUpObj.GetComponent<Rigidbody>()) //make sure the object has a RigidBody
-        {
-            heldObj = pickUpObj; //assign heldObj to the object that was hit by the raycast (no longer == null)
-            heldObjRb = pickUpObj.GetComponent<Rigidbody>(); //assign Rigidbody
-            heldObjRb.isKinematic = true;
-            heldObjRb.transform.parent = holdPos.transform; //parent object to holdposition
-            heldObj.layer = LayerNumber; //change the object layer to the holdLayer
-            //make sure object doesnt collide with player, it can cause weird bugs
-            Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
-        }
+        // Calculate the distance between the two GameObjects
+        float distance = Vector3.Distance(targetObject.transform.position, tableObject.transform.position);
+
+        // Check if they are close based on the threshold
+        return (distance < 2);
+
     }
 
-    void DropObject()
-    {
-        //re-enable collision with player
-        Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
-        heldObj.layer = 0; //object assigned back to default layer
-        heldObjRb.isKinematic = false;
-        heldObj.transform.parent = null; //unparent object
-        heldObj = null; //undefine game object
-    }
-
-    void MoveObject()
-    {
-        //keep object position the same as the holdPosition position
-        heldObj.transform.position = holdPos.transform.position;
-    }
-
-    void RotateObject()
-    {
-        if (Input.GetKey(KeyCode.R))//hold R key to rotate, change this to whatever key you want
-        {
-            canDrop = false; //make sure throwing can't occur during rotating
-
-            //disable player being able to look around
-            //mouseLookScript.verticalSensitivity = 0f;
-            //mouseLookScript.lateralSensitivity = 0f;
-
-            float XaxisRotation = Input.GetAxis("Mouse X") * rotationSensitivity;
-            float YaxisRotation = Input.GetAxis("Mouse Y") * rotationSensitivity;
-            //rotate the object depending on mouse X-Y Axis
-            heldObj.transform.Rotate(Vector3.down, XaxisRotation);
-            heldObj.transform.Rotate(Vector3.right, YaxisRotation);
-        }
-        else
-        {
-            //re-enable player being able to look around
-            //mouseLookScript.verticalSensitivity = originalvalue;
-            //mouseLookScript.lateralSensitivity = originalvalue;
-            canDrop = true;
-        }
-    }
-
-    void StopClipping() //function only called when dropping/throwing
-    {
-        var clipRange = Vector3.Distance(heldObj.transform.position, transform.position); //distance from holdPos to the camera
-        //have to use RaycastAll as object blocks raycast in center screen
-        //RaycastAll returns array of all colliders hit within the cliprange
-        RaycastHit[] hits;
-        hits = Physics.RaycastAll(transform.position, transform.TransformDirection(Vector3.forward), clipRange);
-        //if the array length is greater than 1, meaning it has hit more than just the object we are carrying
-        if (hits.Length > 1)
-        {
-            //change object position to camera position 
-            heldObj.transform.position = transform.position + new Vector3(0f, -0.5f, 0f); //offset slightly downward to stop object dropping above player 
-            //if your player is small, change the -0.5f to a smaller number (in magnitude) ie: -0.1f
-        }
-    }
 }

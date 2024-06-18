@@ -50,7 +50,7 @@ public class CraftManager : MonoBehaviour
                 }
              }
 
-             /*else if ()
+             else if (craftItems[i] == "Branch" || craftItems[i] == "Stone")
              {
                 Debug.Log("Can create axe");
                 GotItem = true;
@@ -64,7 +64,7 @@ public class CraftManager : MonoBehaviour
                         CraftedIcon.sprite = CraftableItems[counter].icon;
                     }
                 }
-             }*/
+             }
         }
     }
 

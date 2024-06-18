@@ -6,12 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class TreeController : MonoBehaviour
 {
-    public int treeHealth;
-
-    public GameManager gameManager;
+    [SerializeField] private int treeHealth;
 
     public AxeController axeController;
-
 
     [SerializeField] private GameObject tree;
 
@@ -21,7 +18,8 @@ public class TreeController : MonoBehaviour
 
     void Start()
     {
-        tree = transform.parent.gameObject;
+        tree = transform.gameObject;
+        treeHealth = 30;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,8 +44,6 @@ public class TreeController : MonoBehaviour
         {
             if (GameManager.Instance.activeAxe == true)
             {
-                Debug.Log("Got Axe");
-
                 if(Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log("Tree is being cut");
@@ -63,12 +59,11 @@ public class TreeController : MonoBehaviour
                     }
                     else if (axeController.AxeDurability <= 0)
                     {
-                        //axeInRange = false;
                         axeController.DestroyAxe();
                     }
                 }
             }
-            else if (GameManager.Instance.activeAxe == false)
+            else
             {
                 Debug.Log("No Axe");
             }

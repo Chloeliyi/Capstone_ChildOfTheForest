@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject Tree;
 
-    public TreeController treeController;
+    //public TreeController treeController;
 
     public GameObject WallObject;
 
@@ -190,11 +190,12 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Keypad1))
         {
             if (AxeGameObject == null)
             {
                 //SpawnAxe();
+                Debug.Log("No axe");
             }
             else if (AxeGameObject != null)
             {
@@ -207,17 +208,21 @@ public class GameManager : MonoBehaviour
                 else if (!AxeGameObject.activeSelf)
                 {
                     AxeGameObject.SetActive(true);
+                    projectile.SetActive(false);
+                    torchObject.SetActive(false);
+                    Activebench.SetActive(false);
                     activeAxe = true;
                     OpenWeaponDurability();
                 }
             }
         }
         
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.Keypad2))
         {
             if (projectile == null)
             {
                 //SpawnSpear();
+                Debug.Log("No spear");
             }
             else if (projectile != null)
             {
@@ -230,8 +235,28 @@ public class GameManager : MonoBehaviour
                 else if (!projectile.activeSelf)
                 {
                     projectile.SetActive(true);
+                    AxeGameObject.SetActive(false);
+                    torchObject.SetActive(false);
+                    Activebench.SetActive(false);
                     ActiveSpear = true;
                     OpenWeaponDurability();
+                }
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            if (torchObject != null)
+            {
+                if (torchObject.activeSelf)
+                {
+                    torchObject.SetActive(false);
+                }
+                else if (!torchObject.activeSelf)
+                {
+                    torchObject.SetActive(true);
+                    projectile.SetActive(false);
+                    AxeGameObject.SetActive(false);
+                    Activebench.SetActive(false);
                 }
             }
         }
@@ -345,8 +370,6 @@ public class GameManager : MonoBehaviour
     public void OpenCraftMenu()
     {
         Time.timeScale = 0f;
-
-        //SmallIvenMenu.gameObject.SetActive(false);
         BigIvenMenu.gameObject.SetActive(true);
         ItemDescMenu.gameObject.SetActive(false);
         CraftMenu.gameObject.SetActive(true);
@@ -355,7 +378,7 @@ public class GameManager : MonoBehaviour
 
     public void CloseCraftMenu()
     {
-        //SmallIvenMenu.gameObject.SetActive(true);
+        Time.timeScale = 1f;
         BigIvenMenu.gameObject.SetActive(false);
         ItemDescMenu.gameObject.SetActive(true);
         CraftMenu.gameObject.SetActive(false);
@@ -453,7 +476,7 @@ public class GameManager : MonoBehaviour
         Weapondurability.value = CurrentDurability;
         WeaponIcon.sprite = WeaponsSprite[0];
 
-        if (Activebench.activeSelf)
+        /*if (Activebench.activeSelf)
         {
             Activebench.SetActive(false);
         }
@@ -470,7 +493,7 @@ public class GameManager : MonoBehaviour
         else if (torchObject.activeSelf)
         {
             torchObject.SetActive(false);
-        }
+        }*/
     }
 
     public void AxeDamage(int damage)
