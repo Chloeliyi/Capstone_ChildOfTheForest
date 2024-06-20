@@ -47,7 +47,6 @@ public class HintController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Press E");
-            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 

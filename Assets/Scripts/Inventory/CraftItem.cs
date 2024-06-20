@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class CraftItem : MonoBehaviour, IDropHandler
 {
     //public static CraftItem Instance;
 
     public string craftItem;
+
+    public int itemQuantity;
 
     public CraftManager craftManager;
 
@@ -24,15 +27,18 @@ public class CraftItem : MonoBehaviour, IDropHandler
             draggableItem = dropped.GetComponent<InventoryItemController>();
             draggableItem.IvenSlot = transform;
             Debug.Log("transform: " + transform.position);
-            Debug.Log("transform: " + draggableItem.IvenSlot.transform.position);
             //draggableItem.IvenMenu = transform.parent;
-            draggableItem.transform.position = new Vector3(0f, 0f, 0f);
+            //draggableItem.transform.position = new Vector3(0f, 0f, 0f);
 
-            Debug.Log(draggableItem.item.itemName);
+            var itemCounter = draggableItem.transform.Find("ItemCounter").GetComponent<TMP_Text>();
+
             craftItem = draggableItem.item.itemName;
+            Debug.Log(craftItem);
+
+            int.TryParse(itemCounter.text, out itemQuantity);
+            craftManager.AddQuantity(itemQuantity);
             craftManager.Add(craftItem);
 
-            craftManager.CreateItem();
         }
     }
 

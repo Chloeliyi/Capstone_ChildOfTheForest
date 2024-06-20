@@ -32,6 +32,10 @@ public class InventoryManager : MonoBehaviour
 
     public TMP_Text DescText;
 
+    public int itemQuantity;
+
+    [SerializeField] private int maxitemQuantity = 5;
+
     public void Start()
     {
         DescName.text = "Item";
@@ -45,25 +49,32 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        /*if(Input.GetKeyDown(KeyCode.G) && menuActivated)
-        {
-            Time.timeScale = 1;
-            SmallInventoryMenu.gameObject.SetActive(false);
-            menuActivated = false;
-            EnableRemove.gameObject.SetActive(false);
-        }
-        else if(Input.GetKeyDown(KeyCode.G) && !menuActivated)
-        {
-            Time.timeScale = 0;
-            SmallInventoryMenu.gameObject.SetActive(true);
-            menuActivated = true;
-            EnableRemove.gameObject.SetActive(true);
-        }*/
     }
 
     public void Add(Item item)
     {
-        Items.Add(item);
+        for (int i = 0; i < Items.Count; i++)
+        {
+            if (Items[i] == item)
+            {
+                Debug.Log("Already have item");
+                itemQuantity += item.quantity;
+
+                if (itemQuantity >= maxitemQuantity)
+                {
+                    Items.Add(item);
+                    itemQuantity = item.quantity;
+                }
+            }
+            else
+            {
+                Debug.Log("Don't have item");
+                Items.Add(item);
+                itemQuantity = item.quantity;
+            }
+        }
+
+        //Items.Add(item);
     }
 
     public void Remove(Item item)
@@ -91,10 +102,13 @@ public class InventoryManager : MonoBehaviour
             obj = Instantiate(InventoryItem, ItemContent);
             var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
             var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
+            var itemCounter = obj.transform.Find("ItemCounter").GetComponent<TMP_Text>();
             var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
 
             itemName.text = item.itemName;
             itemIcon.sprite = item.icon;
+
+            itemCounter.text = itemQuantity.ToString();
 
             if (EnableRemove.isOn)
             {

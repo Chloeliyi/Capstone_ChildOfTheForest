@@ -13,7 +13,6 @@ public class ItemPickup : MonoBehaviour
         InventoryManager.Instance.Add(Item);
         Debug.Log("Pick up object");
         Destroy(gameObject);
-        //InventoryManager.Instance.ListSmallInvenItems();
     }
 
 

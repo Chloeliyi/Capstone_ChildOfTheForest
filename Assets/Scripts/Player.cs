@@ -67,7 +67,7 @@ public class FPSController : MonoBehaviour
             if (isRunning && Staminaslider.value > 0)
             {
                 //runSpeed = runSpeed;
-                Staminaslider.value -= 1f * Time.deltaTime;
+                Staminaslider.value -= 3f * Time.deltaTime;
                 Debug.Log("Player is running");
                 //Debug.Log(Staminaslider.value);
 
@@ -86,7 +86,7 @@ public class FPSController : MonoBehaviour
             {
                 Debug.Log("Player is walking");
                 //runSpeed = runSpeed;
-                Staminaslider.value += 1f * Time.deltaTime;
+                Staminaslider.value += 2f * Time.deltaTime;
                 //Debug.Log(Staminaslider.value);
             }
 

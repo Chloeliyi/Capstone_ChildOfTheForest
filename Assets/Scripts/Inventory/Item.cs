@@ -11,6 +11,7 @@ public class Item : ScriptableObject
     public string itemName;
     public int value;
     public int durability;
+    public int quantity;
     public Sprite icon;
     public ItemType itemType;
     public string itemDesc;
@@ -18,14 +19,15 @@ public class Item : ScriptableObject
     public enum ItemType
     {
         Potion,
-        Weapon,
+        Torch,
+        Axe,
+        Spear,
         Food,
         Enemy,
         Workbench,
         Branch,
         Crystal,
+        Stone,
         Wall,
-        Craftable,
-        Crafted
     }
 }

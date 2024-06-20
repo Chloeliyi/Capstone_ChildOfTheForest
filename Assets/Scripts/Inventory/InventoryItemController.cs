@@ -89,8 +89,16 @@ public class InventoryItemController : MonoBehaviour, IBeginDragHandler, IEndDra
             GameManager.Instance.IncreaseFood(item.value);
             RemoveItem();
             break;
-            case Item.ItemType.Weapon:
+            case Item.ItemType.Torch:
             GameManager.Instance.SpawnTorch();
+            RemoveItem();
+            break;
+            case Item.ItemType.Axe:
+            GameManager.Instance.SpawnAxe(item.durability);
+            RemoveItem();
+            break;
+            case Item.ItemType.Spear:
+            GameManager.Instance.SpawnSpear(item.durability);
             RemoveItem();
             break;
             case Item.ItemType.Workbench:

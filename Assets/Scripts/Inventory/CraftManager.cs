@@ -13,6 +13,7 @@ public class CraftManager : MonoBehaviour
 
     public List<string> craftItems = new List<string>();
 
+    public List<int> craftItemsQuantity = new List<int>();
 
     public Transform CraftedContent;
 
@@ -29,13 +30,19 @@ public class CraftManager : MonoBehaviour
     public void Add(string craftItem)
     {
         craftItems.Add(craftItem);
+        CreateItem();
+    }
+
+    public void AddQuantity(int itemQuantity)
+    {
+        craftItemsQuantity.Add(itemQuantity);
     }
 
     public void CreateItem()
     {
         for (int i = 0; i < craftItems.Count; i++)
         {
-             if(craftItems[i] == "Branch")
+             /*if(craftItems[i] == "Branch")
              {
                 Debug.Log("Branch can create torch");
                 GotItem = true;
@@ -48,20 +55,26 @@ public class CraftManager : MonoBehaviour
                         CraftedIcon.sprite = CraftableItems[counter].icon;
                     }
                 }
-             }
+             }*/
 
-             else if (craftItems[i] == "Branch" || craftItems[i] == "Stone")
+             if (craftItems[i] == "Branch")
              {
-                Debug.Log("Can create axe");
-                GotItem = true;
-
-                foreach (var item in CraftableItems)
+                for (int j = 0; j < craftItems.Count; j++)
                 {
-                    if (item.itemName == "Axe")
+                    if (craftItems[j] == "CrystalDrop")
                     {
-                        counter = 1;
-                        CraftedName.text = CraftableItems[counter].itemName;
-                        CraftedIcon.sprite = CraftableItems[counter].icon;
+                        Debug.Log("Can create spear");
+                        GotItem = true;
+
+                        foreach (var item in CraftableItems)
+                        {
+                            if (item.itemName == "Spear")
+                            {
+                                counter = 1;
+                                CraftedName.text = CraftableItems[counter].itemName;
+                                CraftedIcon.sprite = CraftableItems[counter].icon;
+                            }
+                        }
                     }
                 }
              }
