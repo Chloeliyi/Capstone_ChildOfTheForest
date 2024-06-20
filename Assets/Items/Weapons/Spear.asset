@@ -16,6 +16,7 @@ MonoBehaviour:
   itemName: Spear
   value: 10
   durability: 100
+  quantity: 1
   icon: {fileID: 0}
-  itemType: 1
+  itemType: 3
   itemDesc: This is a spear

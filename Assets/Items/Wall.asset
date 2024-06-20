@@ -16,6 +16,7 @@ MonoBehaviour:
   itemName: Wall
   value: 0
   durability: 0
+  quantity: 1
   icon: {fileID: 0}
   itemType: 8
   itemDesc: This is a wall

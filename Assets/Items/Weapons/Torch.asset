@@ -16,6 +16,7 @@ MonoBehaviour:
   itemName: Torch
   value: 1
   durability: 100
+  quantity: 1
   icon: {fileID: 0}
   itemType: 1
   itemDesc: This is a torch

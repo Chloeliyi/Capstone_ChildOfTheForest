@@ -16,6 +16,7 @@ MonoBehaviour:
   itemName: Stone
   value: 5
   durability: 10
+  quantity: 1
   icon: {fileID: 0}
-  itemType: 8
+  itemType: 9
   itemDesc: This is a stone
