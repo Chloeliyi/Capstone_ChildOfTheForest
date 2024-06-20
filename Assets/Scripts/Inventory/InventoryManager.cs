@@ -47,34 +47,39 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
 
-    void Update()
-    {
-    }
-
     public void Add(Item item)
     {
-        for (int i = 0; i < Items.Count; i++)
-        {
-            if (Items[i] == item)
-            {
-                Debug.Log("Already have item");
-                itemQuantity += item.quantity;
+        Debug.Log("Add Item");
 
-                if (itemQuantity >= maxitemQuantity)
+        if (Items.Count == 0)
+        {
+            Items.Add(item);
+        }
+        else
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (Items[i] == item)
                 {
+                    Debug.Log("Already have item");
+                    //itemQuantity = item.quantity;
+                    if (item.quantity <= maxitemQuantity)
+                    {
+                        item.quantity ++;
+                        //itemQuantity = item.quantity;
+                    }  
+                    else
+                    {
+                        Items.Add(item);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Don't have item");
                     Items.Add(item);
-                    itemQuantity = item.quantity;
                 }
             }
-            else
-            {
-                Debug.Log("Don't have item");
-                Items.Add(item);
-                itemQuantity = item.quantity;
-            }
         }
-
-        //Items.Add(item);
     }
 
     public void Remove(Item item)
@@ -107,8 +112,7 @@ public class InventoryManager : MonoBehaviour
 
             itemName.text = item.itemName;
             itemIcon.sprite = item.icon;
-
-            itemCounter.text = itemQuantity.ToString();
+            itemCounter.text = item.quantity.ToString();
 
             if (EnableRemove.isOn)
             {
