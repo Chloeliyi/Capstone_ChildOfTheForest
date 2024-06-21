@@ -44,14 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357577452999b6245a2a6ac76cf7da21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SmallInventoryMenu: {fileID: 0}
   menuActivated: 0
   Items: []
+  ItemsQuantity: 
   ItemContent: {fileID: 0}
-  InventoryItem: {fileID: 1595365724402982664, guid: e4cc825287841374caba7dd40b2f7b3b, type: 3}
-  SmallItemContent: {fileID: 0}
+  InventoryItem: {fileID: 8248977465740128988, guid: 682c53f60afac4f49bc4a1c117072e94, type: 3}
   EnableRemove: {fileID: 0}
   InventoryItems: []
   DescName: {fileID: 0}
   DescIcon: {fileID: 0}
   DescText: {fileID: 0}
+  itemQuantity: 1
+  maxitemQuantity: 3

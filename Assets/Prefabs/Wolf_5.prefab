@@ -105,8 +105,7 @@ MonoBehaviour:
   health: 100
   Wolfdamage: 5
   playerTransform: {fileID: 2928223840503572832, guid: 97ba4ca4158151443b86ac84028f0259, type: 3}
-  player: {fileID: 0}
-  Wolfleader: {fileID: 0}
+  Wolfleader: {fileID: 951513454196284453, guid: 835b6f8a6fd73c246942a32b8228c2d9, type: 3}
   agent: {fileID: 0}
   timeManager: {fileID: 0}
   whatIsGround:

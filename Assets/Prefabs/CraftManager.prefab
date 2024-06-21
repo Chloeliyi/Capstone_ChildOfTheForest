@@ -47,7 +47,9 @@ MonoBehaviour:
   CraftableItems:
   - {fileID: 11400000, guid: b411fdb8223fefc4ab2acadbf4a8e3a6, type: 2}
   - {fileID: 11400000, guid: 42404f5830ab0d6488ebe7a2765c2b5b, type: 2}
+  - {fileID: 11400000, guid: c7991d5c6302af144b19ab64ad5cb41b, type: 2}
   craftItems: []
+  craftItemsQuantity: 
   CraftedContent: {fileID: 0}
   counter: 0
   CraftedIcon: {fileID: 0}
