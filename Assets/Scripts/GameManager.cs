@@ -73,8 +73,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject Tree;
 
-    //public TreeController treeController;
-
     public GameObject WallObject;
 
     public GameObject Torch;
@@ -82,8 +80,6 @@ public class GameManager : MonoBehaviour
     public bool activeAxe;
 
     public bool ActiveSpear;
-
-    int AmountOfTrees = 1;
 
     public Enemy enemy;
 
@@ -115,8 +111,7 @@ public class GameManager : MonoBehaviour
         RepairCounter.text = $"{Repaircount}";
 
         BigIvenMenu.SetActive(false);
-
-        //SpawnTrees();
+        AxeGameObject.SetActive(false);
     }
 
     public void Awake()
@@ -134,14 +129,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void SpawnTrees()
-    {
-         for (var i = 0; i <= AmountOfTrees; i++)
-        {
-            Vector3 SpawnPosition = new Vector3(Random.Range(-13, 13), 0, Random.Range(-13, 13));
-            Instantiate(Tree, SpawnPosition, Quaternion.identity);
-        }
-    }
     void Update()
     {
         if(Input.GetKey(KeyCode.Escape))
@@ -261,7 +248,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             Debug.Log("K is pressed");
             if (projectile != null && projectile.activeSelf)
@@ -286,7 +273,7 @@ public class GameManager : MonoBehaviour
             {
                 SpawnWall();
             }
-        }*/
+        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -298,7 +285,7 @@ public class GameManager : MonoBehaviour
             {
                 PlaceWorkbench();
             }
-        }
+        }*/
 
         /*if (Input.GetKeyDown(KeyCode.Y))
         {
@@ -468,7 +455,8 @@ public class GameManager : MonoBehaviour
 
     public void SpawnAxe(int durability)
     {
-        AxeGameObject = Instantiate(Axe, parent);
+        //AxeGameObject = Instantiate(Axe, parent);
+        AxeGameObject.SetActive(true);
         activeAxe = true;
 
         CurrentDurability = durability;

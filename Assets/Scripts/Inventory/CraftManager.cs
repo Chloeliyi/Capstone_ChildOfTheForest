@@ -31,6 +31,21 @@ public class CraftManager : MonoBehaviour
     {
         craftItems.Add(craftItem);
         CreateItem();
+        /*if (craftItems.Count == 0)
+        {
+            craftItems.Add(craftItem);
+            CreateItem();
+        }
+        else
+        {
+            for (int i = 0; i < craftItems.Count; i++)
+            {
+                if (craftItem[i] == craftItem)
+                {
+
+                }
+            }
+        }*/
     }
 
     public void AddQuantity(int itemQuantity)
@@ -42,23 +57,8 @@ public class CraftManager : MonoBehaviour
     {
         for (int i = 0; i < craftItems.Count; i++)
         {
-             /*if(craftItems[i] == "Branch")
-             {
-                Debug.Log("Branch can create torch");
-                GotItem = true;
-                foreach (var item in CraftableItems)
-                {
-                    if (item.itemName == "Torch")
-                    {
-                        counter = 0;
-                        CraftedName.text = CraftableItems[counter].itemName;
-                        CraftedIcon.sprite = CraftableItems[counter].icon;
-                    }
-                }
-             }*/
-
-             if (craftItems[i] == "Branch")
-             {
+            if (craftItems[i] == "Branch")
+            {
                 for (int j = 0; j < craftItems.Count; j++)
                 {
                     if (craftItems[j] == "CrystalDrop")
@@ -76,9 +76,98 @@ public class CraftManager : MonoBehaviour
                             }
                         }
                     }
+                    else if (craftItems[j] == "Branch")
+                    {
+                        for (int a = 0; a < craftItems.Count; a++)
+                        {
+                            if (craftItems[a] == "Branch")
+                            {
+                                Debug.Log("Can create torch");
+                                GotItem = true;
+
+                                foreach (var item in CraftableItems)
+                                {
+                                    if (item.itemName == "Torch")
+                                    {
+                                        counter = 0;
+                                        CraftedName.text = CraftableItems[counter].itemName;
+                                        CraftedIcon.sprite = CraftableItems[counter].icon;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /*for (int i = 0; i < craftItems.Count; i++)
+        {
+             if (craftItems[i] == "Branch")
+             {
+                if (craftItemsQuantity[i] == 1)
+                {
+                    for (int j = 0; j < craftItems.Count; j++)
+                    {
+                        if (craftItems[j] == "CrystalDrop")
+                        {
+                            if (craftItemsQuantity[i] == 1)
+                            {
+                                Debug.Log("Can create spear");
+                                GotItem = true;
+
+                                foreach (var item in CraftableItems)
+                                {
+                                    if (item.itemName == "Spear")
+                                    {
+                                        counter = 1;
+                                        CraftedName.text = CraftableItems[counter].itemName;
+                                        CraftedIcon.sprite = CraftableItems[counter].icon;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (craftItemsQuantity[i] == 2)
+                {
+                    for (int a = 0; a < craftItems.Count; a++)
+                    {
+                        if (craftItems[a] == "CrystalDrop")
+                        {
+                            if (craftItemsQuantity[a] == 3)
+                            {
+                                Debug.Log("Can create axe");
+                                GotItem = true;
+
+                                foreach (var item in CraftableItems)
+                                {
+                                    if (item.itemName == "Axe")
+                                    {
+                                        counter = 2;
+                                        CraftedName.text = CraftableItems[counter].itemName;
+                                        CraftedIcon.sprite = CraftableItems[counter].icon;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (craftItemsQuantity[i] == 3)
+                {    
+                    Debug.Log("Branch can create torch");
+                    GotItem = true;
+                    foreach (var item in CraftableItems)
+                    {
+                        if (item.itemName == "Torch")
+                        {
+                            counter = 0;
+                            CraftedName.text = CraftableItems[counter].itemName;
+                            CraftedIcon.sprite = CraftableItems[counter].icon;
+                        }
+                    }
                 }
              }
-        }
+        }*/
     }
 
     public void RemoveFromInventory()

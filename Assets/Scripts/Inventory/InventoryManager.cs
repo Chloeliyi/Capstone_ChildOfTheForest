@@ -23,6 +23,7 @@ public class InventoryManager : MonoBehaviour
     public Toggle EnableRemove;
 
     public InventoryItemController[] InventoryItems;
+    public List<int> ItemsQuantity = new List<int>();
 
     //public InventoryItemController[] SmallInventoryItems;
 
@@ -32,9 +33,11 @@ public class InventoryManager : MonoBehaviour
 
     public TMP_Text DescText;
 
-    public int itemQuantity;
+    public int quantity;
 
-    [SerializeField] private int maxitemQuantity = 5;
+    [SerializeField] private int itemQuantity = 1;
+
+    [SerializeField] private int maxitemQuantity = 3;
 
     public void Start()
     {
@@ -47,36 +50,44 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
 
+    public int counter;
+
     public void Add(Item item)
     {
-        Debug.Log("Add Item");
-
+        //Items.Add(item);
         if (Items.Count == 0)
         {
             Items.Add(item);
+            ItemsQuantity.Add(itemQuantity);
         }
         else
         {
-            for (int i = 0; i < Items.Count; i++)
+            for (int i = 0; i < Items.Count;)
             {
                 if (Items[i] == item)
                 {
                     Debug.Log("Already have item");
-                    //itemQuantity = item.quantity;
-                    if (item.quantity <= maxitemQuantity)
+                    Debug.Log("Index: " + i);
+
+                    if (ItemsQuantity[i] < maxitemQuantity)
                     {
-                        item.quantity ++;
-                        //itemQuantity = item.quantity;
+                        Debug.Log("Below max items");
+                        ItemsQuantity[i] ++;
                     }  
                     else
                     {
+                        Debug.Log("New item");
                         Items.Add(item);
+                        ItemsQuantity.Add(itemQuantity);
+                        //i++;
                     }
+                    i++;
                 }
                 else
                 {
                     Debug.Log("Don't have item");
                     Items.Add(item);
+                    ItemsQuantity.Add(itemQuantity);
                 }
             }
         }
@@ -112,7 +123,7 @@ public class InventoryManager : MonoBehaviour
 
             itemName.text = item.itemName;
             itemIcon.sprite = item.icon;
-            itemCounter.text = item.quantity.ToString();
+            //itemCounter.text = item.quantity.ToString();
 
             if (EnableRemove.isOn)
             {
@@ -182,26 +193,30 @@ public class InventoryManager : MonoBehaviour
         }       
     }
 
+
     public void SetInventoryItems()
     {
         InventoryItems = ItemContent.GetComponentsInChildren<InventoryItemController>();
 
         for (int i = 0; i < Items.Count; i++)
         {
+            /*if (Items[i] == )
+            {
+                counter ++;
+            }*/
             InventoryItems[i].AddItem(Items[i]);
             Debug.Log(Items[i]);
+            Debug.Log(Items);
         }
     }
 
-    /*public int counter;
-
-    public void SetSmallInventoryItems()
+    /*public void SetSmallInventoryItems()
     {
         SmallInventoryItems = SmallItemContent.GetComponentsInChildren<InventoryItemController>();
 
-        for (counter = 0; counter < Items.Count; counter++)
+        for (int i = 0; i < Items.Count; i++)
         {
-            SmallInventoryItems[counter].AddItem(Items[counter]);
+            SmallInventoryItems[i].AddItem(Items[i]);
         }
     }*/
 }
