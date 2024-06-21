@@ -18,5 +18,5 @@ MonoBehaviour:
   durability: 1
   quantity: 1
   icon: {fileID: 21300000, guid: 0473bb44c4489184aa1a3a6f12e3951d, type: 3}
-  itemType: 5
+  itemType: 7
   itemDesc: This is a tree branch

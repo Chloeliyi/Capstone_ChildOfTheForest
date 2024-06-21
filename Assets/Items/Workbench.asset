@@ -18,5 +18,5 @@ MonoBehaviour:
   durability: 0
   quantity: 0
   icon: {fileID: 0}
-  itemType: 4
+  itemType: 6
   itemDesc: This is a workbench
