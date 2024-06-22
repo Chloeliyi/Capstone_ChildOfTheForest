@@ -6,17 +6,19 @@ using UnityEngine.UI;
 public class ProjectileAddon : MonoBehaviour
 {
 
-    //public static ProjectileAddon Instance;
-
     public Item SpearItem;
     
-    private Rigidbody rb;
+    [SerializeField] private Rigidbody rb;
 
     private bool targetHit;
 
     public BoxCollider box;
 
     [SerializeField] private int SpearDurability;
+
+    /*public Enemy wendigoController;
+    public BearController bearController;
+    public WolfController wolfController;*/
 
     private void Start()
     {
@@ -32,9 +34,14 @@ public class ProjectileAddon : MonoBehaviour
             Debug.Log("E is pressed");
             if (PickUpSpear == true)
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
                 GameManager.Instance.SpawnSpear(SpearDurability);
-                //box.isTrigger = false;
+                box.isTrigger = false;
+            }
+
+            if (GameManager.Instance.ActiveSpear)
+            {
+                GameManager.Instance.Throw();
             }
         }
 
@@ -48,7 +55,7 @@ public class ProjectileAddon : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Wendigo")
         {
             rb.isKinematic = true;
             DeparentProjectile();
@@ -56,6 +63,34 @@ public class ProjectileAddon : MonoBehaviour
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             SpearDamage();
             enemy.TakeSpearDamage(SpearItem.value);
+            box.isTrigger = true;
+
+            //Destroy(gameObject);
+
+        }
+
+        else if (collision.gameObject.tag == "Bear")
+        {
+            rb.isKinematic = true;
+            DeparentProjectile();
+            Debug.Log(collision.gameObject.tag + " was hit");
+            BearController bearController = collision.gameObject.GetComponent<BearController>();
+            SpearDamage();
+            bearController.TakeSpearDamage(SpearItem.value);
+            box.isTrigger = true;
+
+            //Destroy(gameObject);
+
+        }
+
+        else if (collision.gameObject.tag == "Wolf")
+        {
+            rb.isKinematic = true;
+            DeparentProjectile();
+            Debug.Log(collision.gameObject.tag + " was hit");
+            WolfController wolfController = collision.gameObject.GetComponent<WolfController>();
+            SpearDamage();
+            wolfController.TakeSpearDamage(SpearItem.value);
             box.isTrigger = true;
 
             //Destroy(gameObject);
@@ -132,8 +167,11 @@ public class ProjectileAddon : MonoBehaviour
 
     public void DestroySpear()
     {
-        Destroy(gameObject);
-        GameManager.Instance.projectile = null;
+        //Destroy(gameObject);
+        //GameManager.Instance.projectile = null;
+        GameManager.Instance.projectile.SetActive(false);
         GameManager.Instance.ActiveSpear = false;
+        GameManager.Instance.WeaponIcon = null;
+        GameManager.Instance.Weapondurability.value = GameManager.Instance.MaxSpearDurability;
     }
 }

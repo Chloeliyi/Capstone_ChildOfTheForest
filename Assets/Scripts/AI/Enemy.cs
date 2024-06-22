@@ -7,9 +7,11 @@ public class Enemy : MonoBehaviour
 {
     public static Enemy Instance;
     [Header("Stats")]
-    public int health;
+    [SerializeField] private int health = 100;
 
-    public int Enemydamage;
+    [SerializeField] private int Enemydamage = 10;
+
+    [SerializeField] private GameObject Wendigo;
 
     public Transform playerTransform;
     [SerializeField]private NavMeshAgent agent;
@@ -48,6 +50,7 @@ public class Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        Wendigo = transform.gameObject;
     }
 
     void Update()
@@ -136,9 +139,9 @@ public class Enemy : MonoBehaviour
     }
 
     private void ResetAttack()
-        {
+    {
             alreadyAttacked = false;
-        }
+    }
 
     public void TakeSpearDamage(int Speardamage)
     {
@@ -157,21 +160,27 @@ public class Enemy : MonoBehaviour
         Debug.Log("Enemy health : " + health);
 
         if (health <= 0)
+        {
             DestroyEnemy();
+        }
     }
 
     public void DestroyEnemy()
     {
-        Destroy(gameObject);
+        Destroy(Wendigo);
+        //Wendigo.SetActive(false);
         Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
     }
 
     public void GiveDamage()
     {
-        float count = 0;
-        count += Enemydamage;
-        Debug.Log("Taking Damage" + count);
         GameManager.Instance.HealthDamage(Enemydamage);
+
+        if (GameManager.Instance.CurrentHealth <= 0)
+        {
+            Debug.Log("Animal stop");
+            animator.SetBool("Idle", true);
+        }
 
         //StartCoroutine(AttackTime());
     }

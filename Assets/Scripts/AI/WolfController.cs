@@ -7,9 +7,12 @@ public class WolfController : MonoBehaviour
 {
     public static WolfController Instance;
     [Header("Stats")]
-    public int health;
 
-    public int Wolfdamage;
+    [SerializeField] private int health = 100;
+
+    [SerializeField] private int Wolfdamage = 10;
+
+    [SerializeField] private GameObject Wolf;
 
     public Transform playerTransform;
     public Transform Wolfleader;
@@ -57,6 +60,7 @@ public class WolfController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        Wolf = transform.gameObject;
     }
 
     void Update()
@@ -262,22 +266,29 @@ public class WolfController : MonoBehaviour
 
     public void DestroyEnemy()
     {
-        Destroy(gameObject);
-        Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
+        //Destroy(gameObject);
+        animator.SetBool("Death", true);
+        StartCoroutine(DeathTime());
+        //Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
     }
 
     public void GiveDamage()
     {
-        float count = 0;
-        count += Wolfdamage;
-        Debug.Log("Taking Damage" + count);
         GameManager.Instance.HealthDamage(Wolfdamage);
+
+        if (GameManager.Instance.CurrentHealth <= 0)
+        {
+            Debug.Log("Animal stop");
+            animator.SetBool("Idle", true);
+        }
 
         //StartCoroutine(AttackTime());
     }
 
-    IEnumerator AttackTime()
+    IEnumerator DeathTime()
     {
-        yield return new WaitForSeconds(timeBetweenAttacks);
+        yield return new WaitForSeconds(3);
+        Destroy(Wolf);
+        Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
     }
 }

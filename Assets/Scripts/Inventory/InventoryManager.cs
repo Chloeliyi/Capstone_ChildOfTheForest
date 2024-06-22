@@ -62,26 +62,120 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < Items.Count;)
+            if (Items[counter] == item)
             {
-                if (Items[i] == item)
+                if (ItemsQuantity[counter] < maxitemQuantity)
                 {
-                    Debug.Log("Already have item");
-                    Debug.Log("Index: " + i);
-
-                    if (ItemsQuantity[i] < maxitemQuantity)
+                    Debug.Log("Below max items");
+                    ItemsQuantity[counter] ++;
+                }  
+                else
+                {
+                    Debug.Log("New Item : " + item);
+                    Items.Add(item);
+                    ItemsQuantity.Add(itemQuantity);
+                    counter ++;
+                }
+            }
+            else if (Items[counter] != item)
+            {
+                Debug.Log("Counter is not item");
+                for (int i = 0; i < Items.Count; i++)
+                {
+                    if (Items[i] == item)
+                    {
+                        Debug.Log("Index : " + i);
+                        Debug.Log(Items[i]);
+                        if (ItemsQuantity[i] <= maxitemQuantity)
+                        {
+                            counter = i;
+                            if (ItemsQuantity[counter] < maxitemQuantity)
+                            {
+                                Debug.Log("Below max items");
+                                ItemsQuantity[counter] ++;
+                            } 
+                            else
+                            {
+                                Debug.Log("New Item : " + item);
+                                Items.Add(item);
+                                ItemsQuantity.Add(0);
+                                //counter ++;
+                            }
+                        }
+                        //i++;
+                    }
+                    else if (Items[i] != item)
+                    {
+                        Debug.Log("New Item : " + item);
+                        Items.Add(item);
+                        ItemsQuantity.Add(0);
+                        //counter ++;
+                    }
+                }
+                
+                /*counter ++;
+                if (Items[counter] == item)
+                {
+                    if (ItemsQuantity[counter] < maxitemQuantity)
                     {
                         Debug.Log("Below max items");
-                        ItemsQuantity[i] ++;
+                        ItemsQuantity[counter] ++;
+                    }
+                    else
+                    {
+                        Debug.Log("New item");
+                        Items.Add(item);
+                        ItemsQuantity.Add(itemQuantity);
+                        counter ++;
+                    }
+                }
+                if (Items[counter] != item)
+                {
+                    counter -= 2;
+                    if (Items[counter] == item)
+                    {
+                        if (ItemsQuantity[counter] < maxitemQuantity)
+                        {
+                            Debug.Log("Below max items");
+                            ItemsQuantity[counter] ++;
+                        }
+                        else
+                        {
+                            Debug.Log("New item");
+                            Items.Add(item);
+                            ItemsQuantity.Add(itemQuantity);
+                            counter ++;
+                        }
+                    }
+                    if (Items[counter] != item)
+                    {
+                        Debug.Log("Don't have item");
+                        Items.Add(item);
+                        ItemsQuantity.Add(itemQuantity);
+                        counter ++;
+                    }
+                }*/
+            }
+            /*for (counter = 0; counter < Items.Count;)
+            {
+                if (Items[counter] == item)
+                {
+                    Debug.Log("Already have item");
+                    Debug.Log("Index: " + counter);
+
+                    if (ItemsQuantity[counter] < maxitemQuantity)
+                    {
+                        Debug.Log("Below max items");
+                        ItemsQuantity[counter] ++;
                     }  
                     else
                     {
                         Debug.Log("New item");
                         Items.Add(item);
                         ItemsQuantity.Add(itemQuantity);
-                        //i++;
+                        //counter++;
                     }
-                    i++;
+                    counter++;
                 }
                 else
                 {
@@ -89,7 +183,7 @@ public class InventoryManager : MonoBehaviour
                     Items.Add(item);
                     ItemsQuantity.Add(itemQuantity);
                 }
-            }
+            }*/
         }
     }
 
@@ -115,20 +209,38 @@ public class InventoryManager : MonoBehaviour
     {
         foreach (var item in Items)
         {
-            obj = Instantiate(InventoryItem, ItemContent);
+            foreach (var quantity in ItemsQuantity)
+            {
+                obj = Instantiate(InventoryItem, ItemContent);
+                var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
+                var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
+                var itemCounter = obj.transform.Find("ItemCounter").GetComponent<TMP_Text>();
+                var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
+
+                itemName.text = item.itemName;
+                itemIcon.sprite = item.icon;
+                itemCounter.text = quantity.ToString();
+
+                if (EnableRemove.isOn)
+                {
+                    removeButton.gameObject.SetActive(true);
+                }
+            }
+
+            /*obj = Instantiate(InventoryItem, ItemContent);
             var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
             var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
             var itemCounter = obj.transform.Find("ItemCounter").GetComponent<TMP_Text>();
             var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
 
+            Debug.Log("Item" + item);
             itemName.text = item.itemName;
             itemIcon.sprite = item.icon;
-            //itemCounter.text = item.quantity.ToString();
 
             if (EnableRemove.isOn)
             {
                 removeButton.gameObject.SetActive(true);
-            }
+            }*/
         }
 
         SetInventoryItems();

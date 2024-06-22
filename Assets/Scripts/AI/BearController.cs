@@ -7,9 +7,12 @@ public class BearController : MonoBehaviour
 {
     public static BearController Instance;
     [Header("Stats")]
-    public int health;
 
-    public int Beardamage;
+    [SerializeField] private int health = 100;
+
+    [SerializeField] private int Beardamage = 10;
+
+    [SerializeField] private GameObject Bear;
 
     public Transform playerTransform;
     [SerializeField]private NavMeshAgent agent;
@@ -46,6 +49,7 @@ public class BearController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        Bear = transform.gameObject;
     }
 
     void Update()
@@ -196,15 +200,14 @@ public class BearController : MonoBehaviour
 
     public void DestroyEnemy()
     {
-        Destroy(gameObject);
-        Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
+        //Destroy(gameObject);
+        animator.SetBool("Death", true);
+        StartCoroutine(DeathTime());
+        //Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
     }
 
     public void GiveDamage()
     {
-        //float count = 0;
-        //count += Beardamage;
-        //Debug.Log("Taking Damage" + count);
         GameManager.Instance.HealthDamage(Beardamage);
 
         if (GameManager.Instance.CurrentHealth <= 0)
@@ -216,8 +219,10 @@ public class BearController : MonoBehaviour
         //StartCoroutine(AttackTime());
     }
 
-    IEnumerator AttackTime()
+    IEnumerator DeathTime()
     {
-        yield return new WaitForSeconds(timeBetweenAttacks);
+        yield return new WaitForSeconds(3);
+        Destroy(Bear);
+        Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
     }
 }

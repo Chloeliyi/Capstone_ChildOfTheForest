@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     public Transform attackPoint; 
 
-    public GameObject Tree;
+    //public GameObject Tree;
 
     public GameObject WallObject;
 
@@ -112,6 +112,9 @@ public class GameManager : MonoBehaviour
 
         BigIvenMenu.SetActive(false);
         AxeGameObject.SetActive(false);
+        projectile.SetActive(false);
+
+        projectileRb = projectile.GetComponent<Rigidbody>();
     }
 
     public void Awake()
@@ -194,12 +197,23 @@ public class GameManager : MonoBehaviour
                 }
                 else if (!AxeGameObject.activeSelf)
                 {
+                    Debug.Log("Active axe");
                     AxeGameObject.SetActive(true);
-                    projectile.SetActive(false);
-                    torchObject.SetActive(false);
-                    Activebench.SetActive(false);
                     activeAxe = true;
                     OpenWeaponDurability();
+
+                    if (projectile != null)
+                    {
+                        projectile.SetActive(false);
+                    }
+                    else if (torchObject != null)
+                    {
+                        torchObject.SetActive(false);
+                    }
+                    else if (Activebench != null)
+                    {
+                        Activebench.SetActive(false);
+                    }
                 }
             }
         }
@@ -222,11 +236,21 @@ public class GameManager : MonoBehaviour
                 else if (!projectile.activeSelf)
                 {
                     projectile.SetActive(true);
-                    AxeGameObject.SetActive(false);
-                    torchObject.SetActive(false);
-                    Activebench.SetActive(false);
                     ActiveSpear = true;
                     OpenWeaponDurability();
+
+                    if (AxeGameObject != null)
+                    {
+                        AxeGameObject.SetActive(false);
+                    }
+                    else if (torchObject != null)
+                    {
+                        torchObject.SetActive(false);
+                    }
+                    else if (Activebench != null)
+                    {
+                        Activebench.SetActive(false);
+                    }
                 }
             }
         }
@@ -241,16 +265,25 @@ public class GameManager : MonoBehaviour
                 else if (!torchObject.activeSelf)
                 {
                     torchObject.SetActive(true);
-                    projectile.SetActive(false);
-                    AxeGameObject.SetActive(false);
-                    Activebench.SetActive(false);
+                    if (projectile != null)
+                    {
+                        projectile.SetActive(false);
+                    }
+                    else if (AxeGameObject != null)
+                    {
+                        AxeGameObject.SetActive(false);
+                    }
+                    else if (Activebench != null)
+                    {
+                        Activebench.SetActive(false);
+                    }
                 }
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
+        /*if (Input.GetKeyDown(KeyCode.T))
         {
-            Debug.Log("K is pressed");
+            Debug.Log("T is pressed");
             if (projectile != null && projectile.activeSelf)
             {
                 Throw();
@@ -265,7 +298,7 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(Stab());
                 Debug.Log("Stab with spear");
             }
-        }
+        }*/
 
         /*if (Input.GetKeyDown(KeyCode.L))
         {
@@ -289,17 +322,6 @@ public class GameManager : MonoBehaviour
 
         /*if (Input.GetKeyDown(KeyCode.Y))
         {
-            if (enemy.activeWendigo == false)
-            {
-                enemy.activeWendigo = true;
-                Debug.Log("Activate Wendigo");
-            }
-            else if (enemy.activeWendigo == true)
-            {
-                enemy.activeWendigo = false;
-                Debug.Log("Deactivate Wendigo");
-            }
-
             if (Activebench == null)
             {
                 SpawnWorkbench();
@@ -377,23 +399,23 @@ public class GameManager : MonoBehaviour
     public void SpawnWall()
     {
         Wallpart = Instantiate(WallObject, parent);
-        if (Activebench.activeSelf)
+        if (Activebench != null)
         {
             Activebench.SetActive(false);
         }
-        else if (projectile.activeSelf)
+        else if (projectile != null)
         {
             projectile.SetActive(false);
             ActiveSpear = false;
             HideWeaponDurability();
         }
-        else if (AxeGameObject.activeSelf)
+        else if (AxeGameObject != null)
         {
             AxeGameObject.SetActive(false);
             activeAxe = false;
             HideWeaponDurability();
         }
-        else if (torchObject.activeSelf)
+        else if (torchObject != null)
         {
             torchObject.SetActive(false);
         }
@@ -426,21 +448,21 @@ public class GameManager : MonoBehaviour
     {
         torchObject = Instantiate(Torch, parent);
         torchObject.GetComponentInChildren<ParticleSystem>().Stop();
-        if (Activebench.activeSelf)
+        if (Activebench != null)
         {
             Activebench.SetActive(false);
         }
-        else if (Wallpart.activeSelf)
+        else if (Wallpart != null)
         {
             Wallpart.SetActive(false);
         }
-        else if (projectile.activeSelf)
+        else if (projectile != null)
         {
             projectile.SetActive(false);
             ActiveSpear = false;
             HideWeaponDurability();
         }
-        else if (AxeGameObject.activeSelf)
+        else if (AxeGameObject != null)
         {
             AxeGameObject.SetActive(false);
             activeAxe = false;
@@ -456,6 +478,7 @@ public class GameManager : MonoBehaviour
     public void SpawnAxe(int durability)
     {
         //AxeGameObject = Instantiate(Axe, parent);
+        AxeGameObject = Axe;
         AxeGameObject.SetActive(true);
         activeAxe = true;
 
@@ -464,24 +487,24 @@ public class GameManager : MonoBehaviour
         Weapondurability.value = CurrentDurability;
         WeaponIcon.sprite = WeaponsSprite[0];
 
-        /*if (Activebench.activeSelf)
+        if (Activebench != null)
         {
             Activebench.SetActive(false);
         }
-        else if (Wallpart.activeSelf)
+        else if (Wallpart != null)
         {
             Wallpart.SetActive(false);
         }
-        else if (projectile.activeSelf)
+        else if (projectile != null)
         {
             projectile.SetActive(false);
             ActiveSpear = false;
             HideWeaponDurability();
         }
-        else if (torchObject.activeSelf)
+        else if (torchObject != null)
         {
             torchObject.SetActive(false);
-        }*/
+        }
     }
 
     public void AxeDamage(int damage)
@@ -532,13 +555,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject projectile;
 
-    Rigidbody projectileRb;
+    public Rigidbody projectileRb;
 
     public void SpawnSpear(int durability)
     {
         readyToThrow = false;
         projectile = Instantiate(Spear, parent);
-        projectileRb = projectile.GetComponent<Rigidbody>();
         projectileRb.constraints = RigidbodyConstraints.FreezeAll;
         projectileRb.velocity = Vector3.zero;
 
@@ -549,21 +571,21 @@ public class GameManager : MonoBehaviour
         Weapondurability.value = CurrentSpearDurability;
         WeaponIcon.sprite = WeaponsSprite[1];
 
-        if (Activebench.activeSelf)
+        if (Activebench != null)
         {
             Activebench.SetActive(false);
         }
-        else if (Wallpart.activeSelf)
+        else if (Wallpart != null)
         {
             Wallpart.SetActive(false);
         }
-        else if (AxeGameObject.activeSelf)
+        else if (AxeGameObject != null)
         {
             AxeGameObject.SetActive(false);
             activeAxe = false;
             HideWeaponDurability();
         }
-        else if (torchObject.activeSelf)
+        else if (torchObject != null)
         {
             torchObject.SetActive(false);
         }
@@ -575,9 +597,9 @@ public class GameManager : MonoBehaviour
         Weapondurability.value = CurrentSpearDurability;
     }
 
-    private void Throw()
+    public void Throw()
     {
-        projectileRb.useGravity = true;
+        //projectileRb.useGravity = true;
         projectileRb.constraints = RigidbodyConstraints.None;
 
         // calculate direction

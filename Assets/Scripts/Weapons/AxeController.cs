@@ -8,15 +8,32 @@ public class AxeController : MonoBehaviour
 
     public bool PickUpAxe;
 
-    public BoxCollider box;
+    //public BoxCollider box;
+
+    public bool NearWendigo;
+    public bool NearBear;
+    public bool NearWolf;
+
+    public Enemy wendigoController;
+    public BearController bearController;
+    public WolfController wolfController;
 
     public int AxeDurability;
+
+    public Animator AxeAttack;
+
+    [SerializeField] private string Attack = "Axe Rig_Attack";
+
+    [SerializeField] private int waitTimer = 1;
+    [SerializeField] private bool PlayOnce = false;
 
     void Start()
     {
         //box.isTrigger = true;
         AxeDurability = AxeItem.durability;
         PickUpAxe = false;
+        axeRb = gameObject.GetComponent<Rigidbody>();
+        axeRb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     void Update()
@@ -27,26 +44,90 @@ public class AxeController : MonoBehaviour
             {
                 //box.isTrigger = false;
                 Destroy(gameObject);
+                //gameObject.SetActive(false);
                 GameManager.Instance.SpawnAxe(AxeDurability);
+            }
+
+            if (GameManager.Instance.activeAxe)
+            {
+                if (!PlayOnce)
+                {
+                    Debug.Log("Swing");
+                    AxeAttack.Play(Attack, 0, 0.0f);
+                    PlayOnce = true;
+                    StartCoroutine(PauseAxeSwing());
+                }
+            }
+
+            if (NearWendigo)
+            {
+                Debug.Log("Attack wendigo");
+                wendigoController.TakeAxeDamage(AxeItem.value);
+                AxeDamage();
+            }
+
+            if (NearBear)
+            {
+                Debug.Log("Attack bear");
+                bearController.TakeAxeDamage(AxeItem.value);
+                AxeDamage();
+            }
+
+            if (NearWolf)
+            {
+                Debug.Log("Attack wolf");
+                wolfController.TakeAxeDamage(AxeItem.value);
+                AxeDamage();
             }
         }
     }
+
+    private IEnumerator PauseAxeSwing()
+    {
+        yield return new WaitForSeconds(waitTimer);
+        AxeAttack.SetTrigger("Attack");
+        PlayOnce = false;
+    }
+
+    Rigidbody axeRb;
     
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Wendigo")
         {
-            Debug.Log("Near enemy");
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (GameManager.Instance.activeAxe)
-                {
-                    Debug.Log(collision.gameObject.tag + " was hit");
-                    Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-                    AxeDamage();
-                    enemy.TakeAxeDamage(AxeItem.value);
-                }
-            }
+            Debug.Log("Near wendigo");
+            NearWendigo = true; 
+        }
+
+        else if (collision.gameObject.tag == "Bear")
+        {
+            Debug.Log("Near bear");
+            NearBear = true; 
+        }
+
+        else if (collision.gameObject.tag == "Wolf")
+        {
+            Debug.Log("Near wolf");
+            NearWolf = true; 
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Wendigo")
+        {
+            Debug.Log("Leaving wendigo");
+            NearWendigo = false; 
+        }
+        else if (collision.gameObject.tag == "Bear")
+        {
+            Debug.Log("Leaving bear");
+            NearBear = false; 
+        }
+        else if (collision.gameObject.tag == "Wolf")
+        {
+            Debug.Log("Leaving wolf");
+            NearWolf = false; 
         }
     }
 
@@ -78,8 +159,9 @@ public class AxeController : MonoBehaviour
 
     public void DestroyAxe()
     {
-        Destroy(gameObject);
-        GameManager.Instance.AxeGameObject = null;
+        //Destroy(gameObject);
+        //GameManager.Instance.AxeGameObject = null;
+        GameManager.Instance.AxeGameObject.SetActive(false);
         GameManager.Instance.activeAxe = false;
         GameManager.Instance.WeaponIcon = null;
         GameManager.Instance.Weapondurability.value = GameManager.Instance.MaxAxeDurability;
