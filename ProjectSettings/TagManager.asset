@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - Workbench
   - Axe
   - Tree
@@ -17,6 +16,9 @@ TagManager:
   - Torch
   - Door
   - Hint
+  - Wendigo
+  - Bear
+  - Wolf
   layers:
   - Default
   - TransparentFX
