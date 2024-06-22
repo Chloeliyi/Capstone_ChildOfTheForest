@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 5
   itemName: Axe
-  value: 2
-  durability: 30
+  value: 10
+  durability: 200
   quantity: 0
   icon: {fileID: 21300000, guid: bbef5a254948f16478757f66f7d42f7b, type: 3}
   itemType: 2
