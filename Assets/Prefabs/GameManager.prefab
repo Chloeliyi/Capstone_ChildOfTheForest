@@ -68,14 +68,12 @@ MonoBehaviour:
   BigIvenMenu: {fileID: 0}
   ItemDescMenu: {fileID: 0}
   CraftMenu: {fileID: 0}
-  Axe: {fileID: 1933823782367938613, guid: e0739bbc04fdc1f4c92b4e7f3ec149e4, type: 3}
+  Axe: {fileID: 0}
   parent: {fileID: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   AxeGameObject: {fileID: 0}
   Spear: {fileID: 605491109353154781, guid: f9e92e0d009fd3f42b4874a07883be02, type: 3}
   attackPoint: {fileID: 0}
-  Tree: {fileID: 5346468408104027329, guid: d6ad62813bbeee245b58cf21f98692ae, type: 3}
-  treeController: {fileID: 253002678055134559, guid: aa00cc194f045244b9121492d89b14eb, type: 3}
   WallObject: {fileID: 5028891932652319584, guid: ffe719d23a46ac548a83145575e17973, type: 3}
   Torch: {fileID: 5877592061824131560, guid: 8aec0e040557a2945aa874fd22c8a77a, type: 3}
   activeAxe: 0
@@ -90,4 +88,5 @@ MonoBehaviour:
   throwForce: 20
   throwUpwardForce: 0
   projectile: {fileID: 0}
+  projectileRb: {fileID: 0}
   inventoryItemController: {fileID: 7524904248831400331, guid: 682c53f60afac4f49bc4a1c117072e94, type: 3}

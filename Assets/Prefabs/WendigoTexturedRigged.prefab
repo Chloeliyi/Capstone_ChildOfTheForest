@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ade05db2dc0e59c4683e349780389dbd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.1447067
+      value: 0.86
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ade05db2dc0e59c4683e349780389dbd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ade05db2dc0e59c4683e349780389dbd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.7243915
+      value: -11.91
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ade05db2dc0e59c4683e349780389dbd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -194,7 +194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ade05db2dc0e59c4683e349780389dbd, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Wendigo
       objectReference: {fileID: 0}
     - target: {fileID: 1082271958561512970, guid: ade05db2dc0e59c4683e349780389dbd, type: 3}
       propertyPath: m_Layer
@@ -433,8 +433,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  Enemydamage: 5
-  playerTransform: {fileID: 8501207690448005855, guid: 9b0ecc97434d71c4d88f210fc73c25c0, type: 3}
+  Enemydamage: 10
+  Wendigo: {fileID: 1646456257212875191}
+  playerTransform: {fileID: 0}
   agent: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
