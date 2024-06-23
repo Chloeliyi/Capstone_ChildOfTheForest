@@ -30,7 +30,7 @@ public class ItemPickup : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Player is within range of item");
+            Debug.Log("Player is within range of " + gameObject.name);
             NearItem = true;
         }
     }

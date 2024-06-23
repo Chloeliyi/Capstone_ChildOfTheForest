@@ -95,6 +95,27 @@ public class CraftManager : MonoBehaviour
                                     }
                                 }
                             }
+                            else if (craftItems[a] == "CrystalDrop")
+                            {
+                                for (int b = 0; b < craftItems.Count; b++)
+                                {
+                                    if (craftItems[b] == "CrystalDrop")
+                                    {
+                                        Debug.Log("Can create axe");
+                                        GotItem = true;
+
+                                        foreach (var item in CraftableItems)
+                                        {
+                                            if (item.itemName == "Axe")
+                                            {
+                                                counter = 2;
+                                                CraftedName.text = CraftableItems[counter].itemName;
+                                                CraftedIcon.sprite = CraftableItems[counter].icon;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

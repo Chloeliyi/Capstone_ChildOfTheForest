@@ -5,73 +5,43 @@ using UnityEngine;
 public class CrystalController : MonoBehaviour
 {
 
-    public int crystalValue;
+    [SerializeField] private int crystalValue;
 
-    public AxeController axeController;
+    //public AxeController axeController;
 
     public GameObject crystalDrop;
 
     [SerializeField] private GameObject crystalDropObject;
+    [SerializeField] private GameObject crystal;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        crystalValue = 50;
+        crystal = transform.gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void TakeAxeDamage(int axedamage)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("Player is within range of crystal");
-        }
-    }
+        crystalValue -= axedamage;
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
+        Debug.Log("Crystal Value : " + crystalValue);
+        if (crystalValue <= 0)
         {
-            if (GameManager.Instance.activeAxe == true)
-            {
-                Debug.Log("Have axe");
-                if(Input.GetKeyDown(KeyCode.E))
-                {
-                    Debug.Log("Crystal is being chopped");
-                    crystalValue -= axeController.AxeItem.value;
-                    axeController.AxeDamage();
-                    Debug.Log("Crystal : " + crystalValue);
-                    Debug.Log("Axe Durability : " + axeController.AxeItem.durability);
-                    if (crystalValue <= 0)
-                    {
-                        Debug.Log("Crystal is dropped");
-                        SpawnCrystalDrop();
-                        Destroy(gameObject);
-                    }
-                    else if (axeController.AxeDurability <= 0)
-                    {
-                        axeController.DestroyAxe();
-                    }
-                }
-            }
+            Debug.Log("Crystal is dropped");
+            SpawnCrystalDrop();
+            Destroy(gameObject);
         }
     }
 
     public void SpawnCrystalDrop()
     {
-        crystalDropObject = Instantiate(crystalDrop, gameObject.transform.position, gameObject.transform.rotation);
-        //GameManager.Instance.Repair();
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("Player is not within range of crystal");
-        }
+        crystalDropObject = Instantiate(crystalDrop, crystal.gameObject.transform.position, crystal.gameObject.transform.rotation);
+        GameManager.Instance.Repair();
     }
 }

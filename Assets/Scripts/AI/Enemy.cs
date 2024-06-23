@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public static Enemy Instance;
     [Header("Stats")]
-    [SerializeField] private int health = 100;
+    [SerializeField] private int health;
 
     [SerializeField] private int Enemydamage = 10;
 
@@ -51,6 +51,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         Wendigo = transform.gameObject;
+        health = 100;
     }
 
     void Update()
@@ -158,7 +159,6 @@ public class Enemy : MonoBehaviour
         health -= axedamage;
 
         Debug.Log("Enemy health : " + health);
-
         if (health <= 0)
         {
             DestroyEnemy();
@@ -169,7 +169,7 @@ public class Enemy : MonoBehaviour
     {
         Destroy(Wendigo);
         //Wendigo.SetActive(false);
-        Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
+        Instantiate(Meat, Wendigo.gameObject.transform.position, Wendigo.gameObject.transform.rotation);
     }
 
     public void GiveDamage()

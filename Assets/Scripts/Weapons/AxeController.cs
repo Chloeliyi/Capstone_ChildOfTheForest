@@ -13,10 +13,12 @@ public class AxeController : MonoBehaviour
     public bool NearWendigo;
     public bool NearBear;
     public bool NearWolf;
+    public bool NearCrystal;
 
     public Enemy wendigoController;
     public BearController bearController;
     public WolfController wolfController;
+    public CrystalController crystalController;
 
     public int AxeDurability;
 
@@ -58,6 +60,12 @@ public class AxeController : MonoBehaviour
                     StartCoroutine(PauseAxeSwing());
                 }
             }
+            if (NearCrystal)
+            {
+                Debug.Log("Attack crystal");
+                crystalController.TakeAxeDamage(AxeItem.value);
+                AxeDamage();
+            }
 
             if (NearWendigo)
             {
@@ -79,6 +87,11 @@ public class AxeController : MonoBehaviour
                 wolfController.TakeAxeDamage(AxeItem.value);
                 AxeDamage();
             }
+
+            if (AxeDurability <= 0)
+            {
+                DestroyAxe();
+            }
         }
     }
 
@@ -93,6 +106,11 @@ public class AxeController : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag == "Crystal")
+        {
+            Debug.Log("Near crystal");
+            NearCrystal = true; 
+        }
         if (collision.gameObject.tag == "Wendigo")
         {
             Debug.Log("Near wendigo");
@@ -114,6 +132,11 @@ public class AxeController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+        if (collision.gameObject.tag == "Crystal")
+        {
+            Debug.Log("Near crystal");
+            NearCrystal = false; 
+        }
         if (collision.gameObject.tag == "Wendigo")
         {
             Debug.Log("Leaving wendigo");
@@ -155,7 +178,6 @@ public class AxeController : MonoBehaviour
         Debug.Log("Axe Durability : " + AxeDurability);
         GameManager.Instance.AxeDamage(AxeItem.value);
     }
-
 
     public void DestroyAxe()
     {

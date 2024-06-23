@@ -8,7 +8,7 @@ public class WolfController : MonoBehaviour
     public static WolfController Instance;
     [Header("Stats")]
 
-    [SerializeField] private int health = 100;
+    [SerializeField] private int health;
 
     [SerializeField] private int Wolfdamage = 10;
 
@@ -61,6 +61,7 @@ public class WolfController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         Wolf = transform.gameObject;
+        health = 100;
     }
 
     void Update()

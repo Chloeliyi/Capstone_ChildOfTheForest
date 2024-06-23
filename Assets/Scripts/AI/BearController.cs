@@ -8,7 +8,7 @@ public class BearController : MonoBehaviour
     public static BearController Instance;
     [Header("Stats")]
 
-    [SerializeField] private int health = 100;
+    [SerializeField] private int health;
 
     [SerializeField] private int Beardamage = 10;
 
@@ -50,6 +50,7 @@ public class BearController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         Bear = transform.gameObject;
+        health = 100;
     }
 
     void Update()

@@ -38,11 +38,6 @@ public class ProjectileAddon : MonoBehaviour
                 GameManager.Instance.SpawnSpear(SpearDurability);
                 box.isTrigger = false;
             }
-
-            if (GameManager.Instance.ActiveSpear)
-            {
-                GameManager.Instance.Throw();
-            }
         }
 
         if (SpearDurability <= 0)

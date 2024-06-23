@@ -111,10 +111,8 @@ public class GameManager : MonoBehaviour
         RepairCounter.text = $"{Repaircount}";
 
         BigIvenMenu.SetActive(false);
-        AxeGameObject.SetActive(false);
-        projectile.SetActive(false);
-
-        projectileRb = projectile.GetComponent<Rigidbody>();
+        Axe.SetActive(false);
+        //projectile.SetActive(false);
     }
 
     public void Awake()
@@ -205,6 +203,8 @@ public class GameManager : MonoBehaviour
                     if (projectile != null)
                     {
                         projectile.SetActive(false);
+                        ActiveSpear = false;
+                        HideWeaponDurability();
                     }
                     else if (torchObject != null)
                     {
@@ -242,6 +242,8 @@ public class GameManager : MonoBehaviour
                     if (AxeGameObject != null)
                     {
                         AxeGameObject.SetActive(false);
+                        activeAxe = false;
+                        HideWeaponDurability();
                     }
                     else if (torchObject != null)
                     {
@@ -281,9 +283,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        /*if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("T is pressed");
+            //Debug.Log("T is pressed");
             if (projectile != null && projectile.activeSelf)
             {
                 Throw();
@@ -293,12 +295,12 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.J))
         {
-                if (projectile != null && projectile.activeSelf)
+            if (projectile != null && projectile.activeSelf)
             {
                 StartCoroutine(Stab());
                 Debug.Log("Stab with spear");
             }
-        }*/
+        }
 
         /*if (Input.GetKeyDown(KeyCode.L))
         {
@@ -483,9 +485,10 @@ public class GameManager : MonoBehaviour
         activeAxe = true;
 
         CurrentDurability = durability;
-        Weapondurability.maxValue = MaxAxeDurability;
+        OpenWeaponDurability();
+        /*Weapondurability.maxValue = MaxAxeDurability;
         Weapondurability.value = CurrentDurability;
-        WeaponIcon.sprite = WeaponsSprite[0];
+        WeaponIcon.sprite = WeaponsSprite[0];*/
 
         if (Activebench != null)
         {
@@ -561,15 +564,17 @@ public class GameManager : MonoBehaviour
     {
         readyToThrow = false;
         projectile = Instantiate(Spear, parent);
+        projectileRb = projectile.GetComponent<Rigidbody>();
         projectileRb.constraints = RigidbodyConstraints.FreezeAll;
         projectileRb.velocity = Vector3.zero;
 
         ActiveSpear = true;
 
         CurrentSpearDurability = durability;
-        Weapondurability.maxValue = MaxSpearDurability;
+        OpenWeaponDurability();
+        /*Weapondurability.maxValue = MaxSpearDurability;
         Weapondurability.value = CurrentSpearDurability;
-        WeaponIcon.sprite = WeaponsSprite[1];
+        WeaponIcon.sprite = WeaponsSprite[1];*/
 
         if (Activebench != null)
         {
