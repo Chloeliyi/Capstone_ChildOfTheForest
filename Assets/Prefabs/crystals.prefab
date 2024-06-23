@@ -147,7 +147,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.12, y: 0.06, z: 0.03}
   m_Center: {x: 0, y: -0.01699442, z: 0.0066910554}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863de393d985c324d9a6415ba3f228e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crystalValue: 20
-  axeController: {fileID: 2372684999125296255, guid: e0739bbc04fdc1f4c92b4e7f3ec149e4, type: 3}
+  crystalValue: 50
   crystalDrop: {fileID: 3165419527728845142, guid: e5cb1a3feb2d05940a8e97c0231c6ca9, type: 3}
   crystalDropObject: {fileID: 0}
+  crystal: {fileID: 0}
