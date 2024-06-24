@@ -112,23 +112,27 @@ public class AxeController : MonoBehaviour
         {
             Debug.Log("Near crystal");
             NearCrystal = true; 
+            crystalController = collision.gameObject.GetComponent<CrystalController>();
         }
         if (collision.gameObject.tag == "Wendigo")
         {
             Debug.Log("Near wendigo");
             NearWendigo = true; 
+            wendigoController = collision.gameObject.GetComponent<Enemy>();
         }
 
         else if (collision.gameObject.tag == "Bear")
         {
             Debug.Log("Near bear");
             NearBear = true; 
+            bearController = collision.gameObject.GetComponent<BearController>();
         }
 
         else if (collision.gameObject.tag == "Wolf")
         {
             Debug.Log("Near wolf");
             NearWolf = true; 
+            wolfController = collision.gameObject.GetComponent<WolfController>();
         }
     }
 
