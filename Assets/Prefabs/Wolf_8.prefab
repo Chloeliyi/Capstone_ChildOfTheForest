@@ -104,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   Wolfdamage: 5
+  Wolf: {fileID: 0}
   playerTransform: {fileID: 8501207690448005855, guid: 9b0ecc97434d71c4d88f210fc73c25c0, type: 3}
   Wolfleader: {fileID: 951513454196284453, guid: 835b6f8a6fd73c246942a32b8228c2d9, type: 3}
   agent: {fileID: 0}
@@ -120,8 +121,8 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 2
-  sightRange: 10
-  attackRange: 2
+  sightRange: 40
+  attackRange: 5
   playerInSightRange: 0
   playerInAttackRange: 0
   wolfsightRange: 0
