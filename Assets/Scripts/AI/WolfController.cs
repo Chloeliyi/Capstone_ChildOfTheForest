@@ -280,7 +280,9 @@ public class WolfController : MonoBehaviour
         if (GameManager.Instance.CurrentHealth <= 0)
         {
             Debug.Log("Animal stop");
-            animator.SetBool("Idle", true);
+            playerInSightRange = false;
+            playerInAttackRange = false;
+            animator.SetBool("WalkForward", true);
         }
 
         //StartCoroutine(AttackTime());

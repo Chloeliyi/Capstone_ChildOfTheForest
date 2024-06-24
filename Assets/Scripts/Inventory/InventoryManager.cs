@@ -54,30 +54,40 @@ public class InventoryManager : MonoBehaviour
 
     public void Add(Item item)
     {
-        //Items.Add(item);
-        if (item.IsStackable())
+        Items.Add(item);
+        /*if (item.IsStackable())
         {
             bool ItemAlreadyInInventory = false;
+            //bool NewItemCopy = false;
             foreach (Item inventoryitem in Items)
             {
                 if (inventoryitem.itemType == item.itemType)
                 {
                     inventoryitem.quantity += itemQuantity;
-                    //ItemsQuantity.Add(itemQuantity);
                     ItemAlreadyInInventory = true;
+
+                    if(inventoryitem.maxitemQuantity < inventoryitem.quantity)
+                    {
+                        Debug.Log("Print new item");
+                        ItemAlreadyInInventory = false;
+                        //bool NewItemCopy = true;
+                    }
                 }
             }
             if (!ItemAlreadyInInventory)
             {
                 Items.Add(item);
-                //ItemsQuantity.Add(itemQuantity);
+            }
+            if (NewItemCopy)
+            {
+                Items.Add(item);
             }
         }
         else
         {
             Items.Add(item);
             //ItemsQuantity.Add(itemQuantity);
-        }
+        }*/
         /*if (Items.Count == 0)
         {
             Items.Add(item);
@@ -100,7 +110,7 @@ public class InventoryManager : MonoBehaviour
                     counter ++;
                 }
             }
-            else
+            else if (Items[counter] != item)
             {
                 Debug.Log("Look through list");
                 for (int a = 0; a < Items.Count; a++)
@@ -112,7 +122,8 @@ public class InventoryManager : MonoBehaviour
                         Debug.Log(item);
                         Items.Add(item);
                         ItemsQuantity.Add(0);
-                        //break;
+                        counter = a;
+                        break;
                     }
                     else
                     {
@@ -127,9 +138,13 @@ public class InventoryManager : MonoBehaviour
                                     counter = b;
                                     Debug.Log("Index B :" + b);
                                     ItemsQuantity[counter] ++;
+                                    //break;
+                                }
+                                else
+                                {
+                                    Debug.Log("Full slot");
                                 }
                             }
-                            //break;
                         }
                     }
                 }
@@ -195,7 +210,8 @@ public class InventoryManager : MonoBehaviour
 
             itemName.text = Items[i].itemName;
             itemIcon.sprite = Items[i].icon;
-            itemCounter.text = ItemsQuantity[i].ToString();
+            itemCounter.text = Items[i].quantity.ToString();
+            //itemCounter.text = ItemsQuantity[i].ToString();
 
             if (EnableRemove.isOn)
             {

@@ -178,8 +178,10 @@ public class Enemy : MonoBehaviour
 
         if (GameManager.Instance.CurrentHealth <= 0)
         {
-            Debug.Log("Animal stop");
-            animator.SetBool("Idle", true);
+            Debug.Log("Wendigo stop");
+            playerInSightRange = false;
+            playerInAttackRange = false;
+            animator.SetFloat("Speed", 3f);
         }
 
         //StartCoroutine(AttackTime());

@@ -55,7 +55,7 @@ public class CraftManager : MonoBehaviour
 
     public void CreateItem()
     {
-        /*for (int i = 0; i < craftItems.Count; i++)
+        for (int i = 0; i < craftItems.Count; i++)
         {
             if (craftItems[i] == "Branch")
             {
@@ -120,8 +120,8 @@ public class CraftManager : MonoBehaviour
                     }
                 }
             }
-        }*/
-        for (int i = 0; i < craftItems.Count; i++)
+        }
+        /*for (int i = 0; i < craftItems.Count; i++)
         {
              if (craftItems[i] == "Branch")
              {
@@ -188,7 +188,7 @@ public class CraftManager : MonoBehaviour
                     }
                 }
              }
-        }
+        }*/
     }
 
     public void RemoveFromInventory()
