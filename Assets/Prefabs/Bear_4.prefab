@@ -1973,7 +1973,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  Beardamage: 5
+  Beardamage: 75
+  Bear: {fileID: 0}
   playerTransform: {fileID: 8501207690448005855, guid: 9b0ecc97434d71c4d88f210fc73c25c0, type: 3}
   agent: {fileID: 0}
   whatIsGround:
