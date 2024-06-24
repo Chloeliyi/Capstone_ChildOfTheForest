@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public string username;
     public static GameManager Instance;
 
     /*public Camera MenuCam;
     public GameObject StartMenu;*/
     public Transform playerCamera;
-
     public int MaxHealth = 50;
 
     public int CurrentHealth;
@@ -91,7 +92,15 @@ public class GameManager : MonoBehaviour
 
     Coroutine increaseInProgress;
 
-    //public string username;
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void Play()
+    {
+        SceneManager.LoadScene(1);
+    }
 
     void Start()
     {        
@@ -118,6 +127,7 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void TimeStop()
@@ -454,7 +464,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnTorch()
     {
-        torchObject = Instantiate(Torch, parent);
+        torchObject = Instantiate(Torch, playerCamera);
         torchObject.GetComponentInChildren<ParticleSystem>().Stop();
         if (Activebench != null)
         {

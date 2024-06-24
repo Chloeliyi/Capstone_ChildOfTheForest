@@ -11,7 +11,7 @@ public class Item : ScriptableObject
     public string itemName;
     public int value;
     public int durability;
-    public int quantity;
+    public int quantity = 1;
     public int maxitemQuantity = 3;
     public Sprite icon;
     public ItemType itemType;

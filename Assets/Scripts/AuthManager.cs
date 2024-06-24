@@ -49,9 +49,10 @@ public class AuthManager : MonoBehaviour
         
     }
 
-    /*void Awake()
+    void Awake()
     {
         auth = FirebaseAuth.DefaultInstance;
+        Debug.Log("auth is: " + auth);
         mDatabaseRef = FirebaseDatabase.DefaultInstance.RootReference;     
     }
 
@@ -61,9 +62,9 @@ public class AuthManager : MonoBehaviour
         password = PasswordSignUp.text.Trim();
 
         SignUpUser(username, email, password);
-    }*/
+    }
 
-    /*private void SignUpUser(string username, string email, string password) 
+    private void SignUpUser(string username, string email, string password) 
     {
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
@@ -93,7 +94,7 @@ public class AuthManager : MonoBehaviour
                     mDatabaseRef.Child("Users").Child(userId).SetRawJsonValueAsync(json);
                     
                     GameManager gm = FindObjectOfType<GameManager>();
-                    gm.username = user.userName;*/
+                    gm.username = user.userName;
 
                     /*profileName.text = username;
 
@@ -109,11 +110,11 @@ public class AuthManager : MonoBehaviour
                     //ToggleGameMenu();
                     //ClearSignUpFields();
                     
-                //}
-        //});
-    //}
+                }
+        });
+    }
 
-    /*public void LogIn() {
+    public void LogIn() {
 
         string email = EmailLogIn.text.Trim();
         string password = PasswordLogIn.text.Trim();
@@ -124,6 +125,7 @@ public class AuthManager : MonoBehaviour
 
     public void LogInUser(string email, string password)
     {
+        Debug.Log("email: " + email + " password: " + password);
         auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
             if (task.IsCanceled)
@@ -269,5 +271,5 @@ public class AuthManager : MonoBehaviour
             }
         }
         return errorMsg;
-    }*/
+    }
 }

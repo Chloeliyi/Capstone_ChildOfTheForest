@@ -8,10 +8,11 @@ public class DoorController : MonoBehaviour
     [SerializeField] private string DoorOpen = "DoorOpen";
     [SerializeField] private int waitTimer = 2;
     [SerializeField] private bool PlayOnce = false;
+    public Canvas _canva;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _canva.enabled = false;
     }
 
     private void Awake()
@@ -24,6 +25,7 @@ public class DoorController : MonoBehaviour
         if (coll.tag == "Player")
         {
             Debug.Log("Player is in range of door");
+            _canva.enabled = true;
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (!PlayOnce)
@@ -35,6 +37,15 @@ public class DoorController : MonoBehaviour
                     StartCoroutine(PauseDoorInteraction());
                 }  
             }
+        }
+    }
+
+    void OnTriggerExit(Collider coll)
+    {
+        if (coll.tag == "Player")
+        {
+            Debug.Log("Player is not range of door");
+            _canva.enabled = false;
         }
     }
 
