@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public string username;
     public static GameManager Instance;
 
     /*public Camera MenuCam;
@@ -90,7 +92,15 @@ public class GameManager : MonoBehaviour
 
     Coroutine increaseInProgress;
 
-    //public string username;
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void Play()
+    {
+        SceneManager.LoadScene(1);
+    }
 
     void Start()
     {        
@@ -117,6 +127,7 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void TimeStop()
