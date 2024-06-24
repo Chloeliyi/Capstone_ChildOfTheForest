@@ -178,7 +178,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (AxeGameObject == null)
             {
@@ -218,7 +218,7 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        if (Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (projectile == null)
             {
@@ -256,17 +256,23 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             if (torchObject != null)
             {
                 if (torchObject.activeSelf)
                 {
                     torchObject.SetActive(false);
+                    activeAxe = false;
+                    ActiveSpear = false;
+                    HideWeaponDurability();
                 }
                 else if (!torchObject.activeSelf)
                 {
                     torchObject.SetActive(true);
+                    activeAxe = false;
+                    ActiveSpear = false;
+                    HideWeaponDurability();
                     if (projectile != null)
                     {
                         projectile.SetActive(false);

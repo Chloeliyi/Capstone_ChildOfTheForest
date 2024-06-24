@@ -54,8 +54,8 @@ public class InventoryManager : MonoBehaviour
 
     public void Add(Item item)
     {
-        Items.Add(item);
-        /*if (item.IsStackable())
+        //Items.Add(item);
+        if (item.IsStackable())
         {
             bool ItemAlreadyInInventory = false;
             foreach (Item inventoryitem in Items)
@@ -77,7 +77,7 @@ public class InventoryManager : MonoBehaviour
         {
             Items.Add(item);
             //ItemsQuantity.Add(itemQuantity);
-        }*/
+        }
         /*if (Items.Count == 0)
         {
             Items.Add(item);
@@ -102,84 +102,39 @@ public class InventoryManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Create new slot");
-                //Items.Add(item);
-                //ItemsQuantity.Add(itemQuantity);
+                Debug.Log("Look through list");
                 for (int a = 0; a < Items.Count; a++)
                 {
                     if (Items[a] != item)
                     {
+                        Debug.Log("Create new slot");
+                        Debug.Log("Index A :" + a);
+                        Debug.Log(item);
                         Items.Add(item);
-                        ItemsQuantity.Add(itemQuantity);
+                        ItemsQuantity.Add(0);
+                        //break;
                     }
                     else
                     {
-                        if (ItemsQuantity[a] < maxitemQuantity)
-                        counter = a;
-                    }
-                }
-            }*/
-            /*else if (Items[counter] != item)
-            {
-                Debug.Log("Counter is not item");
-                for (int i = 0; i < Items.Count; i++)
-                {
-                    if (Items[i] == item)
-                    {
-                        Debug.Log("Index : " + i);
-                        Debug.Log(Items[i]);
-                        Debug.Log(ItemsQuantity[i]);
-                        if (ItemsQuantity[i] < maxitemQuantity)
+                        Debug.Log("Found other slot");
+                        for (int b = 0; b < Items.Count; b++)
                         {
-                            counter = i;
-                            Debug.Log("Counter : " + counter);
-                            if (ItemsQuantity[counter] < maxitemQuantity)
+                            if (Items[b]  == item)
                             {
-                                Debug.Log("Below max items");
-                                ItemsQuantity[counter] ++;
-                            } 
-                            else if (ItemsQuantity[counter] > maxitemQuantity)
-                            {
-                                Debug.Log("New Item : " + item);
-                                Items.Add(item);
-                                ItemsQuantity.Add(0);
-                            }
-                        }
-                    }
-                    else if (Items[i] != item)
-                    {
-                        Debug.Log(Items[i]);
-                        Debug.Log("New Item : " + item);
-                        //Items.Add(item);
-                        //ItemsQuantity.Add(0);
-                        for (int a = 0; a < Items.Count; a++)
-                        {
-                            if (Items[a] == item)
-                            {
-                                counter = a;
-                                Debug.Log(counter);
-                                if (ItemsQuantity[counter] < maxitemQuantity)
+                                //Debug.Log("Index B :" + b);
+                                if (ItemsQuantity[b] < maxitemQuantity)
                                 {
-                                    Debug.Log("Below max items");
+                                    counter = b;
+                                    Debug.Log("Index B :" + b);
                                     ItemsQuantity[counter] ++;
-                                } 
-                                else if (ItemsQuantity[counter] > maxitemQuantity)
-                                {
-                                    Debug.Log("New Item : " + item);
-                                    Items.Add(item);
-                                    ItemsQuantity.Add(0);
                                 }
                             }
-                            else
-                            {
-                                Items.Add(item);
-                                ItemsQuantity.Add(0);
-                            }
+                            //break;
                         }
                     }
                 }
-            }*/
-        //}
+            }
+        }*/
     }
 
     public void Remove(Item item)
@@ -199,6 +154,7 @@ public class InventoryManager : MonoBehaviour
             Destroy(item.gameObject);
         }
     }
+    public int test;
 
     public void ListItems()
     {
@@ -227,9 +183,10 @@ public class InventoryManager : MonoBehaviour
                 removeButton.gameObject.SetActive(true);
             }
         }*/
-
         for (int i = 0; i < Items.Count; i++)
         {
+            Debug.Log(Items[i].itemType);
+
             obj = Instantiate(InventoryItem, ItemContent);
             var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
             var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
@@ -249,37 +206,6 @@ public class InventoryManager : MonoBehaviour
         SetInventoryItems();
     }
 
-    /*public void ClearSmallContent()
-    {
-        foreach(Transform item in SmallItemContent)
-        {
-            Destroy(item.gameObject);
-        }
-
-    }
-
-    public void ListSmallInvenItems()
-    {
-        //ClearSmallContent();
-        foreach (var item in Items)
-        {
-            GameObject obj = Instantiate(InventoryItem, SmallItemContent);
-            var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
-            var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
-            var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
-
-            itemName.text = item.itemName;
-            itemIcon.sprite = item.icon;
-
-            if (EnableRemove.isOn)
-            {
-                removeButton.gameObject.SetActive(true);
-            }
-        }
-
-        SetSmallInventoryItems();
-    }*/
-
     public void EnableItemsRemove()
     {
         if (EnableRemove.isOn)
@@ -288,11 +214,6 @@ public class InventoryManager : MonoBehaviour
             {
                 item.Find("RemoveButton").gameObject.SetActive(true);
             }
-
-            /*foreach (Transform item in SmallItemContent)
-            {
-                item.Find("RemoveButton").gameObject.SetActive(true);
-            }*/
         }
         else
         {
@@ -301,13 +222,8 @@ public class InventoryManager : MonoBehaviour
                 item.Find("RemoveButton").gameObject.SetActive(false);
             }
 
-            /*foreach(Transform item in SmallItemContent)
-            {
-                item.Find("RemoveButton").gameObject.SetActive(false);
-            }*/
         }       
     }
-
 
     public void SetInventoryItems()
     {
@@ -315,22 +231,9 @@ public class InventoryManager : MonoBehaviour
 
         for (int i = 0; i < Items.Count; i++)
         {
-            /*if (Items[i] == )
-            {
-                counter ++;
-            }*/
             InventoryItems[i].AddItem(Items[i]);
             Debug.Log(Items[i]);
         }
     }
 
-    /*public void SetSmallInventoryItems()
-    {
-        SmallInventoryItems = SmallItemContent.GetComponentsInChildren<InventoryItemController>();
-
-        for (int i = 0; i < Items.Count; i++)
-        {
-            SmallInventoryItems[i].AddItem(Items[i]);
-        }
-    }*/
 }

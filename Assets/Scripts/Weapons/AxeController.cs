@@ -49,7 +49,9 @@ public class AxeController : MonoBehaviour
                 //gameObject.SetActive(false);
                 GameManager.Instance.SpawnAxe(AxeDurability);
             }
-
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
             if (GameManager.Instance.activeAxe)
             {
                 if (!PlayOnce)

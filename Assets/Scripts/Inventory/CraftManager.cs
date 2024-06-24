@@ -55,7 +55,7 @@ public class CraftManager : MonoBehaviour
 
     public void CreateItem()
     {
-        for (int i = 0; i < craftItems.Count; i++)
+        /*for (int i = 0; i < craftItems.Count; i++)
         {
             if (craftItems[i] == "Branch")
             {
@@ -120,8 +120,8 @@ public class CraftManager : MonoBehaviour
                     }
                 }
             }
-        }
-        /*for (int i = 0; i < craftItems.Count; i++)
+        }*/
+        for (int i = 0; i < craftItems.Count; i++)
         {
              if (craftItems[i] == "Branch")
              {
@@ -131,7 +131,7 @@ public class CraftManager : MonoBehaviour
                     {
                         if (craftItems[j] == "CrystalDrop")
                         {
-                            if (craftItemsQuantity[i] == 1)
+                            if (craftItemsQuantity[j] == 1)
                             {
                                 Debug.Log("Can create spear");
                                 GotItem = true;
@@ -188,7 +188,7 @@ public class CraftManager : MonoBehaviour
                     }
                 }
              }
-        }*/
+        }
     }
 
     public void RemoveFromInventory()

@@ -12,7 +12,8 @@ public class FPSController : MonoBehaviour
     public float walkSpeed;
     public float runSpeed;
     public float jumpPower;
-    public float gravity;
+    public float gravity = 20f;
+    public float ySpeed;
 
     public int MaxStamina = 30;
     public int CurrentStamina;
@@ -32,6 +33,8 @@ public class FPSController : MonoBehaviour
 
     public bool isRunning;
 
+    Terrain terrain;
+
     private void Awake()
     {
         Instance = this;
@@ -40,7 +43,7 @@ public class FPSController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-
+        terrain = Terrain.activeTerrain;
         CurrentStamina = MaxStamina;
         Staminaslider.value = CurrentStamina;
     }
@@ -58,9 +61,38 @@ public class FPSController : MonoBehaviour
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        //Rotation
+        /*float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+        Vector3 floorMotionVector = new Vector3(horizontal, 0, vertical).normalized;
+
+        ySpeed -= gravity * Time.deltaTime; // Apply a constant gravity every frame
+        floorMotionVector.y = ySpeed; // Apply gravity to your movement vector*/
+
+        //Jumping
+        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        {
+            moveDirection.y = jumpPower;
+        }
+        else
+        {
+            moveDirection.y = movementDirectionY;
+        }
+        // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
+        // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
+        // as an acceleration (ms^-2)
+        if (characterController.transform.position.y - 0.69f >= terrain.SampleHeight(transform.position))
+        {
+            moveDirection.y -= gravity * Time.deltaTime;
+        }
+        /*if (!characterController.isGrounded)
+        {
+            moveDirection.y -= gravity * Time.deltaTime;
+        }*/
+
+        // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
-        
+
         if (canMove)
         {
 
@@ -94,20 +126,6 @@ public class FPSController : MonoBehaviour
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
-        }
-
-        //Jumping
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
-        {
-            moveDirection.y = jumpPower;
-        }
-        else
-        {
-            moveDirection.y = movementDirectionY;
-        }
-        if (!characterController.isGrounded)
-        {
-            moveDirection.y -= gravity * Time.deltaTime;
         }
     }
 
