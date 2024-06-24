@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     /*public Camera MenuCam;
     public GameObject StartMenu;*/
     public Transform playerCamera;
+
     public int MaxHealth = 50;
 
     public int CurrentHealth;
@@ -464,7 +465,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnTorch()
     {
-        torchObject = Instantiate(Torch, playerCamera);
+        torchObject = Instantiate(Torch, parent);
         torchObject.GetComponentInChildren<ParticleSystem>().Stop();
         if (Activebench != null)
         {

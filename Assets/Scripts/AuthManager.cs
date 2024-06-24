@@ -82,15 +82,16 @@ public class AuthManager : MonoBehaviour
                 {
 
                     Firebase.Auth.AuthResult newUser = task.Result;
-                    Debug.LogFormat("Child Of The Forestst", newUser.User.Email);
+                    Debug.LogFormat("Welcome to Child Of The Forest "+ newUser.User.Email);
                     //do anything you want after player creation eg. create new player
 
                     userId = newUser.User.UserId;
-                    Debug.Log("userId is: " + userId);
+                    //Debug.Log("userId is: " + userId);
                     userStatus = true;
                     
                     User user = new User(username, email, password, userStatus);
                     string json = JsonUtility.ToJson(user);
+                    Debug.Log(json);
                     mDatabaseRef.Child("Users").Child(userId).SetRawJsonValueAsync(json);
                     
                     GameManager gm = FindObjectOfType<GameManager>();
