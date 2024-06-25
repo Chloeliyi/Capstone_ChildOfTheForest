@@ -66,28 +66,28 @@ public class AxeController : MonoBehaviour
             {
                 Debug.Log("Attack crystal");
                 crystalController.TakeAxeDamage(AxeItem.value);
-                AxeDamage();
+                //AxeDamage();
             }
 
             if (NearWendigo)
             {
                 Debug.Log("Attack wendigo");
                 wendigoController.TakeAxeDamage(AxeItem.value);
-                AxeDamage();
+                //AxeDamage();
             }
 
             if (NearBear)
             {
                 Debug.Log("Attack bear");
                 bearController.TakeAxeDamage(AxeItem.value);
-                AxeDamage();
+                //AxeDamage();
             }
 
             if (NearWolf)
             {
                 Debug.Log("Attack wolf");
                 wolfController.TakeAxeDamage(AxeItem.value);
-                AxeDamage();
+                //AxeDamage();
             }
 
             if (AxeDurability <= 0)
@@ -102,6 +102,11 @@ public class AxeController : MonoBehaviour
         yield return new WaitForSeconds(waitTimer);
         AxeAttack.SetTrigger("Attack");
         PlayOnce = false;
+
+        if (wendigoController != null || bearController != null || wolfController != null)
+        {
+            AxeDamage();
+        }
     }
 
     Rigidbody axeRb;
@@ -147,16 +152,19 @@ public class AxeController : MonoBehaviour
         {
             Debug.Log("Leaving wendigo");
             NearWendigo = false; 
+            wendigoController = null;
         }
         else if (collision.gameObject.tag == "Bear")
         {
             Debug.Log("Leaving bear");
             NearBear = false; 
+            bearController = null;
         }
         else if (collision.gameObject.tag == "Wolf")
         {
             Debug.Log("Leaving wolf");
             NearWolf = false; 
+            wolfController = null;
         }
     }
 
