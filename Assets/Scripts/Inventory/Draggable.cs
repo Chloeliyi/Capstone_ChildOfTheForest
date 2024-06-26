@@ -10,7 +10,12 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     //private InventoryItemController inventoryItemController;
     public Transform IvenSlot;
     public Transform IvenMenu;
-    public Image image;
+    [SerializeField] private Image image;
+
+    private void Start()
+    {
+        image = this.GetComponent<Image>();
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {

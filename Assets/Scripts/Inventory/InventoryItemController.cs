@@ -36,6 +36,7 @@ public class InventoryItemController : MonoBehaviour, IPointerClickHandler/*, IB
     private void Start()
     {
         inventoryManager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
+        this.GetComponent<Draggable>().enabled = false;
     }
 
     private void Update()
@@ -105,11 +106,6 @@ public class InventoryItemController : MonoBehaviour, IPointerClickHandler/*, IB
                     EmptySlot();
                 }
             }
-
-            if (itemName == "Branch")
-            {
-                isDraggable = true;
-            }
         }
         else
         {
@@ -124,6 +120,11 @@ public class InventoryItemController : MonoBehaviour, IPointerClickHandler/*, IB
             {
                 ItemDescriptionImage.sprite = emptySprite;
             }
+
+            if (itemName == "Branch" ||itemName == "Crystal")
+            {
+                isDraggable = true;
+            }
         }
     }
 
@@ -132,6 +133,7 @@ public class InventoryItemController : MonoBehaviour, IPointerClickHandler/*, IB
         if (isDraggable)
         {
             Debug.Log("Can drag item");
+            this.GetComponent<Draggable>().enabled = true;
         }
     }
 
