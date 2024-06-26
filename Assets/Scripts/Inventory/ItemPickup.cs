@@ -8,10 +8,25 @@ public class ItemPickup : MonoBehaviour
 
     public bool NearItem;
 
+    [SerializeField] private int quantity;
+
+    [SerializeField] private InventoryManager inventoryManager;
+
+    void Start()
+    {
+        inventoryManager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
+    }
     public void PickUp()
     {
-        InventoryManager.Instance.Add(Item);
-        Destroy(gameObject);
+        int leftOverItems = inventoryManager.AddItem(Item.itemName, quantity, Item.icon, Item.itemDesc);
+        if (leftOverItems <= 0)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            quantity = leftOverItems;
+        }
     }
 
 

@@ -4,12 +4,55 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using System.Linq;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance;
 
-    //public GameObject SmallInventoryMenu;
+    public InventoryItemController[] itemSlot;
+
+    public Item[] itemSOs;
+
+    public bool UseItem(string itemName)
+    {
+        for (int i = 0; i < itemSOs.Length; i++) 
+        {
+            if (itemSOs[i].itemName == itemName)
+            {
+                bool usable = itemSOs[i].UseItem();
+                return usable;
+            }
+        }
+        return false;
+    }
+
+    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    {
+        //Debug.Log("Item name : " + itemName + " quantity : " + quantity + " Item sprite : " + itemSprite);
+        for (int i = 0; i < itemSlot.Length; i++) 
+        {
+            if (itemSlot[i].isFull == false && itemSlot[i].itemName == itemName || itemSlot[i].quantity == 0)
+            {
+                int leftOverItems = itemSlot[i].AddItem(itemName, quantity, itemSprite, itemDescription);
+                if (leftOverItems > 0)
+                {
+                    leftOverItems = AddItem(itemName, quantity, itemSprite, itemDescription);
+                }
+                return leftOverItems;
+            }
+        }
+        return quantity;
+    }
+
+    public void DeselectAllSlots()
+    {
+        for (int i = 0; i < itemSlot.Length; i++)  
+        {
+            itemSlot[i].selectedShader.SetActive(false);
+            itemSlot[i].thisItemSelected = false;
+        }
+    }
+    /*public static InventoryManager Instance;
 
     [SerializeField] private bool menuActivated;
 
@@ -18,14 +61,10 @@ public class InventoryManager : MonoBehaviour
     public Transform ItemContent;
     public GameObject InventoryItem;
 
-    //public Transform SmallItemContent;
-
     public Toggle EnableRemove;
 
     public InventoryItemController[] InventoryItems;
     public List<int> ItemsQuantity = new List<int>();
-
-    //public InventoryItemController[] SmallInventoryItems;
 
     public TMP_Text DescName;
 
@@ -38,6 +77,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private int itemQuantity = 1;
 
     [SerializeField] private int maxitemQuantity = 3;
+
+    public int totalAmountOfItems;
 
     public void Start()
     {
@@ -54,11 +95,11 @@ public class InventoryManager : MonoBehaviour
 
     public void Add(Item item)
     {
-        Items.Add(item);
-        /*if (item.IsStackable())
+        //Items.Add(item);
+        //Optionone
+        if (item.IsStackable())
         {
             bool ItemAlreadyInInventory = false;
-            //bool NewItemCopy = false;
             foreach (Item inventoryitem in Items)
             {
                 if (inventoryitem.itemType == item.itemType)
@@ -66,19 +107,9 @@ public class InventoryManager : MonoBehaviour
                     inventoryitem.quantity += itemQuantity;
                     ItemAlreadyInInventory = true;
 
-                    if(inventoryitem.maxitemQuantity < inventoryitem.quantity)
-                    {
-                        Debug.Log("Print new item");
-                        ItemAlreadyInInventory = false;
-                        //bool NewItemCopy = true;
-                    }
                 }
             }
             if (!ItemAlreadyInInventory)
-            {
-                Items.Add(item);
-            }
-            if (NewItemCopy)
             {
                 Items.Add(item);
             }
@@ -86,13 +117,14 @@ public class InventoryManager : MonoBehaviour
         else
         {
             Items.Add(item);
-            //ItemsQuantity.Add(itemQuantity);
-        }*/
-        /*if (Items.Count == 0)
+        }
+        //Optiontwo
+        if (Items.Count == 0)
         {
             Items.Add(item);
             ItemsQuantity.Add(itemQuantity);
         }
+        
         else
         {
             if (Items[counter] == item)
@@ -113,43 +145,29 @@ public class InventoryManager : MonoBehaviour
             else if (Items[counter] != item)
             {
                 Debug.Log("Look through list");
-                for (int a = 0; a < Items.Count; a++)
+                for (int a = 0; a < Items.Count; a++) 
                 {
                     if (Items[a] != item)
                     {
+                        //Adding each time a item not equals is found
                         Debug.Log("Create new slot");
-                        Debug.Log("Index A :" + a);
-                        Debug.Log(item);
+                        Debug.Log("Index A is not: " + a);
+                        Debug.Log("Item : " + item);
                         Items.Add(item);
                         ItemsQuantity.Add(0);
-                        counter = a;
-                        break;
+                        //counter = a;
+                        //break;
                     }
-                    else
+                    else if (Items[a] == item)
                     {
                         Debug.Log("Found other slot");
-                        for (int b = 0; b < Items.Count; b++)
-                        {
-                            if (Items[b]  == item)
-                            {
-                                //Debug.Log("Index B :" + b);
-                                if (ItemsQuantity[b] < maxitemQuantity)
-                                {
-                                    counter = b;
-                                    Debug.Log("Index B :" + b);
-                                    ItemsQuantity[counter] ++;
-                                    //break;
-                                }
-                                else
-                                {
-                                    Debug.Log("Full slot");
-                                }
-                            }
-                        }
+                        Debug.Log("Index A :" + a);
+                        counter = a;
+                        ItemsQuantity[counter]++;
                     }
                 }
             }
-        }*/
+        }
     }
 
     public void Remove(Item item)
@@ -173,7 +191,7 @@ public class InventoryManager : MonoBehaviour
 
     public void ListItems()
     {
-        /*foreach (var item in Items)
+        foreach (var item in Items)
         {
             obj = Instantiate(InventoryItem, ItemContent);
             var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
@@ -197,7 +215,8 @@ public class InventoryManager : MonoBehaviour
             {
                 removeButton.gameObject.SetActive(true);
             }
-        }*/
+        }
+        //Option two
         for (int i = 0; i < Items.Count; i++)
         {
             Debug.Log(Items[i].itemType);
@@ -210,8 +229,8 @@ public class InventoryManager : MonoBehaviour
 
             itemName.text = Items[i].itemName;
             itemIcon.sprite = Items[i].icon;
-            itemCounter.text = Items[i].quantity.ToString();
-            //itemCounter.text = ItemsQuantity[i].ToString();
+            //itemCounter.text = Items[i].quantity.ToString();
+            itemCounter.text = ItemsQuantity[i].ToString();
 
             if (EnableRemove.isOn)
             {
@@ -250,6 +269,5 @@ public class InventoryManager : MonoBehaviour
             InventoryItems[i].AddItem(Items[i]);
             Debug.Log(Items[i]);
         }
-    }
-
+    }*/
 }

@@ -79,6 +79,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject Torch;
 
+    public bool Nearwater;
+
     public bool activeAxe;
 
     public bool ActiveSpear;
@@ -178,13 +180,13 @@ public class GameManager : MonoBehaviour
             if (!BigIvenMenu.activeSelf)
             {
                 Debug.Log("Open Inventory");
-                InventoryManager.Instance.ListItems();
+                //InventoryManager.Instance.ListItems();
                 BigIvenMenu.SetActive(true);
             }
             else if (BigIvenMenu.activeSelf)
             {
                 Debug.Log("Close Inventory");
-                InventoryManager.Instance.ClearContent();
+                //InventoryManager.Instance.ClearContent();
                 BigIvenMenu.SetActive(false);
             }
         }
@@ -308,6 +310,11 @@ public class GameManager : MonoBehaviour
                 Throw();
                 Debug.Log("Spear is thrown");
             }
+
+            if (Nearwater)
+            {
+                IncreaseWater(2);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.J))
@@ -401,7 +408,7 @@ public class GameManager : MonoBehaviour
         BigIvenMenu.gameObject.SetActive(true);
         ItemDescMenu.gameObject.SetActive(false);
         CraftMenu.gameObject.SetActive(true);
-        InventoryManager.Instance.ListItems();
+        //InventoryManager.Instance.ListItems();
     }
 
     public void CloseCraftMenu()
@@ -410,7 +417,7 @@ public class GameManager : MonoBehaviour
         BigIvenMenu.gameObject.SetActive(false);
         ItemDescMenu.gameObject.SetActive(true);
         CraftMenu.gameObject.SetActive(false);
-        InventoryManager.Instance.ClearContent();
+        //InventoryManager.Instance.ClearContent();
     }
 
     GameObject Wallpart;
@@ -757,8 +764,6 @@ public class GameManager : MonoBehaviour
                 Foodslider.value = CurrentFood;
                 //FoodText.text = $"Food:{CurrentFood}";
                 Debug.Log("Food:" + CurrentFood);
-
-                inventoryItemController.RemoveItem();
             }
         }
     }

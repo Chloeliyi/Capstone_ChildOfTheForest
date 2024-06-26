@@ -5,10 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class CraftItem : MonoBehaviour, IDropHandler
+public class CraftItem : MonoBehaviour/*, IDropHandler*/
 {
-    //public static CraftItem Instance;
-
     public string craftItem;
 
     public int itemQuantity;
@@ -17,7 +15,7 @@ public class CraftItem : MonoBehaviour, IDropHandler
 
     private InventoryItemController draggableItem;
 
-    public void OnDrop(PointerEventData eventData)
+    /*public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("On drop");
         if (transform.childCount == 0) 
@@ -27,8 +25,6 @@ public class CraftItem : MonoBehaviour, IDropHandler
             draggableItem = dropped.GetComponent<InventoryItemController>();
             draggableItem.IvenSlot = transform;
             Debug.Log("transform: " + transform.position);
-            //draggableItem.IvenMenu = transform.parent;
-            //draggableItem.transform.position = new Vector3(0f, 0f, 0f);
 
             var itemCounter = draggableItem.transform.Find("ItemCounter").GetComponent<TMP_Text>();
 
@@ -47,5 +43,5 @@ public class CraftItem : MonoBehaviour, IDropHandler
         Debug.Log("Remove Craft Item");
         draggableItem.RemoveItem();
         InventoryManager.Instance.ClearContent();
-    }
+    }*/
 }

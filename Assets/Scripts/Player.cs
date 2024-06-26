@@ -61,14 +61,6 @@ public class FPSController : MonoBehaviour
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        /*float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-
-        Vector3 floorMotionVector = new Vector3(horizontal, 0, vertical).normalized;
-
-        ySpeed -= gravity * Time.deltaTime; // Apply a constant gravity every frame
-        floorMotionVector.y = ySpeed; // Apply gravity to your movement vector*/
-
         //Jumping
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
@@ -85,10 +77,6 @@ public class FPSController : MonoBehaviour
         {
             moveDirection.y -= gravity * Time.deltaTime;
         }
-        /*if (!characterController.isGrounded)
-        {
-            moveDirection.y -= gravity * Time.deltaTime;
-        }*/
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
@@ -155,6 +143,11 @@ public class FPSController : MonoBehaviour
             Debug.Log("Near spear");
             GameManager.Instance.projectile = other.gameObject;
         }
+        else if (other.gameObject.tag == "Water")
+        {
+            Debug.Log("Near water");
+            GameManager.Instance.Nearwater = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -180,6 +173,11 @@ public class FPSController : MonoBehaviour
         {
             Debug.Log("Near spear");
             GameManager.Instance.projectile = null;
+        }
+        else if (other.gameObject.tag == "Water")
+        {
+            Debug.Log("Not near water");
+            GameManager.Instance.Nearwater = false;
         }
     }
 }

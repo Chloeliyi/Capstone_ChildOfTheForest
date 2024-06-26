@@ -31,21 +31,6 @@ public class CraftManager : MonoBehaviour
     {
         craftItems.Add(craftItem);
         CreateItem();
-        /*if (craftItems.Count == 0)
-        {
-            craftItems.Add(craftItem);
-            CreateItem();
-        }
-        else
-        {
-            for (int i = 0; i < craftItems.Count; i++)
-            {
-                if (craftItem[i] == craftItem)
-                {
-
-                }
-            }
-        }*/
     }
 
     public void AddQuantity(int itemQuantity)
@@ -191,7 +176,7 @@ public class CraftManager : MonoBehaviour
         }*/
     }
 
-    public void RemoveFromInventory()
+    /*public void RemoveFromInventory()
     {
         craftItem = CraftedContent.GetComponentInChildren<CraftItem>();
         craftItem.RemoveCraftItem();
@@ -200,7 +185,6 @@ public class CraftManager : MonoBehaviour
 
     public void AddToInventory()
     {
-
         if (GotItem == true)
         {
             Debug.Log("Add To Inventory");
@@ -220,5 +204,5 @@ public class CraftManager : MonoBehaviour
         {
             Debug.Log("Got nothing to add");
         }
-    }
+    }*/
 }
