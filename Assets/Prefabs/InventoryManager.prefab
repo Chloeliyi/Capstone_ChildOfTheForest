@@ -44,15 +44,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357577452999b6245a2a6ac76cf7da21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuActivated: 0
-  Items: []
-  ItemsQuantity: 
-  ItemContent: {fileID: 0}
-  InventoryItem: {fileID: 8248977465740128988, guid: 682c53f60afac4f49bc4a1c117072e94, type: 3}
-  EnableRemove: {fileID: 0}
-  InventoryItems: []
-  DescName: {fileID: 0}
-  DescIcon: {fileID: 0}
-  DescText: {fileID: 0}
-  itemQuantity: 1
-  maxitemQuantity: 3
+  itemSlot:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  itemSOs:
+  - {fileID: 11400000, guid: 4576f97e53bf85241869a85f2f52e347, type: 2}
+  - {fileID: 11400000, guid: 4e3d06c1d1524484c870ec9b45d78302, type: 2}
+  - {fileID: 11400000, guid: cac84804d15bbb74385a833997ee411f, type: 2}
