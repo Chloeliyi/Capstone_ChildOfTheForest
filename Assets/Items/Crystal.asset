@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Crystal
   m_EditorClassIdentifier: 
   id: 10
-  itemName: CrystalDrop
+  itemName: Crystal
   value: 1
   durability: 1
   quantity: 1
