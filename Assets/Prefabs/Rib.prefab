@@ -143,3 +143,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: 1d3d7bf5f36236d4db970b2115adf7cd, type: 2}
   NearItem: 0
+  quantity: 1
+  inventoryManager: {fileID: 0}
