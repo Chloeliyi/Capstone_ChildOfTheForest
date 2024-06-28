@@ -40,13 +40,13 @@ public class CraftManager : MonoBehaviour
 
     public void CreateItem()
     {
-        for (int i = 0; i < craftItems.Count; i++)
+        /*for (int i = 0; i < craftItems.Count; i++)
         {
             if (craftItems[i] == "Branch")
             {
                 for (int j = 0; j < craftItems.Count; j++)
                 {
-                    if (craftItems[j] == "CrystalDrop")
+                    if (craftItems[j] == "Crystal")
                     {
                         Debug.Log("Can create spear");
                         GotItem = true;
@@ -80,11 +80,11 @@ public class CraftManager : MonoBehaviour
                                     }
                                 }
                             }
-                            else if (craftItems[a] == "CrystalDrop")
+                            else if (craftItems[a] == "Crystal")
                             {
                                 for (int b = 0; b < craftItems.Count; b++)
                                 {
-                                    if (craftItems[b] == "CrystalDrop")
+                                    if (craftItems[b] == "Crystal")
                                     {
                                         Debug.Log("Can create axe");
                                         GotItem = true;
@@ -105,8 +105,8 @@ public class CraftManager : MonoBehaviour
                     }
                 }
             }
-        }
-        /*for (int i = 0; i < craftItems.Count; i++)
+        }*/
+        for (int i = 0; i < craftItems.Count; i++)
         {
              if (craftItems[i] == "Branch")
              {
@@ -114,7 +114,7 @@ public class CraftManager : MonoBehaviour
                 {
                     for (int j = 0; j < craftItems.Count; j++)
                     {
-                        if (craftItems[j] == "CrystalDrop")
+                        if (craftItems[j] == "Crystal")
                         {
                             if (craftItemsQuantity[j] == 1)
                             {
@@ -138,7 +138,7 @@ public class CraftManager : MonoBehaviour
                 {
                     for (int a = 0; a < craftItems.Count; a++)
                     {
-                        if (craftItems[a] == "CrystalDrop")
+                        if (craftItems[a] == "Crystal")
                         {
                             if (craftItemsQuantity[a] == 3)
                             {
@@ -173,17 +173,17 @@ public class CraftManager : MonoBehaviour
                     }
                 }
              }
-        }*/
+        }
     }
 
-    /*public void RemoveFromInventory()
+    public void RemoveFromInventory()
     {
         craftItem = CraftedContent.GetComponentInChildren<CraftItem>();
         craftItem.RemoveCraftItem();
-        InventoryManager.Instance.ListItems();
+        //InventoryManager.Instance.ListItems();
     }
 
-    public void AddToInventory()
+    /*public void AddToInventory()
     {
         if (GotItem == true)
         {

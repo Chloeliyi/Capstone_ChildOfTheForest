@@ -304,7 +304,6 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            //Debug.Log("T is pressed");
             if (projectile != null && projectile.activeSelf)
             {
                 Throw();
@@ -313,6 +312,7 @@ public class GameManager : MonoBehaviour
 
             if (Nearwater)
             {
+                Debug.Log("Drink water");
                 IncreaseWater(2);
             }
         }
@@ -747,7 +747,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Food:" + CurrentFood);
     }
 
-    public InventoryItemController inventoryItemController;
+    //public InventoryItemController inventoryItemController;
 
     public void IncreaseFood(int value)
     {
@@ -786,13 +786,24 @@ public class GameManager : MonoBehaviour
         Waterslider.maxValue = MaxWater;
         Waterslider.value = CurrentWater;
         Debug.Log("Water:" + CurrentWater);
-        //StaminaText.text = $"Stamina:{CurrentStamina}";
     }
 
     public void IncreaseWater(int value)
     {
-        CurrentWater += value;
-        Waterslider.value = CurrentWater;
-        //StaminaText.text = $"Stamina:{CurrentStamina}";
+        if (CurrentWater <= MaxWater)
+        {
+            CurrentWater += value;
+            if (CurrentWater >= MaxWater)
+            {
+                CurrentWater = MaxWater;
+                Waterslider.value = CurrentWater;
+            }
+            else
+            {
+                Waterslider.value = CurrentWater;
+                //WaterText.text = $"Water:{CurrentWater}";
+                Debug.Log("Water:" + CurrentWater);
+            }
+        }
     }
 }

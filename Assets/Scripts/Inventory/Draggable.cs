@@ -7,23 +7,34 @@ using TMPro;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    //private InventoryItemController inventoryItemController;
+    public GameObject ItemContent;
+    public Transform ItemSlot;
     public Transform IvenSlot;
     public Transform IvenMenu;
     [SerializeField] private Image image;
 
+    [SerializeField] private InventoryItemController itemData;
+
     private void Start()
     {
-        image = this.GetComponent<Image>();
+        itemData = this.GetComponentInParent<InventoryItemController>();
+        image = this.GetComponentInChildren<Image>();
+        Debug.Log("Can drag item");
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //Debug.Log(item.itemName + " begin drag");
-        IvenSlot = transform.parent;
+        Debug.Log("Item Name : " + itemData.itemName);
+        Debug.Log("Item Sprite : " + itemData.itemSprite);
+        Debug.Log("Item Quantity : " + itemData.quantity);
+        ItemSlot = transform.parent;
+        Debug.Log(ItemSlot);
+        IvenSlot = ItemSlot.parent;
         IvenMenu = IvenSlot.parent;
         //transform.SetParent(IvenMenu);
+
         transform.SetParent(transform.root);
+        Debug.Log(transform.root);
         transform.SetAsLastSibling();
         image.raycastTarget = false;
     }
@@ -36,9 +47,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        //Debug.Log(item.itemName + " end drag");
-        transform.SetParent(IvenSlot);
+        Debug.Log(" end drag");
+        //transform.SetParent(IvenSlot);
         //Debug.Log("Parent : " + IvenSlot);
+        transform.SetParent(ItemSlot);
         transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         image.raycastTarget = true;
     }
