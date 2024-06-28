@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rib
   m_EditorClassIdentifier: 
   id: 11
-  itemName: Rib
+  itemName: Meat
   value: 10
   durability: 10
   quantity: 0
