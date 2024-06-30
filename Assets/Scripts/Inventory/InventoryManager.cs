@@ -52,6 +52,7 @@ public class InventoryManager : MonoBehaviour
         {
             itemSlot[i].selectedShader.SetActive(false);
             itemSlot[i].thisItemSelected = false;
+            itemSlot[i].isDraggable = false;
         }
     }
     /*public static InventoryManager Instance;

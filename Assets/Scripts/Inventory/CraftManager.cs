@@ -196,7 +196,7 @@ public class CraftManager : MonoBehaviour
         
         for (int i = 0; i < craftSlot.Length; i++) 
         {
-            /*if (counter = 0)
+            if (counter == 0)
             {
                 if (craftSlot[i].draggableItem.itemData.itemName == "Branch")
                 {
@@ -206,9 +206,17 @@ public class CraftManager : MonoBehaviour
                         craftSlot[i].draggableItem.itemData.quantity = 0;
                         craftSlot[i].draggableItem.itemData.itemName = "";
                         craftSlot[i].draggableItem.itemData.itemSprite = null;
-                        craftSlot[i].draggableItem.itemData.itemDesc = "";
+                        craftSlot[i].draggableItem.itemData.itemDescription = "";
                     }
                 }
+            }
+            /*else if (counter == 1)
+            {
+
+            }
+            else if (counter == 2)
+            {
+
             }*/
             craftSlot[i].RemoveSlotItem();
         }
@@ -223,14 +231,14 @@ public class CraftManager : MonoBehaviour
         if (GotItem == true)
         {
             Debug.Log("Add Item To Inventory");
-            /*inventoryManager.leftOverItems = inventoryManager.AddItem(CraftableItems[counter].itemName, quantity, CraftableItems[counter].icon, CraftableItems[counter].itemDesc);
+            inventoryManager.leftOverItems = inventoryManager.AddItem(CraftableItems[counter].itemName, quantity, CraftableItems[counter].icon, CraftableItems[counter].itemDesc);
             if (inventoryManager.leftOverItems <= 0)
             {
             }
             else
             {
             quantity = inventoryManager.leftOverItems;
-            }*/
+            }
 
             craftItemName.Clear();
             craftItemsQuantity.Clear();

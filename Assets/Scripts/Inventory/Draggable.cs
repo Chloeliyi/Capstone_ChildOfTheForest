@@ -11,6 +11,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     public Transform ItemSlot;
     public Transform IvenSlot;
     public Transform IvenMenu;
+    public Transform currentSlot;
     [SerializeField] private Image image;
 
     public InventoryItemController itemData;
@@ -28,7 +29,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         Debug.Log("Item Sprite : " + itemData.itemSprite);
         Debug.Log("Item Quantity : " + itemData.quantity);
         ItemSlot = transform.parent;
-        Debug.Log(ItemSlot.name);
+        currentSlot = transform.parent;
         IvenSlot = ItemSlot.parent;
         IvenMenu = IvenSlot.parent;
         //transform.SetParent(IvenMenu);
@@ -59,7 +60,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     public void ReturnToPosition()
     {
         Debug.Log("Return to position");
-        transform.SetParent(ItemSlot);
+        transform.SetParent(currentSlot);
         gameObject.transform.localPosition = new Vector3(0, 0, 0);
 
     }
