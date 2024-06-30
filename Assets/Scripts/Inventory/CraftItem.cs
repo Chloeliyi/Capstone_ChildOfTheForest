@@ -70,10 +70,12 @@ public class CraftItem : MonoBehaviour, IDropHandler
     public void RemoveSlotItem()
     {
         Debug.Log("Remove Craft Item");
-        draggableItem.transform.SetParent(draggableItem.ItemSlot);
-        draggableItem.transform.localPosition = new Vector3(0f, 0f, 0f);
-            
-        //draggableItem.RemoveItem();
-        //InventoryManager.Instance.ClearContent();
+        if (draggableItem != null)
+        {
+            draggableItem.ReturnToPosition();
+        }
+        //draggableItem.transform.SetParent(draggableItem.ItemSlot);
+        //draggableItem.transform.localPosition = new Vector3(0f, 0f, 0f);
+        
     }
 }
