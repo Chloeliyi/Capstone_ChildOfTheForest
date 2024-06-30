@@ -19,6 +19,8 @@ TagManager:
   - Wendigo
   - Bear
   - Wolf
+  - Enemy
+  - Water
   layers:
   - Default
   - TransparentFX
