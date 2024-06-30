@@ -10,23 +10,18 @@ public class CraftItem : MonoBehaviour, IDropHandler
     public string craftItemName;
     public int itemQuantity;
 
-    [SerializeField] private Image craftImage;
-    [SerializeField] private TMP_Text craftQuantity;
+    //public Image craftImage;
+    //public TMP_Text craftQuantity;
 
     public CraftManager craftManager;
 
-    private InventoryItemController draggableData;
-
-    private Draggable draggableItem;
+    public Draggable draggableItem;
 
     private void Start ()
     {
         craftManager = GameObject.Find("CraftManager").GetComponent<CraftManager>();
-        craftImage = this.GetComponentInChildren<Image>();
-        //this.GetComponentInChildren<Image>().enabled = false;
-
-        craftQuantity = this.GetComponentInChildren<TMP_Text>();
-        //this.GetComponentInChildren<TMP_Text>().enabled = false;
+        //craftImage.enabled = false;
+        //craftQuantity.text = "";
     }
     public void OnDrop(PointerEventData eventData)
     {
@@ -38,22 +33,31 @@ public class CraftItem : MonoBehaviour, IDropHandler
             Debug.Log("Item is in slot");
             GameObject dropped = eventData.pointerDrag;
             draggableItem = dropped.GetComponent<Draggable>();
-            draggableItem.IvenSlot = transform;
+            draggableItem.ItemSlot = transform;
+            //draggableItem.IvenSlot = transform;
+            //draggableItem.IvenSlot = draggableItem.ItemSlot;
             //transform.SetParent(draggableItem.ItemSlot);
-            draggableData = dropped.GetComponent<InventoryItemController>();
-            Debug.Log("transform: " + transform.position);
+            //transform.localPosition = new Vector3(0f, 0f, 0f);
+
+            craftItemName = draggableItem.itemData.itemName;
+            itemQuantity = draggableItem.itemData.quantity;
+            Debug.Log("Item Name : " + craftItemName);
+            Debug.Log("Quantity " + itemQuantity);
+            craftManager.Add(craftItemName);
+            craftManager.AddQuantity(itemQuantity);
+            
+            /*draggableData = dropped.GetComponent<InventoryItemController>();
 
             craftItemName = draggableData.itemName;
-            Debug.Log(craftItemName);
+            Debug.Log("Item Name " + craftItemName);
             itemQuantity = draggableData.quantity;
+            Debug.Log("Quantity " + itemQuantity);
             craftManager.Add(craftItemName);
             craftManager.AddQuantity(itemQuantity);
 
-            //craftImage.sprite = draggableData.itemSprite;
-            //this.GetComponentInChildren<Image>().enabled = true;
-
-            //craftQuantity.text = draggableData.quantity.ToString();
-            //this.GetComponentInChildren<TMP_Text>().enabled = true;
+            craftImage.sprite = draggableData.itemSprite;
+            craftImage.enabled = true;
+            craftQuantity.text = draggableData.quantity.ToString();*/
 
         }
         else
@@ -63,9 +67,12 @@ public class CraftItem : MonoBehaviour, IDropHandler
         }
     }
 
-    public void RemoveCraftItem()
+    public void RemoveSlotItem()
     {
         Debug.Log("Remove Craft Item");
+        draggableItem.transform.SetParent(draggableItem.ItemSlot);
+        draggableItem.transform.localPosition = new Vector3(0f, 0f, 0f);
+            
         //draggableItem.RemoveItem();
         //InventoryManager.Instance.ClearContent();
     }

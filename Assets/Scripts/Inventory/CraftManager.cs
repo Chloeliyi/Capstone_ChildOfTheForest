@@ -11,13 +11,15 @@ public class CraftManager : MonoBehaviour
 
     public List<Item> CraftableItems = new List<Item>();
 
-    public List<string> craftItems = new List<string>();
+    public List<string> craftItemName = new List<string>();
 
     public List<int> craftItemsQuantity = new List<int>();
 
-    public Transform CraftedContent;
+    //public Transform CraftedContent;
 
-    private CraftItem craftItem;
+    public CraftItem[] craftSlot;
+
+    public InventoryItemController[] itemData;
 
     [SerializeField] private int counter;
 
@@ -27,15 +29,22 @@ public class CraftManager : MonoBehaviour
 
     public bool GotItem = false;
 
-    public void Add(string craftItem)
+    [SerializeField] private InventoryManager inventoryManager;
+
+    void Start()
     {
-        craftItems.Add(craftItem);
-        CreateItem();
+        inventoryManager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
+    }
+
+    public void Add(string itemName)
+    {
+        craftItemName.Add(itemName);
     }
 
     public void AddQuantity(int itemQuantity)
     {
         craftItemsQuantity.Add(itemQuantity);
+        CreateItem();
     }
 
     public void CreateItem()
@@ -106,15 +115,20 @@ public class CraftManager : MonoBehaviour
                 }
             }
         }*/
-        for (int i = 0; i < craftItems.Count; i++)
+
+        //itemData = craftItems.GetComponentInChildren<InventoryItemController>();
+
+        for (int i = 0; i < craftItemName.Count; i++)
         {
-             if (craftItems[i] == "Branch")
+             if (craftItemName[i] == "Branch")
              {
+                Debug.Log("Branch");
+                Debug.Log("Index : " + i);
                 if (craftItemsQuantity[i] == 1)
                 {
-                    for (int j = 0; j < craftItems.Count; j++)
+                    for (int j = 0; j < craftItemName.Count; j++)
                     {
-                        if (craftItems[j] == "Crystal")
+                        if (craftItemName[j] == "Crystal")
                         {
                             if (craftItemsQuantity[j] == 1)
                             {
@@ -136,9 +150,9 @@ public class CraftManager : MonoBehaviour
                 }
                 else if (craftItemsQuantity[i] == 2)
                 {
-                    for (int a = 0; a < craftItems.Count; a++)
+                    for (int a = 0; a < craftItemName.Count; a++)
                     {
-                        if (craftItems[a] == "Crystal")
+                        if (craftItemName[a] == "Crystal")
                         {
                             if (craftItemsQuantity[a] == 3)
                             {
@@ -178,31 +192,62 @@ public class CraftManager : MonoBehaviour
 
     public void RemoveFromInventory()
     {
-        craftItem = CraftedContent.GetComponentInChildren<CraftItem>();
-        craftItem.RemoveCraftItem();
+        Debug.Log("Remove craftItem From Inventory");
+        /*for (int i = 0; i < craftSlot.Length; i++) 
+        {
+            if (counter = 0)
+            {
+                if (craftSlot[i].draggableItem.itemData.itemName == "Branch")
+                {
+                    craftSlot[i].draggableItem.itemData.quantity -= 3;
+                    if (craftSlot[i].draggableItem.itemData.quantity == 0)
+                    {
+                        craftSlot[i].draggableItem.itemData.quantity = 0;
+                        craftSlot[i].draggableItem.itemData.itemName = "";
+                        craftSlot[i].draggableItem.itemData.itemSprite = null;
+                        craftSlot[i].draggableItem.itemData.itemDesc = "";
+                    }
+                }
+            }
+            craftSlot[i].RemoveSlotItem();
+        }*/
+        //craftSlot = CraftedContent.GetComponentInChildren<CraftItem>();
+        //craftSlot.RemoveSlotItem();
         //InventoryManager.Instance.ListItems();
     }
 
-    /*public void AddToInventory()
+    [SerializeField] private int quantity;
+
+    public void AddToInventory()
     {
         if (GotItem == true)
         {
-            Debug.Log("Add To Inventory");
-            InventoryManager.Instance.Add(CraftableItems[counter]);
+            Debug.Log("Add Item To Inventory");
+            //InventoryManager.Instance.Add(CraftableItems[counter]);
 
-            craftItems.Clear();
+            /*inventoryManager.leftOverItems = inventoryManager.AddItem(CraftableItems[counter].itemName, quantity, CraftableItems[counter].icon, CraftableItems[counter].itemDesc);
+            if (inventoryManager.leftOverItems <= 0)
+            {
+            }
+            else
+            {
+            quantity = inventoryManager.leftOverItems;
+            }*/
 
-        CraftedName.text = null;
-        CraftedIcon.sprite = null;
+            craftItemName.Clear();
+            craftItemsQuantity.Clear();
 
-        GotItem = false;
+            CraftedName.text = null;
+            CraftedIcon.sprite = null;
 
-        RemoveFromInventory();
+            GotItem = false;
+
+            RemoveFromInventory();
 
         }
         else if (GotItem == false)
         {
             Debug.Log("Got nothing to add");
         }
-    }*/
+    }
 }

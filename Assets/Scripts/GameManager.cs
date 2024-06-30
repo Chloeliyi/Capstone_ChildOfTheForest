@@ -411,12 +411,20 @@ public class GameManager : MonoBehaviour
         //InventoryManager.Instance.ListItems();
     }
 
+    public CraftItem[] craftSlot;
+
     public void CloseCraftMenu()
     {
         Time.timeScale = 1f;
         BigIvenMenu.gameObject.SetActive(false);
         ItemDescMenu.gameObject.SetActive(true);
         CraftMenu.gameObject.SetActive(false);
+
+        /*for (int i = 0; i < craftSlot.Length; i++) 
+        {
+            craftSlot[i].RemoveSlotItem();
+        }*/
+
         //InventoryManager.Instance.ClearContent();
     }
 

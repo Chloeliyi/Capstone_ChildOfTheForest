@@ -16,16 +16,17 @@ public class ItemPickup : MonoBehaviour
     {
         inventoryManager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
     }
+
     public void PickUp()
     {
-        int leftOverItems = inventoryManager.AddItem(Item.itemName, quantity, Item.icon, Item.itemDesc);
-        if (leftOverItems <= 0)
+        inventoryManager.leftOverItems = inventoryManager.AddItem(Item.itemName, quantity, Item.icon, Item.itemDesc);
+        if (inventoryManager.leftOverItems <= 0)
         {
             Destroy(gameObject);
         }
         else
         {
-            quantity = leftOverItems;
+            quantity = inventoryManager.leftOverItems;
         }
     }
 

@@ -7,13 +7,13 @@ using TMPro;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    public GameObject ItemContent;
+    //public GameObject ItemContent;
     public Transform ItemSlot;
     public Transform IvenSlot;
     public Transform IvenMenu;
     [SerializeField] private Image image;
 
-    [SerializeField] private InventoryItemController itemData;
+    public InventoryItemController itemData;
 
     private void Start()
     {
@@ -28,7 +28,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         Debug.Log("Item Sprite : " + itemData.itemSprite);
         Debug.Log("Item Quantity : " + itemData.quantity);
         ItemSlot = transform.parent;
-        Debug.Log(ItemSlot);
+        Debug.Log(ItemSlot.name);
         IvenSlot = ItemSlot.parent;
         IvenMenu = IvenSlot.parent;
         //transform.SetParent(IvenMenu);
@@ -47,11 +47,12 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log(" end drag");
+        Debug.Log("End drag");
         //transform.SetParent(IvenSlot);
-        //Debug.Log("Parent : " + IvenSlot);
         transform.SetParent(ItemSlot);
+        gameObject.transform.localPosition = new Vector3(0, 0, 0);
         transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+        Debug.Log(gameObject.transform.rotation);
         image.raycastTarget = true;
     }
 }

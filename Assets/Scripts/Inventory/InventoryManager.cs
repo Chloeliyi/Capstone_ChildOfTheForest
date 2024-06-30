@@ -13,6 +13,8 @@ public class InventoryManager : MonoBehaviour
 
     public Item[] itemSOs;
 
+    public int leftOverItems;
+
     public bool UseItem(string itemName)
     {
         for (int i = 0; i < itemSOs.Length; i++) 
