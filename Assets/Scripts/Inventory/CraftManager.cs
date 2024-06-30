@@ -193,9 +193,10 @@ public class CraftManager : MonoBehaviour
     public void RemoveFromInventory()
     {
         Debug.Log("Remove craftItem From Inventory");
-        /*for (int i = 0; i < craftSlot.Length; i++) 
+        
+        for (int i = 0; i < craftSlot.Length; i++) 
         {
-            if (counter = 0)
+            /*if (counter = 0)
             {
                 if (craftSlot[i].draggableItem.itemData.itemName == "Branch")
                 {
@@ -208,12 +209,11 @@ public class CraftManager : MonoBehaviour
                         craftSlot[i].draggableItem.itemData.itemDesc = "";
                     }
                 }
-            }
+            }*/
             craftSlot[i].RemoveSlotItem();
-        }*/
+        }
         //craftSlot = CraftedContent.GetComponentInChildren<CraftItem>();
         //craftSlot.RemoveSlotItem();
-        //InventoryManager.Instance.ListItems();
     }
 
     [SerializeField] private int quantity;
@@ -223,8 +223,6 @@ public class CraftManager : MonoBehaviour
         if (GotItem == true)
         {
             Debug.Log("Add Item To Inventory");
-            //InventoryManager.Instance.Add(CraftableItems[counter]);
-
             /*inventoryManager.leftOverItems = inventoryManager.AddItem(CraftableItems[counter].itemName, quantity, CraftableItems[counter].icon, CraftableItems[counter].itemDesc);
             if (inventoryManager.leftOverItems <= 0)
             {

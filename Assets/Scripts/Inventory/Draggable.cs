@@ -55,4 +55,12 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         Debug.Log(gameObject.transform.rotation);
         image.raycastTarget = true;
     }
+
+    public void ReturnToPosition()
+    {
+        Debug.Log("Return to position");
+        transform.SetParent(ItemSlot);
+        gameObject.transform.localPosition = new Vector3(0, 0, 0);
+
+    }
 }
