@@ -65,23 +65,6 @@ public class HintController : MonoBehaviour
                         originalRotations[examinedObject] = examinedObject.rotation;
                     }
                 }
-                /*else if (hit.collider.CompareTag("Axe"))
-                {
-                    axeController.SpawnAxe();
-                }
-                else if (hit.collider.CompareTag("Tree"))
-                {   
-                    Debug.Log("Tree");
-                    if (GameManager.Instance.activeAxe == true)
-                    {
-                        Debug.Log("Can cut down tree");
-                        treeController.CutDownTree();
-                    }
-                    else
-                    {
-                        Debug.Log("Cannot cut down tree");
-                    }
-                }*/
             }
         }
         //It then checks if the player is close to an interactable object using the CheckUserClose() method.
@@ -131,6 +114,7 @@ public class HintController : MonoBehaviour
     // This method is called when the player is examining an object.
     // It moves the examined object towards the offset object and allows the player to rotate it based on mouse movement.
 
+    public int rotation = 90;
     void Examine()
     {
         if (examinedObject != null)
@@ -139,8 +123,16 @@ public class HintController : MonoBehaviour
 
             Vector3 deltaMouse = Input.mousePosition - lastMousePosition;
             float rotationSpeed = 1.0f;
-            examinedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);
-            examinedObject.Rotate(deltaMouse.y * rotationSpeed * Vector3.left, Space.World);
+            //examinedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);
+            //examinedObject.Rotate(deltaMouse.y * rotationSpeed * Vector3.left, Space.World);
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                Debug.Log("RightArrow");
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                Debug.Log("LeftArrow");
+            }
             lastMousePosition = Input.mousePosition;
         }
     }

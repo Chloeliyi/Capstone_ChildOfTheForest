@@ -32,10 +32,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         currentSlot = transform.parent;
         IvenSlot = ItemSlot.parent;
         IvenMenu = IvenSlot.parent;
-        //transform.SetParent(IvenMenu);
 
         transform.SetParent(transform.root);
         Debug.Log(transform.root);
+        //transform.SetParent(IvenMenu);
         transform.SetAsLastSibling();
         image.raycastTarget = false;
     }
@@ -53,7 +53,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         transform.SetParent(ItemSlot);
         gameObject.transform.localPosition = new Vector3(0, 0, 0);
         transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-        Debug.Log(gameObject.transform.rotation);
+        itemData.thisItemSelected = false;
+        itemData.selectedShader.SetActive(false);
+        //itemData.isDraggable = false;
         image.raycastTarget = true;
     }
 
@@ -62,6 +64,5 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         Debug.Log("Return to position");
         transform.SetParent(currentSlot);
         gameObject.transform.localPosition = new Vector3(0, 0, 0);
-
     }
 }

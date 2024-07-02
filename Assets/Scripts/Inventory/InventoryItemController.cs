@@ -19,9 +19,9 @@ public class InventoryItemController : MonoBehaviour, IPointerClickHandler/*, IB
     [SerializeField] private int maxNumberOfItems;
 
     [Header("Item data")]
-    [SerializeField] private TMP_Text itemNameText;
-    [SerializeField] private TMP_Text quantityText;
-    [SerializeField] private Image itemImage;
+    public TMP_Text itemNameText;
+    public TMP_Text quantityText;
+    public Image itemImage;
 
     [Header("Item description slot")]
     public Image ItemDescriptionImage;
@@ -140,12 +140,13 @@ public class InventoryItemController : MonoBehaviour, IPointerClickHandler/*, IB
         }
     }
 
-    private void EmptySlot()
+    public void EmptySlot()
     {
         itemNameText.text = "";
         quantityText.enabled = false;
         //itemImage.sprite = emptySprite;
         itemImage.sprite = null;
+        itemImage.enabled = false;
         ItemDescriptionNameText.text = "";
         ItemDescriptionText.text = "";
         //ItemDescriptionImage.sprite = emptySprite;
