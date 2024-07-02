@@ -56,6 +56,12 @@ public class WolfController : MonoBehaviour
     public bool activeCorruptWolf;
 
     public GameObject Meat;
+
+    void Awake()
+    {
+        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+    }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();

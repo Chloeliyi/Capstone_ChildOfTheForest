@@ -45,6 +45,11 @@ public class BearController : MonoBehaviour
 
     public GameObject Meat;
 
+    void Awake()
+    {
+        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+    }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
