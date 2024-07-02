@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public float minXPos;
+    public float maxXPos;
+    public float minZPos;
+    public float maxZPos;
     private float xPos;
     private float zPos;
     private float spawnWait;
@@ -15,6 +19,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] animalPrefabs;
     private int randAnim;
     private int animCount;
+    public int maxAnimCount;
 
     // Start is called before the first frame update
     void Start()
@@ -34,14 +39,14 @@ public class SpawnManager : MonoBehaviour
         
         while(stop)
         {
-            xPos = Random.Range(-150, -670);
-            zPos = Random.Range(230, 640);
+            xPos = Random.Range(minXPos, maxXPos);
+            zPos = Random.Range(minZPos, maxZPos);
             float yPos = Terrain.activeTerrain.SampleHeight(new Vector3(xPos, 0, zPos));
 
             randAnim = Random.Range(0, animalPrefabs.Length);
             Vector3 spawnPos = new Vector3(xPos, yPos, zPos);
 
-            if (animCount < 15)
+            if (animCount < maxAnimCount)
             {
                 animCount++;
                 Instantiate (animalPrefabs[randAnim], spawnPos, animalPrefabs[randAnim].transform.rotation);
