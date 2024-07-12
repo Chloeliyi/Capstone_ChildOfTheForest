@@ -22,14 +22,14 @@ public class Item : ScriptableObject
         {
             if (GameManager.Instance.CurrentFood == GameManager.Instance.MaxFood)
             {
-                Debug.Log("Cannot eat. Health is full");
                 return false;
+                Debug.Log("Cannot eat. Health is full");
             }
             else
             {
+                return true;
                 Debug.Log("Eat Berry : " + value);
                 GameManager.Instance.IncreaseFood(value);
-                return true;
             }
         }
 
@@ -37,47 +37,48 @@ public class Item : ScriptableObject
         {
             if (GameManager.Instance.CurrentFood == GameManager.Instance.MaxFood)
             {
-                Debug.Log("Cannot eat. Health is full");
                 return false;
+                Debug.Log("Cannot eat. Health is full");
             }
             else
             {
+                return true;
                 Debug.Log("Eat Meat : " + value);
                 GameManager.Instance.IncreaseFood(value);
-                return true;
             }
         }
-        return false;
 
         if (itemType == ItemType.Branch)
         {
+            return false;
             Debug.Log("Branch should be draggable");
-            return true;
         }
 
         if (itemType == ItemType.Crystal)
         {
+            return false;
             Debug.Log("Crystal should be draggable");
-            return true;
         }
 
         if (itemType == ItemType.Torch)
         {
+            Debug.Log("Spawn Torch");
             GameManager.Instance.SpawnTorch();
             return true;
         }
 
         if (itemType == ItemType.Axe)
         {
-            GameManager.Instance.SpawnAxe(durability);
             return true;
+            GameManager.Instance.SpawnAxe(durability);
         }
 
         if (itemType == ItemType.Spear)
         {
-            GameManager.Instance.SpawnSpear(durability);
             return true;
+            GameManager.Instance.SpawnSpear(durability);
         }
+        return false;
     }
 
     public enum ItemType

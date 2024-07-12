@@ -97,14 +97,21 @@ public class InventoryItemController : MonoBehaviour, IPointerClickHandler/*, IB
         if (thisItemSelected)
         {
             bool usable = inventoryManager.UseItem(itemName);
+            Debug.Log(itemName);
             if (usable)
             {
+                Debug.Log("Usable");
                 this.quantity -= 1;
                 quantityText.text = this.quantity.ToString();
                 if (this.quantity <= 0)
                 {   
                     EmptySlot();
                 }
+            }
+
+            if (!usable)
+            {
+                Debug.Log("Not usable");
             }
 
             if (itemName == "Branch" ||itemName == "Crystal")

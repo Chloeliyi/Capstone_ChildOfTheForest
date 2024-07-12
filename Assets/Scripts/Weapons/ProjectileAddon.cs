@@ -16,6 +16,8 @@ public class ProjectileAddon : MonoBehaviour
 
     [SerializeField] private int SpearDurability;
 
+    public GameObject SpearPickUp;
+
     /*public Enemy wendigoController;
     public BearController bearController;
     public WolfController wolfController;*/
@@ -35,6 +37,7 @@ public class ProjectileAddon : MonoBehaviour
             if (PickUpSpear == true)
             {
                 //Destroy(gameObject);
+                SpearPickUp.SetActive(false);
                 GameManager.Instance.SpawnSpear(SpearDurability);
                 box.isTrigger = false;
             }
@@ -86,6 +89,20 @@ public class ProjectileAddon : MonoBehaviour
             WolfController wolfController = collision.gameObject.GetComponent<WolfController>();
             SpearDamage();
             wolfController.TakeSpearDamage(SpearItem.value);
+            box.isTrigger = true;
+
+            //Destroy(gameObject);
+
+        }
+
+        else if (collision.gameObject.tag == "Yeti")
+        {
+            rb.isKinematic = true;
+            DeparentProjectile();
+            Debug.Log(collision.gameObject.tag + " was hit");
+            YetiController yetiController = collision.gameObject.GetComponent<YetiController>();
+            SpearDamage();
+            yetiController.TakeSpearDamage(SpearItem.value);
             box.isTrigger = true;
 
             //Destroy(gameObject);
@@ -148,6 +165,7 @@ public class ProjectileAddon : MonoBehaviour
         {
             Debug.Log("Player is within range of spear");
             PickUpSpear = true;
+            SpearPickUp = gameObject;
         }
     }
 

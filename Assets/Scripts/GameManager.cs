@@ -302,7 +302,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(0))
         {
             if (projectile != null && projectile.activeSelf)
             {
@@ -317,7 +317,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetMouseButtonDown(1))
         {
             if (projectile != null && projectile.activeSelf)
             {
@@ -404,28 +404,20 @@ public class GameManager : MonoBehaviour
 
     public void OpenCraftMenu()
     {
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         BigIvenMenu.gameObject.SetActive(true);
         ItemDescMenu.gameObject.SetActive(false);
         CraftMenu.gameObject.SetActive(true);
-        //InventoryManager.Instance.ListItems();
     }
 
     public CraftItem[] craftSlot;
 
     public void CloseCraftMenu()
     {
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         BigIvenMenu.gameObject.SetActive(false);
         ItemDescMenu.gameObject.SetActive(true);
         CraftMenu.gameObject.SetActive(false);
-
-        /*for (int i = 0; i < craftSlot.Length; i++) 
-        {
-            craftSlot[i].RemoveSlotItem();
-        }*/
-
-        //InventoryManager.Instance.ClearContent();
     }
 
     GameObject Wallpart;
@@ -595,7 +587,7 @@ public class GameManager : MonoBehaviour
     public void SpawnSpear(int durability)
     {
         readyToThrow = false;
-        projectile = Instantiate(Spear, parent);
+        projectile = Instantiate(Spear, playerCamera);
         projectileRb = projectile.GetComponent<Rigidbody>();
         projectileRb.constraints = RigidbodyConstraints.FreezeAll;
         projectileRb.velocity = Vector3.zero;
@@ -673,11 +665,11 @@ public class GameManager : MonoBehaviour
     {
         projectileRb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionX;
         stabMotion += 1;
-        projectile.transform.localPosition = new Vector3(0f, 0f, stabMotion);
+        projectile.transform.localPosition = new Vector3(0.5f, 0.3f, stabMotion);
         yield return new WaitForSeconds(1f);
         
         stabMotion -= 1;
-        projectile.transform.localPosition = new Vector3(0f, 0f, stabMotion);
+        projectile.transform.localPosition = new Vector3(0.5f, 0.3f, stabMotion);
         projectileRb.constraints = RigidbodyConstraints.FreezeAll;
     }
 

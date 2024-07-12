@@ -13,11 +13,13 @@ public class AxeController : MonoBehaviour
     public bool NearWendigo;
     public bool NearBear;
     public bool NearWolf;
+    public bool NearYeti;
     public bool NearCrystal;
 
     public Enemy wendigoController;
     public BearController bearController;
     public WolfController wolfController;
+    public YetiController yetiController;
     public CrystalController crystalController;
 
     public int AxeDurability;
@@ -89,6 +91,12 @@ public class AxeController : MonoBehaviour
                 wolfController.TakeAxeDamage(AxeItem.value);
                 //AxeDamage();
             }
+            if (NearYeti)
+            {
+                Debug.Log("Attack yeti");
+                yetiController.TakeAxeDamage(AxeItem.value);
+                //AxeDamage();
+            }
 
             if (AxeDurability <= 0)
             {
@@ -119,7 +127,7 @@ public class AxeController : MonoBehaviour
             NearCrystal = true; 
             crystalController = collision.gameObject.GetComponent<CrystalController>();
         }
-        if (collision.gameObject.tag == "Wendigo")
+        else if (collision.gameObject.tag == "Wendigo")
         {
             Debug.Log("Near wendigo");
             NearWendigo = true; 
@@ -139,6 +147,13 @@ public class AxeController : MonoBehaviour
             NearWolf = true; 
             wolfController = collision.gameObject.GetComponent<WolfController>();
         }
+
+        else if (collision.gameObject.tag == "Yeti")
+        {
+            Debug.Log("Near yeti");
+            NearYeti = true; 
+            yetiController = collision.gameObject.GetComponent<YetiController>();
+        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -148,7 +163,7 @@ public class AxeController : MonoBehaviour
             Debug.Log("Near crystal");
             NearCrystal = false; 
         }
-        if (collision.gameObject.tag == "Wendigo")
+        else if (collision.gameObject.tag == "Wendigo")
         {
             Debug.Log("Leaving wendigo");
             NearWendigo = false; 
@@ -165,6 +180,13 @@ public class AxeController : MonoBehaviour
             Debug.Log("Leaving wolf");
             NearWolf = false; 
             wolfController = null;
+        }
+
+        else if (collision.gameObject.tag == "Yeti")
+        {
+            Debug.Log("Leaving yeti");
+            NearYeti = false; 
+            yetiController = null;
         }
     }
 

@@ -22,6 +22,7 @@ public class InventoryManager : MonoBehaviour
             if (itemSOs[i].itemName == itemName)
             {
                 bool usable = itemSOs[i].UseItem();
+                Debug.Log("Usable is " + usable);
                 return usable;
             }
         }

@@ -30,6 +30,7 @@ public class CraftManager : MonoBehaviour
     public bool GotItem = false;
 
     [SerializeField] private InventoryManager inventoryManager;
+    
 
     void Start()
     {
@@ -49,73 +50,6 @@ public class CraftManager : MonoBehaviour
 
     public void CreateItem()
     {
-        /*for (int i = 0; i < craftItems.Count; i++)
-        {
-            if (craftItems[i] == "Branch")
-            {
-                for (int j = 0; j < craftItems.Count; j++)
-                {
-                    if (craftItems[j] == "Crystal")
-                    {
-                        Debug.Log("Can create spear");
-                        GotItem = true;
-
-                        foreach (var item in CraftableItems)
-                        {
-                            if (item.itemName == "Spear")
-                            {
-                                counter = 1;
-                                CraftedName.text = CraftableItems[counter].itemName;
-                                CraftedIcon.sprite = CraftableItems[counter].icon;
-                            }
-                        }
-                    }
-                    else if (craftItems[j] == "Branch")
-                    {
-                        for (int a = 0; a < craftItems.Count; a++)
-                        {
-                            if (craftItems[a] == "Branch")
-                            {
-                                Debug.Log("Can create torch");
-                                GotItem = true;
-
-                                foreach (var item in CraftableItems)
-                                {
-                                    if (item.itemName == "Torch")
-                                    {
-                                        counter = 0;
-                                        CraftedName.text = CraftableItems[counter].itemName;
-                                        CraftedIcon.sprite = CraftableItems[counter].icon;
-                                    }
-                                }
-                            }
-                            else if (craftItems[a] == "Crystal")
-                            {
-                                for (int b = 0; b < craftItems.Count; b++)
-                                {
-                                    if (craftItems[b] == "Crystal")
-                                    {
-                                        Debug.Log("Can create axe");
-                                        GotItem = true;
-
-                                        foreach (var item in CraftableItems)
-                                        {
-                                            if (item.itemName == "Axe")
-                                            {
-                                                counter = 2;
-                                                CraftedName.text = CraftableItems[counter].itemName;
-                                                CraftedIcon.sprite = CraftableItems[counter].icon;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }*/
-
         for (int i = 0; i < craftItemName.Count; i++)
         {
              if (craftItemName[i] == "Branch")
@@ -216,6 +150,10 @@ public class CraftManager : MonoBehaviour
                             craftSlot[i].draggableItem.itemData.ItemDescriptionNameText.text = craftSlot[i].draggableItem.itemData.itemName;
                             craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;*/
                         }
+                        else
+                        {
+
+                        }
                     }
                 }
                 else if (counter == 1)
@@ -244,16 +182,6 @@ public class CraftManager : MonoBehaviour
                         if (craftSlot[i].draggableItem.itemData.quantity == 0)
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
-                            /*craftSlot[i].draggableItem.itemData.quantity = 0;
-                            craftSlot[i].draggableItem.itemData.quantityText.text = craftSlot[i].draggableItem.itemData.quantity.ToString();
-                            craftSlot[i].draggableItem.itemData.itemName = "";
-                            craftSlot[i].draggableItem.itemData.itemNameText.text = craftSlot[i].draggableItem.itemData.itemName;
-                            craftSlot[i].draggableItem.itemData.itemSprite = null;
-                            craftSlot[i].draggableItem.itemData.itemImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
-                            craftSlot[i].draggableItem.itemData.itemDescription = "";
-                            craftSlot[i].draggableItem.itemData.ItemDescriptionImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
-                            craftSlot[i].draggableItem.itemData.ItemDescriptionNameText.text = craftSlot[i].draggableItem.itemData.itemName;
-                            craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;*/
                         }
                     }
                 }
@@ -265,17 +193,6 @@ public class CraftManager : MonoBehaviour
                         if (craftSlot[i].draggableItem.itemData.quantity == 0)
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
-                            /*craftSlot[i].draggableItem.itemData.quantity = 0;
-                            craftSlot[i].draggableItem.itemData.quantityText.text = craftSlot[i].draggableItem.itemData.quantity.ToString();
-                            craftSlot[i].draggableItem.itemData.itemName = "";
-                            craftSlot[i].draggableItem.itemData.itemNameText.text = craftSlot[i].draggableItem.itemData.itemName;
-                            craftSlot[i].draggableItem.itemData.itemSprite = null;
-                            craftSlot[i].draggableItem.itemData.itemImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
-                            craftSlot[i].draggableItem.itemData.itemDescription = "";
-                            craftSlot[i].draggableItem.itemData.ItemDescriptionImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
-                            craftSlot[i].draggableItem.itemData.ItemDescriptionNameText.text = craftSlot[i].draggableItem.itemData.itemName;
-                            craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;*/
-
                         }
                     }
                     else if (craftSlot[i].draggableItem.itemData.itemName == "Crystal")
@@ -284,19 +201,14 @@ public class CraftManager : MonoBehaviour
                         if (craftSlot[i].draggableItem.itemData.quantity == 0)
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
-                            /*craftSlot[i].draggableItem.itemData.quantity = 0;
-                            craftSlot[i].draggableItem.itemData.quantityText.text = craftSlot[i].draggableItem.itemData.quantity.ToString();
-                            craftSlot[i].draggableItem.itemData.itemName = "";
-                            craftSlot[i].draggableItem.itemData.itemNameText.text = craftSlot[i].draggableItem.itemData.itemName;
-                            craftSlot[i].draggableItem.itemData.itemSprite = null;
-                            craftSlot[i].draggableItem.itemData.itemImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
-                            craftSlot[i].draggableItem.itemData.itemDescription = "";
-                            craftSlot[i].draggableItem.itemData.ItemDescriptionImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
-                            craftSlot[i].draggableItem.itemData.ItemDescriptionNameText.text = craftSlot[i].draggableItem.itemData.itemName;
-                            craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;*/
                         }
                     }
                 }
+            }
+            else
+            {
+                Debug.Log("Doesn't make item");
+                
             }
             craftSlot[i].RemoveSlotItem();
         }
@@ -306,9 +218,9 @@ public class CraftManager : MonoBehaviour
 
     public void AddToInventory()
     {
-        RemoveFromInventory();
         if (GotItem == true)
         {
+            RemoveFromInventory();
             Debug.Log("Add Item To Inventory");
             inventoryManager.leftOverItems = inventoryManager.AddItem(CraftableItems[counter].itemName, quantity, CraftableItems[counter].icon, CraftableItems[counter].itemDesc);
             if (inventoryManager.leftOverItems <= 0)

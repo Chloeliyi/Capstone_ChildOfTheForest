@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class YetiController : MonoBehaviour
 {
-    public static Enemy Instance;
+    public static YetiController Instance;
     [Header("Stats")]
     [SerializeField] private int health;
 
     [SerializeField] private int Enemydamage = 10;
 
-    [SerializeField] private GameObject Wendigo;
+    [SerializeField] private GameObject Yeti;
 
     public Transform playerTransform;
     [SerializeField]private NavMeshAgent agent;
@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    public bool activeWendigo;
+    public bool activeYeti;
 
     public GameObject Meat;
 
@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        Wendigo = transform.gameObject;
+        Yeti = transform.gameObject;
         health = 100;
     }
 
@@ -66,26 +66,26 @@ public class Enemy : MonoBehaviour
 
         if (timeManager.hours >= 20 || timeManager.hours <= 6)
         {
-            activeWendigo = true;
+            activeYeti = true;
         } 
         else
         {
-            activeWendigo = false;
+            activeYeti = false;
         }
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (activeWendigo == true)
+        if (activeYeti == true)
         {
-            Debug.Log("Wendigo is active");
+            Debug.Log("Yeti is active");
             if (!playerInSightRange && !playerInAttackRange) Patroling();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInSightRange && playerInAttackRange) AttackPlayer();
         }
         else
         {
-            Debug.Log("Wendigo is not active");
+            Debug.Log("Yeti is not active");
             animator.SetFloat("Speed", 0f);
         }
 
@@ -94,8 +94,8 @@ public class Enemy : MonoBehaviour
     public void Patroling()
     {
         Debug.Log("Patroling");
-        animator.SetFloat("Speed", 3f);
-        Debug.Log("Speed : " + agent.velocity.magnitude);
+        animator.SetFloat("Speed", 0.5f);
+        //Debug.Log("Speed : " + agent.velocity.magnitude);
 
         if (!walkPointSet) SearchWalkPoint();
 
@@ -119,23 +119,23 @@ public class Enemy : MonoBehaviour
 
     public void ChasePlayer()
     {
-        animator.SetFloat("Speed", 4f);
+        animator.SetFloat("Speed", 0.5f);
         Debug.Log("Chasing");
-        Debug.Log("Speed : " + agent.velocity.magnitude);
+        //Debug.Log("Speed : " + agent.velocity.magnitude);
         agent.SetDestination(playerTransform.position);
     }
 
     public void AttackPlayer()
     {
         Debug.Log("Attacking");
-        Debug.Log("Speed : " + agent.velocity.magnitude);
+        //Debug.Log("Speed : " + agent.velocity.magnitude);
         agent.SetDestination(transform.position);
         transform.LookAt(playerTransform);
 
         if (!alreadyAttacked)
         {
             //Code
-            //animator.SetFloat("Speed", 4.5f);
+            animator.SetFloat("Speed", 1f);
             animator.SetTrigger(attackAnim);
             GiveDamage();
 
@@ -172,10 +172,9 @@ public class Enemy : MonoBehaviour
 
     public void DestroyEnemy()
     {
-        Destroy(Wendigo);
-        //Wendigo.SetActive(false);
+        Destroy(Yeti);
         StartCoroutine(DeathTime());
-        //Instantiate(Meat, Wendigo.gameObject.transform.position, Wendigo.gameObject.transform.rotation);
+        //Instantiate(Meat, Yeti.gameObject.transform.position, Yeti.gameObject.transform.rotation);
     }
 
     public void GiveDamage()
@@ -184,10 +183,10 @@ public class Enemy : MonoBehaviour
 
         if (GameManager.Instance.CurrentHealth <= 0)
         {
-            Debug.Log("Wendigo stop");
+            Debug.Log("Yeti stop");
             playerInSightRange = false;
             playerInAttackRange = false;
-            animator.SetFloat("Speed", 3f);
+            //animator.SetFloat("Speed", 3f);
         }
 
         //StartCoroutine(AttackTime());
@@ -196,7 +195,7 @@ public class Enemy : MonoBehaviour
     IEnumerator DeathTime()
     {
         yield return new WaitForSeconds(3);
-        Destroy(Wendigo);
+        Destroy(Yeti);
         Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
     }
 }

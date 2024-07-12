@@ -98,14 +98,13 @@ public class FPSController : MonoBehaviour
             {
                 Debug.Log("No stamina left");
                 isRunning = false;
-                runSpeed = walkSpeed;
+                //runSpeed = walkSpeed;
             }
 
             // reduces movement speed to normal walking speed when shift key is not held down
             else if (!isRunning && Staminaslider.value >= 0)
             {
                 Debug.Log("Player is walking");
-                runSpeed = walkSpeed;
                 Staminaslider.value += 2f * Time.deltaTime;
                 //Debug.Log(Staminaslider.value);
             }
