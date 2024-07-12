@@ -21,6 +21,7 @@ TagManager:
   - Wolf
   - Enemy
   - Water
+  - Yeti
   layers:
   - Default
   - TransparentFX
