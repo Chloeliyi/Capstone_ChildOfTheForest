@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public GameObject StartMenu;*/
     public Transform playerCamera;
 
+    [SerializeField] private bool newGame;
+
     public int MaxHealth = 50;
 
     public int CurrentHealth;
@@ -145,6 +147,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (newGame)
+        {
+            Debug.Log("New Game");
+        }
         if(Input.GetKey(KeyCode.Escape))
         {
             Debug.Log("Quit");
@@ -472,7 +478,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnTorch()
     {
-        torchObject = Instantiate(Torch, parent);
+        torchObject = Instantiate(Torch, playerCamera);
         torchObject.GetComponentInChildren<ParticleSystem>().Stop();
         if (Activebench != null)
         {
