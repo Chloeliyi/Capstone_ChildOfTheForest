@@ -52,8 +52,8 @@ public class CraftManager : MonoBehaviour
     {
         for (int i = 0; i < craftItemName.Count; i++)
         {
-             if (craftItemName[i] == "Branch")
-             {
+            if (craftItemName[i] == "Branch")
+            {
                 Debug.Log("Branch");
                 Debug.Log("Index : " + i);
                 if (craftItemsQuantity[i] == 1)
@@ -118,14 +118,22 @@ public class CraftManager : MonoBehaviour
                         }
                     }
                 }
-             }
+                else
+                {
+                    Debug.Log("Return item to inventory");
+                    RemoveFromInventory();
+                }
+            }
+            else
+            {
+                Debug.Log("Return item to inventory");
+                RemoveFromInventory();
+            }
         }
     }
 
     public void RemoveFromInventory()
     {
-        Debug.Log("Remove craftItem From Inventory");
-        
         for (int i = 0; i < craftSlot.Length; i++) 
         {
             if (craftSlot[i].draggableItem != null)
@@ -133,7 +141,7 @@ public class CraftManager : MonoBehaviour
                 if (counter == 0)
                 {
                     if (craftSlot[i].draggableItem.itemData.itemName == "Branch")
-                    Debug.Log("Adjust quantity");
+                    Debug.Log("Adjust branch quantity");
                     {
                         craftSlot[i].draggableItem.itemData.quantity -= 3;
                         if (craftSlot[i].draggableItem.itemData.quantity == 0)
@@ -152,8 +160,23 @@ public class CraftManager : MonoBehaviour
                         }
                         else
                         {
-
+                            craftSlot[i].draggableItem.itemData.quantityText.text = craftSlot[i].draggableItem.itemData.quantity.ToString();
+                            craftSlot[i].draggableItem.itemData.itemNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                            craftSlot[i].draggableItem.itemData.itemImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                            craftSlot[i].draggableItem.itemData.ItemDescriptionImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                            craftSlot[i].draggableItem.itemData.ItemDescriptionNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                            craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;
                         }
+                    }
+                    if (craftSlot[i].draggableItem.itemData.itemName != "Branch")
+                    Debug.Log("Item in slot is not branch");
+                    {
+                        craftSlot[i].draggableItem.itemData.quantityText.text = craftSlot[i].draggableItem.itemData.quantity.ToString();
+                        craftSlot[i].draggableItem.itemData.itemNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                        craftSlot[i].draggableItem.itemData.itemImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                        craftSlot[i].draggableItem.itemData.ItemDescriptionImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                        craftSlot[i].draggableItem.itemData.ItemDescriptionNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                        craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;
                     }
                 }
                 else if (counter == 1)
@@ -164,16 +187,15 @@ public class CraftManager : MonoBehaviour
                         if (craftSlot[i].draggableItem.itemData.quantity == 0)
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
-                            /*craftSlot[i].draggableItem.itemData.quantity = 0;
+                        }
+                        else
+                        {
                             craftSlot[i].draggableItem.itemData.quantityText.text = craftSlot[i].draggableItem.itemData.quantity.ToString();
-                            craftSlot[i].draggableItem.itemData.itemName = "";
                             craftSlot[i].draggableItem.itemData.itemNameText.text = craftSlot[i].draggableItem.itemData.itemName;
-                            craftSlot[i].draggableItem.itemData.itemSprite = null;
                             craftSlot[i].draggableItem.itemData.itemImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
-                            craftSlot[i].draggableItem.itemData.itemDescription = "";
                             craftSlot[i].draggableItem.itemData.ItemDescriptionImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
                             craftSlot[i].draggableItem.itemData.ItemDescriptionNameText.text = craftSlot[i].draggableItem.itemData.itemName;
-                            craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;*/
+                            craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;
                         }
                     }
                     else if (craftSlot[i].draggableItem.itemData.itemName == "Crystal")
@@ -183,6 +205,24 @@ public class CraftManager : MonoBehaviour
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
                         }
+                        else
+                        {
+                            craftSlot[i].draggableItem.itemData.quantityText.text = craftSlot[i].draggableItem.itemData.quantity.ToString();
+                            craftSlot[i].draggableItem.itemData.itemNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                            craftSlot[i].draggableItem.itemData.itemImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                            craftSlot[i].draggableItem.itemData.ItemDescriptionImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                            craftSlot[i].draggableItem.itemData.ItemDescriptionNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                            craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;
+                        }
+                    }
+                    if (craftSlot[i].draggableItem.itemData.itemName != "Branch" || craftSlot[i].draggableItem.itemData.itemName != "Crystal")
+                    {
+                        craftSlot[i].draggableItem.itemData.quantityText.text = craftSlot[i].draggableItem.itemData.quantity.ToString();
+                        craftSlot[i].draggableItem.itemData.itemNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                        craftSlot[i].draggableItem.itemData.itemImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                        craftSlot[i].draggableItem.itemData.ItemDescriptionImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                        craftSlot[i].draggableItem.itemData.ItemDescriptionNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                        craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;
                     }
                 }
                 else if (counter == 2)
@@ -194,6 +234,15 @@ public class CraftManager : MonoBehaviour
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
                         }
+                        else
+                        {
+                            craftSlot[i].draggableItem.itemData.quantityText.text = craftSlot[i].draggableItem.itemData.quantity.ToString();
+                            craftSlot[i].draggableItem.itemData.itemNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                            craftSlot[i].draggableItem.itemData.itemImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                            craftSlot[i].draggableItem.itemData.ItemDescriptionImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                            craftSlot[i].draggableItem.itemData.ItemDescriptionNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                            craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;
+                        }
                     }
                     else if (craftSlot[i].draggableItem.itemData.itemName == "Crystal")
                     {
@@ -202,13 +251,26 @@ public class CraftManager : MonoBehaviour
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
                         }
+                        else
+                        {
+                            craftSlot[i].draggableItem.itemData.quantityText.text = craftSlot[i].draggableItem.itemData.quantity.ToString();
+                            craftSlot[i].draggableItem.itemData.itemNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                            craftSlot[i].draggableItem.itemData.itemImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                            craftSlot[i].draggableItem.itemData.ItemDescriptionImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                            craftSlot[i].draggableItem.itemData.ItemDescriptionNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                            craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;
+                        }
+                    }
+                    if (craftSlot[i].draggableItem.itemData.itemName != "Branch" || craftSlot[i].draggableItem.itemData.itemName != "Crystal")
+                    {
+                        craftSlot[i].draggableItem.itemData.quantityText.text = craftSlot[i].draggableItem.itemData.quantity.ToString();
+                        craftSlot[i].draggableItem.itemData.itemNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                        craftSlot[i].draggableItem.itemData.itemImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                        craftSlot[i].draggableItem.itemData.ItemDescriptionImage.sprite = craftSlot[i].draggableItem.itemData.itemSprite;
+                        craftSlot[i].draggableItem.itemData.ItemDescriptionNameText.text = craftSlot[i].draggableItem.itemData.itemName;
+                        craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;
                     }
                 }
-            }
-            else
-            {
-                Debug.Log("Doesn't make item");
-                
             }
             craftSlot[i].RemoveSlotItem();
         }
