@@ -105,7 +105,7 @@ public class FPSController : MonoBehaviour
             else if (!isRunning && Staminaslider.value >= 0)
             {
                 Debug.Log("Player is walking");
-                Staminaslider.value += 2f * Time.deltaTime;
+                Staminaslider.value += 1f * Time.deltaTime;
                 //Debug.Log(Staminaslider.value);
             }
 

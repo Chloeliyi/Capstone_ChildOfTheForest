@@ -33,9 +33,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         IvenSlot = ItemSlot.parent;
         IvenMenu = IvenSlot.parent;
 
-        transform.SetParent(transform.root);
-        Debug.Log(transform.root);
-        //transform.SetParent(IvenMenu);
+        //transform.SetParent(transform.root);
+        //Debug.Log(transform.root);
+        transform.SetParent(IvenMenu);
         transform.SetAsLastSibling();
         image.raycastTarget = false;
     }
