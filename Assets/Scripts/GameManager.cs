@@ -478,6 +478,19 @@ public class GameManager : MonoBehaviour
 
     public void SpawnTorch()
     {
+        if (projectile != null)
+        {
+            projectile.SetActive(false);
+            ActiveSpear = false;
+            HideWeaponDurability();
+        }
+        if (AxeGameObject != null)
+        {
+            AxeGameObject.SetActive(false);
+            activeAxe = false;
+            HideWeaponDurability();
+        }
+        
         torchObject = Instantiate(Torch, playerCamera);
         torchObject.GetComponentInChildren<ParticleSystem>().Stop();
         if (Activebench != null)
@@ -509,6 +522,17 @@ public class GameManager : MonoBehaviour
 
     public void SpawnAxe(int durability)
     {
+        if (torchObject != null)
+        {
+            torchObject.SetActive(false);
+        }
+        if (projectile != null)
+        {
+            projectile.SetActive(false);
+            ActiveSpear = false;
+            HideWeaponDurability();
+        }
+
         //AxeGameObject = Instantiate(Axe, parent);
         AxeGameObject = Axe;
         AxeGameObject.SetActive(true);
@@ -580,7 +604,6 @@ public class GameManager : MonoBehaviour
     public float throwCooldown;
 
     [Header("Throwing")]
-    public KeyCode throwKey = KeyCode.T;
     public float throwForce;
     public float throwUpwardForce;
 
@@ -592,6 +615,16 @@ public class GameManager : MonoBehaviour
 
     public void SpawnSpear(int durability)
     {
+        if (torchObject != null)
+        {
+            torchObject.SetActive(false);
+        }
+        if (AxeGameObject != null)
+        {
+            AxeGameObject.SetActive(false);
+            activeAxe = false;
+            HideWeaponDurability();
+        }
         readyToThrow = false;
         projectile = Instantiate(Spear, playerCamera);
         projectileRb = projectile.GetComponent<Rigidbody>();

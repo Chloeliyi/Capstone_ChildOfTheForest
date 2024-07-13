@@ -22,14 +22,14 @@ public class Item : ScriptableObject
         {
             if (GameManager.Instance.CurrentFood == GameManager.Instance.MaxFood)
             {
-                return false;
                 Debug.Log("Cannot eat. Health is full");
+                return false;
             }
             else
             {
-                return true;
                 Debug.Log("Eat Berry : " + value);
                 GameManager.Instance.IncreaseFood(value);
+                return true;
             }
         }
 
@@ -37,27 +37,27 @@ public class Item : ScriptableObject
         {
             if (GameManager.Instance.CurrentFood == GameManager.Instance.MaxFood)
             {
-                return false;
                 Debug.Log("Cannot eat. Health is full");
+                return false;
             }
             else
             {
-                return true;
                 Debug.Log("Eat Meat : " + value);
                 GameManager.Instance.IncreaseFood(value);
+                return true;
             }
         }
 
         if (itemType == ItemType.Branch)
         {
-            return false;
             Debug.Log("Branch should be draggable");
+            return false;
         }
 
         if (itemType == ItemType.Crystal)
         {
-            return false;
             Debug.Log("Crystal should be draggable");
+            return false;
         }
 
         if (itemType == ItemType.Torch)
@@ -69,14 +69,16 @@ public class Item : ScriptableObject
 
         if (itemType == ItemType.Axe)
         {
-            return true;
+            Debug.Log("Spawn Axe");
             GameManager.Instance.SpawnAxe(durability);
+            return true;
         }
 
         if (itemType == ItemType.Spear)
         {
-            return true;
+            Debug.Log("Spawn Spear");
             GameManager.Instance.SpawnSpear(durability);
+            return true;
         }
         return false;
     }
