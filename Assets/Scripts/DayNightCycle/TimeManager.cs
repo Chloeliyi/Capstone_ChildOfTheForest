@@ -45,7 +45,7 @@ public class TimeManager : MonoBehaviour
     void Start()
     {
         RenderSettings.skybox.SetFloat("_Blend", 0);
-        hours = 12;
+        hours = 4;
 
         OnHoursChange(hours);
 
