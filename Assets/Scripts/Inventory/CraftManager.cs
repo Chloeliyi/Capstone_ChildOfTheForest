@@ -174,12 +174,12 @@ public class CraftManager : MonoBehaviour
                         }
                     }
                 }
-            }*/
+            }
             else
             {
                 Debug.Log("Return item to inventory");
                 RemoveFromInventory();
-            }
+            }*/
         }
     }
 
