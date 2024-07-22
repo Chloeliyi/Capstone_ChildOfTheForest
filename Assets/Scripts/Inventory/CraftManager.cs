@@ -124,7 +124,7 @@ public class CraftManager : MonoBehaviour
                     RemoveFromInventory();
                 }
             }
-            else if (craftItemName[i] == "Crystal")
+            /*else if (craftItemName[i] == "Crystal")
             {
                 if (craftItemsQuantity[i] == 1)
                 {
@@ -174,7 +174,7 @@ public class CraftManager : MonoBehaviour
                         }
                     }
                 }
-            }
+            }*/
             else
             {
                 Debug.Log("Return item to inventory");
@@ -195,7 +195,7 @@ public class CraftManager : MonoBehaviour
                     Debug.Log("Adjust branch quantity");
                     {
                         craftSlot[i].draggableItem.itemData.quantity -= 3;
-                        if (craftSlot[i].draggableItem.itemData.quantity == 0)
+                        if (craftSlot[i].draggableItem.itemData.quantity <= 0)
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
                             /*craftSlot[i].draggableItem.itemData.quantity = 0;
@@ -236,7 +236,7 @@ public class CraftManager : MonoBehaviour
                     if (craftSlot[i].draggableItem.itemData.itemName == "Branch")
                     {
                         craftSlot[i].draggableItem.itemData.quantity -= 1;
-                        if (craftSlot[i].draggableItem.itemData.quantity == 0)
+                        if (craftSlot[i].draggableItem.itemData.quantity <= 0)
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
                         }
@@ -254,7 +254,7 @@ public class CraftManager : MonoBehaviour
                     else if (craftSlot[i].draggableItem.itemData.itemName == "Crystal")
                     {
                         craftSlot[i].draggableItem.itemData.quantity -= 1;
-                        if (craftSlot[i].draggableItem.itemData.quantity == 0)
+                        if (craftSlot[i].draggableItem.itemData.quantity <= 0)
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
                         }
@@ -284,7 +284,7 @@ public class CraftManager : MonoBehaviour
                     if (craftSlot[i].draggableItem.itemData.itemName == "Branch")
                     {
                         craftSlot[i].draggableItem.itemData.quantity -= 2;
-                        if (craftSlot[i].draggableItem.itemData.quantity == 0)
+                        if (craftSlot[i].draggableItem.itemData.quantity <= 0)
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
                         }
@@ -302,7 +302,7 @@ public class CraftManager : MonoBehaviour
                     else if (craftSlot[i].draggableItem.itemData.itemName == "Crystal")
                     {
                         craftSlot[i].draggableItem.itemData.quantity -= 3;
-                        if (craftSlot[i].draggableItem.itemData.quantity == 0)
+                        if (craftSlot[i].draggableItem.itemData.quantity <= 0)
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
                         }

@@ -131,6 +131,7 @@ public class InventoryItemController : MonoBehaviour, IPointerClickHandler/*, IB
             ItemDescriptionNameText.text = itemName;
             ItemDescriptionText.text = itemDescription;
             ItemDescriptionImage.sprite = itemSprite;
+            ItemDescriptionImage.enabled = true;
 
             if(ItemDescriptionImage.sprite == null)
             {
@@ -163,7 +164,14 @@ public class InventoryItemController : MonoBehaviour, IPointerClickHandler/*, IB
 
     public void OnRightClick()
     {
+        Debug.Log("Drop item from inventory");
+        this.quantity -= 1;
+        quantityText.text = this.quantity.ToString();
 
+        if (this.quantity <= 0)
+        {   
+            EmptySlot();
+        }
     }
 
     /*public Item item;

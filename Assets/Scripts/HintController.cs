@@ -21,6 +21,8 @@ public class HintController : MonoBehaviour
 
     public GameObject tableObject;
 
+    public GameObject alterObject;
+
     private Vector3 lastMousePosition;
 
     private Transform examinedObject; // Store the currently examined object
@@ -119,20 +121,14 @@ public class HintController : MonoBehaviour
     {
         if (examinedObject != null)
         {
-            examinedObject.position = Vector3.Lerp(examinedObject.position, offset.transform.position, 0.2f);
+            examinedObject.position = Vector3.Lerp(examinedObject.position, offset.transform.position, 0.1f);
+            //examinedObject.transform.rotation = new Quaternion(0, -90, 90, 0);
+            //Debug.Log(examinedObject.transform.rotation);
 
             Vector3 deltaMouse = Input.mousePosition - lastMousePosition;
             float rotationSpeed = 1.0f;
-            //examinedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);
-            //examinedObject.Rotate(deltaMouse.y * rotationSpeed * Vector3.left, Space.World);
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                Debug.Log("RightArrow");
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                Debug.Log("LeftArrow");
-            }
+            examinedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);
+            examinedObject.Rotate(deltaMouse.y * rotationSpeed * Vector3.left, Space.World);
             lastMousePosition = Input.mousePosition;
         }
     }
@@ -156,13 +152,16 @@ public class HintController : MonoBehaviour
         }
     }
 
+    public float distance;
 
    // This method calculates the distance between the player(targetObject) and 
    // an object called tableObject.If the distance is less than 2 units, it returns true, indicating that the player is close to the object.
     bool CheckUserClose()
     {
         // Calculate the distance between the two GameObjects
-        float distance = Vector3.Distance(targetObject.transform.position, tableObject.transform.position);
+        distance = Vector3.Distance(targetObject.transform.position, tableObject.transform.position);
+
+        distance = Vector3.Distance(targetObject.transform.position, alterObject.transform.position);
 
         // Check if they are close based on the threshold
         return (distance < 2);
