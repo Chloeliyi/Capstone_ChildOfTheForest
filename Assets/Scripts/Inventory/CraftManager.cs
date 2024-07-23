@@ -98,6 +98,7 @@ public class CraftManager : MonoBehaviour
                                         counter = 2;
                                         CraftedName.text = CraftableItems[counter].itemName;
                                         CraftedIcon.sprite = CraftableItems[counter].icon;
+                                        CraftedIcon.enabled = true;
                                     }
                                 }
                             }
@@ -355,6 +356,7 @@ public class CraftManager : MonoBehaviour
 
             CraftedName.text = null;
             CraftedIcon.sprite = null;
+            CraftedIcon.enabled = false;
 
             GotItem = false;
 

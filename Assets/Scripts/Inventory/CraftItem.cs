@@ -22,15 +22,12 @@ public class CraftItem : MonoBehaviour, IDropHandler
     {
         Debug.Log("On drop");
         //if (transform.childCount == 0) 
-        if (transform.childCount == 2) 
+        if (transform.childCount == 3) 
         {
             Debug.Log("Item is in slot");
             GameObject dropped = eventData.pointerDrag;
             draggableItem = dropped.GetComponent<Draggable>();
             draggableItem.ItemSlot = transform;
-            //draggableItem.IvenSlot = draggableItem.ItemSlot;
-            //transform.SetParent(draggableItem.ItemSlot);
-            //transform.localPosition = new Vector3(0f, 0f, 0f);
 
             craftItemName = draggableItem.itemData.itemName;
             itemQuantity = draggableItem.itemData.quantity;
@@ -41,8 +38,7 @@ public class CraftItem : MonoBehaviour, IDropHandler
         }
         else
         {
-            Debug.Log("Got Item");
-            
+            Debug.Log(transform.childCount);
         }
     }
 
