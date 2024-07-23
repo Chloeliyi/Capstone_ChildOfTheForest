@@ -37,8 +37,8 @@ public class HintController : MonoBehaviour
     void Start()
     {
         _canva.enabled = false;
-        //targetObject = GameObject.Find("Player Animations");
-        targetObject = GameObject.FindWithTag("Player");
+        targetObject = GameObject.Find("Player Animations");
+        //targetObject = GameObject.FindWithTag("Player");
         _playerInput = targetObject.GetComponent<PlayerInput>();
     }
 

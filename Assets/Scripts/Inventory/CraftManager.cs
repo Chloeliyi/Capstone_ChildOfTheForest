@@ -62,7 +62,7 @@ public class CraftManager : MonoBehaviour
                     {
                         if (craftItemName[j] == "Crystal")
                         {
-                            if (craftItemsQuantity[j] == 1)
+                            if (craftItemsQuantity[j] >= 1)
                             {
                                 Debug.Log("Can create spear");
                                 GotItem = true;
@@ -86,7 +86,7 @@ public class CraftManager : MonoBehaviour
                     {
                         if (craftItemName[a] == "Crystal")
                         {
-                            if (craftItemsQuantity[a] == 3)
+                            if (craftItemsQuantity[a] >= 3)
                             {
                                 Debug.Log("Can create axe");
                                 GotItem = true;
@@ -104,7 +104,7 @@ public class CraftManager : MonoBehaviour
                         }
                     }
                 }
-                else if (craftItemsQuantity[i] == 3)
+                else if (craftItemsQuantity[i] >= 3)
                 {    
                     Debug.Log("Branch can create torch");
                     GotItem = true;
@@ -239,6 +239,7 @@ public class CraftManager : MonoBehaviour
                         if (craftSlot[i].draggableItem.itemData.quantity <= 0)
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
+                            Debug.Log("Empty branch");
                         }
                         else
                         {
@@ -257,6 +258,7 @@ public class CraftManager : MonoBehaviour
                         if (craftSlot[i].draggableItem.itemData.quantity <= 0)
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
+                            Debug.Log("Empty crystal");
                         }
                         else
                         {
