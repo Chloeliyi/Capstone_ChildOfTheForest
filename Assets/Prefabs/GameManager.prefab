@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c71dc9fad8c7944be39f429d45d0e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  username: 
   playerCamera: {fileID: 0}
+  newGame: 0
   MaxHealth: 50
   CurrentHealth: 0
   MaxFood: 30
@@ -61,8 +63,8 @@ MonoBehaviour:
   Weapondurability: {fileID: 0}
   WeaponIcon: {fileID: 0}
   WeaponsSprite:
-  - {fileID: 21300000, guid: bbef5a254948f16478757f66f7d42f7b, type: 3}
-  - {fileID: 21300000, guid: 0473bb44c4489184aa1a3a6f12e3951d, type: 3}
+  - {fileID: 21300000, guid: 9334690b2dca536489a43485d39503f0, type: 3}
+  - {fileID: 21300000, guid: f9c84a425bb77f74b8b4579529bff5d6, type: 3}
   RepairCounter: {fileID: 0}
   Repaircount: 0
   BigIvenMenu: {fileID: 0}
@@ -76,17 +78,21 @@ MonoBehaviour:
   attackPoint: {fileID: 0}
   WallObject: {fileID: 5028891932652319584, guid: ffe719d23a46ac548a83145575e17973, type: 3}
   Torch: {fileID: 5877592061824131560, guid: 8aec0e040557a2945aa874fd22c8a77a, type: 3}
+  Nearwater: 0
   activeAxe: 0
   ActiveSpear: 0
   enemy: {fileID: 7102754575409154280, guid: 4f116299837183845bb743b3de9487b9, type: 3}
   TakeHealthDamage: 0
   TakeHealthIncrease: 0
   Workbench: {fileID: 4616199695562428655, guid: b9050f8e44767de42832aae7cb3f25c9, type: 3}
+  craftSlot:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   totalThrows: 100
   throwCooldown: 0.1
-  throwKey: 116
   throwForce: 20
   throwUpwardForce: 0
   projectile: {fileID: 0}
   projectileRb: {fileID: 0}
-  inventoryItemController: {fileID: 7524904248831400331, guid: 682c53f60afac4f49bc4a1c117072e94, type: 3}
