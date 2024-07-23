@@ -17,6 +17,6 @@ MonoBehaviour:
   value: 10
   durability: 100
   quantity: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: f9c84a425bb77f74b8b4579529bff5d6, type: 3}
   itemType: 3
   itemDesc: This is a spear
