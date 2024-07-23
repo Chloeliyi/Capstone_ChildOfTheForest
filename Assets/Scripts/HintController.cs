@@ -153,7 +153,7 @@ public class HintController : MonoBehaviour
         }
     }
 
-    public float distance;
+    [SerializeField] private float distance;
 
    // This method calculates the distance between the player(targetObject) and 
    // an object called tableObject.If the distance is less than 2 units, it returns true, indicating that the player is close to the object.
@@ -162,7 +162,7 @@ public class HintController : MonoBehaviour
         // Calculate the distance between the two GameObjects
         distance = Vector3.Distance(targetObject.transform.position, tableObject.transform.position);
 
-        distance = Vector3.Distance(targetObject.transform.position, alterObject.transform.position);
+        //distance = Vector3.Distance(targetObject.transform.position, alterObject.transform.position);
 
         // Check if they are close based on the threshold
         return (distance < 2);
