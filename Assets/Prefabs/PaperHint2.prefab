@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 8409240593161516389}
   - component: {fileID: 4835815239069006528}
   - component: {fileID: 7275762145322601994}
-  - component: {fileID: -7977834325061869668}
   m_Layer: 0
   m_Name: PaperHint2
-  m_TagString: Untagged
+  m_TagString: Hint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,22 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-7977834325061869668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9221207576956350431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ffbcf5c3ea9900468553c70bb3ad449, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {fileID: 0}
-  targetObject: {fileID: 0}
-  playerCamera: {fileID: 0}
-  isExamining: 0
-  _canva: {fileID: 0}
-  tableObject: {fileID: 0}
-  rotation: 90
