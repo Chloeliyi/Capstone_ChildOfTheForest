@@ -2081,25 +2081,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1035843977}
     - target: {fileID: 5457148235762341954, guid: fe82ece1ce6ad234eaa9ffe396e5c95c, type: 3}
-      propertyPath: craftSlot.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457148235762341954, guid: fe82ece1ce6ad234eaa9ffe396e5c95c, type: 3}
       propertyPath: craftSlot.Array.data[0]
       value: 
       objectReference: {fileID: 1222529429}
     - target: {fileID: 5457148235762341954, guid: fe82ece1ce6ad234eaa9ffe396e5c95c, type: 3}
       propertyPath: craftSlot.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1222529430}
     - target: {fileID: 5457148235762341954, guid: fe82ece1ce6ad234eaa9ffe396e5c95c, type: 3}
       propertyPath: craftSlot.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1222529428}
     - target: {fileID: 5457148235762341954, guid: fe82ece1ce6ad234eaa9ffe396e5c95c, type: 3}
       propertyPath: craftSlot.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1222529427}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3760,9 +3756,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1222529427 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7734688949344273669, guid: 9b0ecc97434d71c4d88f210fc73c25c0, type: 3}
+  m_PrefabInstance: {fileID: 1222529425}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf92eb197b383346ace2e83f3e769d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1222529428 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6890151793008771241, guid: 9b0ecc97434d71c4d88f210fc73c25c0, type: 3}
+  m_PrefabInstance: {fileID: 1222529425}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf92eb197b383346ace2e83f3e769d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1222529429 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9049240967657731355, guid: 9b0ecc97434d71c4d88f210fc73c25c0, type: 3}
+  m_PrefabInstance: {fileID: 1222529425}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf92eb197b383346ace2e83f3e769d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1222529430 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 425970617808910150, guid: 9b0ecc97434d71c4d88f210fc73c25c0, type: 3}
   m_PrefabInstance: {fileID: 1222529425}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -5204,10 +5233,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 983468747}
     - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
-      propertyPath: throwForce
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
       propertyPath: BigIvenMenu
       value: 
       objectReference: {fileID: 484800076}
@@ -5240,41 +5265,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1339538757}
     - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
-      propertyPath: throwUpwardForce
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
-      propertyPath: craftSlot.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
       propertyPath: craftSlot.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1222529429}
     - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
       propertyPath: craftSlot.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1222529430}
     - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
       propertyPath: craftSlot.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1222529428}
     - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
       propertyPath: craftSlot.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
-      propertyPath: WeaponsSprite.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
-      propertyPath: WeaponsSprite.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 9334690b2dca536489a43485d39503f0, type: 3}
-    - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
-      propertyPath: WeaponsSprite.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: f9c84a425bb77f74b8b4579529bff5d6, type: 3}
+      objectReference: {fileID: 1222529427}
     - target: {fileID: 2496559281381319138, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
       propertyPath: m_Name
       value: GameManager
