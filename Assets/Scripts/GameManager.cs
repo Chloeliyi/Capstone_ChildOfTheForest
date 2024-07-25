@@ -316,7 +316,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Spear is thrown");
             }
 
-            if (Nearwater)
+            if (Nearwater == true && !projectile.activeSelf)
             {
                 Debug.Log("Drink water");
                 IncreaseWater(2);
@@ -490,7 +490,7 @@ public class GameManager : MonoBehaviour
             activeAxe = false;
             HideWeaponDurability();
         }
-        
+
         torchObject = Instantiate(Torch, playerCamera);
         torchObject.GetComponentInChildren<ParticleSystem>().Stop();
         if (Activebench != null)
@@ -579,6 +579,7 @@ public class GameManager : MonoBehaviour
     public void HideWeaponDurability()
     {
         WeaponIcon.sprite = null;
+        WeaponIcon.enabled = false;
         Weapondurability.maxValue = 1;
         Weapondurability.value = 1;
     }
@@ -587,12 +588,14 @@ public class GameManager : MonoBehaviour
     {
         if (activeAxe == true)
         {
+            WeaponIcon.enabled = true;
             WeaponIcon.sprite = WeaponsSprite[0];
             Weapondurability.maxValue = MaxAxeDurability;
             Weapondurability.value = CurrentDurability;
         }
         else if (ActiveSpear == true)
         {
+            WeaponIcon.enabled = true;
             WeaponIcon.sprite = WeaponsSprite[1];
             Weapondurability.maxValue = MaxSpearDurability;
             Weapondurability.value = CurrentSpearDurability;

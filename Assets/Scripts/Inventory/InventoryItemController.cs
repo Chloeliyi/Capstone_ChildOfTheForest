@@ -135,7 +135,7 @@ public class InventoryItemController : MonoBehaviour, IPointerClickHandler/*, IB
 
             if(ItemDescriptionImage.sprite == null)
             {
-                ItemDescriptionImage.sprite = emptySprite;
+                ItemDescriptionImage.enabled = false;
             }
         }
     }
@@ -152,14 +152,12 @@ public class InventoryItemController : MonoBehaviour, IPointerClickHandler/*, IB
     {
         itemNameText.text = "";
         quantityText.enabled = false;
-        //itemImage.sprite = emptySprite;
         itemImage.sprite = null;
         itemImage.enabled = false;
         ItemDescriptionNameText.text = "";
         ItemDescriptionText.text = "";
-        //ItemDescriptionImage.sprite = emptySprite;
         ItemDescriptionImage.sprite = null;
-
+        ItemDescriptionImage.enabled = false;
     }
 
     public void OnRightClick()

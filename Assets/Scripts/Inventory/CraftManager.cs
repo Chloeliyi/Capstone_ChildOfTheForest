@@ -74,6 +74,7 @@ public class CraftManager : MonoBehaviour
                                         counter = 1;
                                         CraftedName.text = CraftableItems[counter].itemName;
                                         CraftedIcon.sprite = CraftableItems[counter].icon;
+                                        CraftedIcon.enabled = true;
                                     }
                                 }
                             }
@@ -116,6 +117,7 @@ public class CraftManager : MonoBehaviour
                             counter = 0;
                             CraftedName.text = CraftableItems[counter].itemName;
                             CraftedIcon.sprite = CraftableItems[counter].icon;
+                            CraftedIcon.enabled = true;
                         }
                     }
                 }
@@ -234,13 +236,13 @@ public class CraftManager : MonoBehaviour
                 }
                 else if (counter == 1)
                 {
-                    if (craftSlot[i].draggableItem.itemData.itemName == "Branch")
+                    if (craftSlot[i].draggableItem.itemData.itemName == "Crystal")
                     {
                         craftSlot[i].draggableItem.itemData.quantity -= 1;
                         if (craftSlot[i].draggableItem.itemData.quantity <= 0)
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
-                            Debug.Log("Empty branch");
+                            Debug.Log("Empty crystal");
                         }
                         else
                         {
@@ -253,13 +255,13 @@ public class CraftManager : MonoBehaviour
                             craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;
                         }
                     }
-                    else if (craftSlot[i].draggableItem.itemData.itemName == "Crystal")
+                    else if (craftSlot[i].draggableItem.itemData.itemName == "Branch")
                     {
                         craftSlot[i].draggableItem.itemData.quantity -= 1;
                         if (craftSlot[i].draggableItem.itemData.quantity <= 0)
                         {
                             craftSlot[i].draggableItem.itemData.EmptySlot();
-                            Debug.Log("Empty crystal");
+                            Debug.Log("Empty branch");
                         }
                         else
                         {
