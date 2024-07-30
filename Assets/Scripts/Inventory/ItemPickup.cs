@@ -20,6 +20,7 @@ public class ItemPickup : MonoBehaviour
     public void PickUp()
     {
         inventoryManager.leftOverItems = inventoryManager.AddItem(Item.itemName, quantity, Item.icon, Item.itemDesc);
+
         if (inventoryManager.leftOverItems <= 0)
         {
             Destroy(gameObject);

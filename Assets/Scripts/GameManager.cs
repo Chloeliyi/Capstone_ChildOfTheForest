@@ -37,12 +37,6 @@ public class GameManager : MonoBehaviour
     public int CurrentDurability;
     public int CurrentSpearDurability;
 
-    //public TMP_Text HealthText;
-
-    //public TMP_Text FoodText;
-
-    //public TMP_Text StaminaText;
-
     public Slider Healthslider;
 
     public Slider Foodslider;
@@ -58,8 +52,6 @@ public class GameManager : MonoBehaviour
     public TMP_Text RepairCounter;
 
     public int Repaircount;
-
-    //public GameObject SmallIvenMenu;
 
     public GameObject BigIvenMenu;
 
@@ -79,13 +71,15 @@ public class GameManager : MonoBehaviour
 
     public Transform attackPoint; 
 
-    //public GameObject Tree;
-
     public GameObject WallObject;
 
     public GameObject Torch;
 
+    public GameObject Yeti;
+
     public bool Nearwater;
+
+    public bool Nearaltar;
 
     public bool activeAxe;
 
@@ -130,19 +124,17 @@ public class GameManager : MonoBehaviour
     }
 
     void Start()
-    {        
+    {   
+        playerAnim.enabled = false;     
         CurrentHealth = MaxHealth;
         SetMaxHealth();
-        //HealthText.text = $"HP:{CurrentHealth}";
 
         CurrentFood = MaxFood;
         Debug.Log("Start food is: " + MaxFood);
         SetMaxFood();
-        //FoodText.text = $"Food:{CurrentFood}";
 
         CurrentWater = MaxWater;
         SetMaxWater();
-        //StaminaText.text = $"Stamina:{CurrentStamina}";
 
         RepairCounter.text = $"{Repaircount}";
 
@@ -203,14 +195,26 @@ public class GameManager : MonoBehaviour
             if (!BigIvenMenu.activeSelf)
             {
                 Debug.Log("Open Inventory");
-                //InventoryManager.Instance.ListItems();
                 BigIvenMenu.SetActive(true);
             }
             else if (BigIvenMenu.activeSelf)
             {
                 Debug.Log("Close Inventory");
-                //InventoryManager.Instance.ClearContent();
                 BigIvenMenu.SetActive(false);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (Nearaltar)
+            {
+                SpawnYeti();
+            }
+
+            if (Nearwater)
+            {
+                Debug.Log("Drink water");
+                IncreaseWater(2);
             }
         }
 
@@ -333,11 +337,6 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Spear is thrown");
             }
 
-            if (Nearwater == true && !projectile.activeSelf)
-            {
-                Debug.Log("Drink water");
-                IncreaseWater(2);
-            }
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -349,43 +348,22 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        /*if (Input.GetKeyDown(KeyCode.L))
-        {
-            if (Wallpart == null)
-            {
-                SpawnWall();
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (Wallpart != null)
-            {
-                PlaceWall();
-            }
-            else if (Activebench != null)
-            {
-                PlaceWorkbench();
-            }
-        }*/
-
-        /*if (Input.GetKeyDown(KeyCode.Y))
-        {
-            if (Activebench == null)
-            {
-                SpawnWorkbench();
-            }
-        }*/
-
         if (CurrentHealth <= 0)
         {
             Healthslider.value = 0;
-            Time.timeScale = 0f;
-            FPSController.Instance.canMove = false;
+            playerAnim.enabled = true; 
             playerAnim.SetTrigger("isDead");
+            //Time.timeScale = 0f;
+            FPSController.Instance.canMove = false;
             Debug.Log("You have died");
         }
         
+    }
+
+    public void SpawnYeti()
+    {
+        Vector3 SpawnPosition = new Vector3(Random.Range(-480, -520), 166, Random.Range(1850, 1890));
+        Instantiate(Yeti, SpawnPosition, Quaternion.identity);
     }
 
     GameObject Activebench;

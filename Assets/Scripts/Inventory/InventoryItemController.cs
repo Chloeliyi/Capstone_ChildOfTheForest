@@ -150,13 +150,17 @@ public class InventoryItemController : MonoBehaviour, IPointerClickHandler/*, IB
 
     public void EmptySlot()
     {
-        itemNameText.text = "";
+        itemName = "";
+        itemNameText.text = itemName;
+        //itemNameText.text = "";
         quantityText.enabled = false;
-        itemImage.sprite = null;
+        itemSprite = null;
+        itemImage.sprite = itemSprite;
         itemImage.enabled = false;
         ItemDescriptionNameText.text = "";
-        ItemDescriptionText.text = "";
-        ItemDescriptionImage.sprite = null;
+        itemDescription = "";
+        ItemDescriptionText.text = itemDescription;
+        ItemDescriptionImage.sprite = itemSprite;
         ItemDescriptionImage.enabled = false;
     }
 
@@ -171,111 +175,4 @@ public class InventoryItemController : MonoBehaviour, IPointerClickHandler/*, IB
             EmptySlot();
         }
     }
-
-    /*public Item item;
-
-    public Button RemoveButton;
-
-    public Transform IvenSlot;
-
-    public Transform IvenMenu;
-
-    public Image image;
-
-    public CraftManager craftManager;
-
-    public void RemoveItem()
-    {
-        InventoryManager.Instance.Remove(item);
-
-        Destroy(gameObject);
-
-        InventoryManager.Instance.DescName.text = "Empty";
-        InventoryManager.Instance.DescIcon.sprite = null;
-        InventoryManager.Instance.DescText.text = "Empty";
-    }
-
-    public void AddItem(Item newItem)
-    {
-        item = newItem;
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        //Debug.Log(item.itemName + " begin drag");
-        IvenSlot = transform.parent;
-        IvenMenu = IvenSlot.parent;
-        //transform.SetParent(IvenMenu);
-        transform.SetParent(transform.root);
-        transform.SetAsLastSibling();
-        image.raycastTarget = false;
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        //Debug.Log(item.itemName + " being dragged");
-        transform.position = Input.mousePosition;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        //Debug.Log(item.itemName + " end drag");
-        transform.SetParent(IvenSlot);
-        //Debug.Log("Parent : " + IvenSlot);
-        transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-        image.raycastTarget = true;
-    }
-    
-    public void OnButtonHover()
-    {
-        Debug.Log("On hover");
-        InventoryManager.Instance.DescName.text = item.itemName;
-        InventoryManager.Instance.DescIcon.sprite = item.icon;
-        InventoryManager.Instance.DescText.text = item.itemDesc;
-    }
-
-    public void OnButtonHoverExit()
-    {
-        Debug.Log("No hover");
-        InventoryManager.Instance.DescName.text = "Empty";
-        InventoryManager.Instance.DescIcon.sprite = null;
-        InventoryManager.Instance.DescText.text = "Empty";
-    }
-
-    public void UseItem()
-    {
-        switch (item.itemType)
-        {
-            case Item.ItemType.Potion:
-            GameManager.Instance.IncreaseHealth(item.value);
-            RemoveItem();
-            break;
-            case Item.ItemType.Food:
-            GameManager.Instance.IncreaseFood(item.value);
-            RemoveItem();
-            break;
-            case Item.ItemType.Torch:
-            GameManager.Instance.SpawnTorch();
-            RemoveItem();
-            break;
-            case Item.ItemType.Axe:
-            GameManager.Instance.SpawnAxe(item.durability);
-            RemoveItem();
-            break;
-            case Item.ItemType.Spear:
-            GameManager.Instance.SpawnSpear(item.durability);
-            RemoveItem();
-            break;
-            case Item.ItemType.Workbench:
-            GameManager.Instance.SpawnWorkbench();
-            RemoveItem();
-            break;
-            case Item.ItemType.Wall:
-            GameManager.Instance.SpawnWall();
-            RemoveItem();
-            break;
-        }
-
-        //RemoveItem();
-    }*/
 }

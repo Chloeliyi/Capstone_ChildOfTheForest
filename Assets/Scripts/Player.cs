@@ -38,6 +38,8 @@ public class FPSController : MonoBehaviour
 
     Terrain terrain;
 
+    //Animator animator;
+
     private void Awake()
     {
         Instance = this;
@@ -48,6 +50,7 @@ public class FPSController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         terrain = Terrain.activeTerrain;
+        //animator = GetComponent<Animator>();
         CurrentStamina = MaxStamina;
         Staminaslider.value = CurrentStamina;
         if (playerSpawn != null)
@@ -111,13 +114,13 @@ public class FPSController : MonoBehaviour
                     //runSpeed = walkSpeed;
                 }
 
-                // reduces movement speed to normal walking speed when shift key is not held down
-                else if (!isRunning && Staminaslider.value >= 0)
-                {
-                    Debug.Log("Player is walking");
-                    Staminaslider.value += 1f * Time.deltaTime;
-                    //Debug.Log(Staminaslider.value);
-                }
+            // reduces movement speed to normal walking speed when shift key is not held down
+            else if (!isRunning && Staminaslider.value >= 0)
+            {
+                Debug.Log("Player is walking");
+                Staminaslider.value += 0.1f * Time.deltaTime;
+                //Debug.Log(Staminaslider.value);
+            }
 
                 rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
                 rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
@@ -142,6 +145,11 @@ public class FPSController : MonoBehaviour
             }
         }
     }
+
+    /*public void PlayerDeath()
+    {
+        animator.SetTrigger("isDead");
+    }*/
 
     private void OnTriggerEnter(Collider other)
     {
@@ -174,6 +182,12 @@ public class FPSController : MonoBehaviour
             Debug.Log("Near water");
             GameManager.Instance.Nearwater = true;
         }
+
+        else if (other.gameObject.tag == "Altar")
+        {
+            Debug.Log("Near altar");
+            GameManager.Instance.Nearaltar = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -204,6 +218,12 @@ public class FPSController : MonoBehaviour
         {
             Debug.Log("Not near water");
             GameManager.Instance.Nearwater = false;
+        }
+
+        else if (other.gameObject.tag == "Altar")
+        {
+            Debug.Log("Not near altar");
+            GameManager.Instance.Nearaltar = false;
         }
     }
 }

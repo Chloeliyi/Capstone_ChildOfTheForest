@@ -236,7 +236,7 @@ public class CraftManager : MonoBehaviour
                 }
                 else if (counter == 1)
                 {
-                    if (craftSlot[i].draggableItem.itemData.itemName == "Crystal")
+                    if (craftSlot[i].draggableItem.itemData.itemName == "Branch")
                     {
                         craftSlot[i].draggableItem.itemData.quantity -= 1;
                         if (craftSlot[i].draggableItem.itemData.quantity <= 0)
@@ -255,7 +255,7 @@ public class CraftManager : MonoBehaviour
                             craftSlot[i].draggableItem.itemData.ItemDescriptionText.text = craftSlot[i].draggableItem.itemData.itemDescription;
                         }
                     }
-                    else if (craftSlot[i].draggableItem.itemData.itemName == "Branch")
+                    else if (craftSlot[i].draggableItem.itemData.itemName == "Crystal")
                     {
                         craftSlot[i].draggableItem.itemData.quantity -= 1;
                         if (craftSlot[i].draggableItem.itemData.quantity <= 0)

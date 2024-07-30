@@ -49,6 +49,8 @@ public class YetiController : MonoBehaviour
     void Awake()
     {
         timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+
+        activeYeti = true;
     }
 
     void Start()
@@ -64,14 +66,14 @@ public class YetiController : MonoBehaviour
         //agent.destination = playerTransform.position;
         //animator.SetFloat("Speed", agent.velocity.magnitude);
 
-        if (timeManager.hours >= 20 || timeManager.hours <= 6)
+        /*if (timeManager.hours >= 20 || timeManager.hours <= 6)
         {
             activeYeti = true;
         } 
         else
         {
             activeYeti = false;
-        }
+        }*/
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -186,7 +188,7 @@ public class YetiController : MonoBehaviour
             Debug.Log("Yeti stop");
             playerInSightRange = false;
             playerInAttackRange = false;
-            //animator.SetFloat("Speed", 3f);
+            animator.SetFloat("Speed", 0f);
         }
 
         //StartCoroutine(AttackTime());

@@ -18,10 +18,6 @@ public class ProjectileAddon : MonoBehaviour
 
     public GameObject SpearPickUp;
 
-    /*public Enemy wendigoController;
-    public BearController bearController;
-    public WolfController wolfController;*/
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
