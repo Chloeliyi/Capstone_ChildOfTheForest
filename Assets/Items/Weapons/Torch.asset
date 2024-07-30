@@ -18,5 +18,6 @@ MonoBehaviour:
   durability: 100
   quantity: 0
   icon: {fileID: 21300000, guid: d990f96e5ae0a6e478cd83e343ec4ce4, type: 3}
+  iconName: Torch
   itemType: 1
   itemDesc: This is a torch

@@ -18,5 +18,6 @@ MonoBehaviour:
   durability: 200
   quantity: 0
   icon: {fileID: 21300000, guid: 9334690b2dca536489a43485d39503f0, type: 3}
+  iconName: Axe
   itemType: 2
   itemDesc: This is an axe. Does 2 damage and has 40 durability

@@ -591,6 +591,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: f0268ccc050a27d44a2ab4d9c594d7d9, type: 2}
   NearItem: 0
+  quantity: 0
+  inventoryManager: {fileID: 0}
 --- !u!1 &4980005856166569008
 GameObject:
   m_ObjectHideFlags: 0
