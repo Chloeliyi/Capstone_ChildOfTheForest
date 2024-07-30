@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     public GameObject StartMenu;*/
     public Transform playerCamera;
 
+    public GameObject playerSpawn;
+
+    public Animator playerAnim;
+
     [SerializeField] private bool newGame;
 
     public int MaxHealth = 50;
@@ -107,6 +111,24 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void Return()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void LoadSave()
+    {
+        playerSpawn.gameObject.SetActive(true);
+        playerSpawn.GetComponent<LoadGame>().RetrieveInventoryData();
+        playerSpawn.GetComponent<LoadGame>().RetrieveSaveData();
+        playerSpawn.GetComponent<LoadGame>().RetrieveStatsData();
+
+        if (playerSpawn.transform.position != Vector3.zero)
+        {
+            //SceneManager.LoadScene(2);
+        }
+    }
+
     void Start()
     {        
         CurrentHealth = MaxHealth;
@@ -150,11 +172,6 @@ public class GameManager : MonoBehaviour
         if (newGame)
         {
             Debug.Log("New Game");
-        }
-        if(Input.GetKey(KeyCode.Escape))
-        {
-            Debug.Log("Quit");
-            Application.Quit();
         }
 
         if (CurrentFood <= 10 || CurrentWater <= 10)
@@ -365,6 +382,7 @@ public class GameManager : MonoBehaviour
             Healthslider.value = 0;
             Time.timeScale = 0f;
             FPSController.Instance.canMove = false;
+            playerAnim.SetTrigger("isDead");
             Debug.Log("You have died");
         }
         

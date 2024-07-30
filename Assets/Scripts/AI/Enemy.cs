@@ -95,7 +95,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Patroling");
         animator.SetFloat("Speed", 3f);
-        Debug.Log("Speed : " + agent.velocity.magnitude);
+        //Debug.Log("Speed : " + agent.velocity.magnitude);
 
         if (!walkPointSet) SearchWalkPoint();
 
@@ -121,7 +121,7 @@ public class Enemy : MonoBehaviour
     {
         animator.SetFloat("Speed", 4f);
         Debug.Log("Chasing");
-        Debug.Log("Speed : " + agent.velocity.magnitude);
+        //Debug.Log("Speed : " + agent.velocity.magnitude);
         agent.SetDestination(playerTransform.position);
     }
 
@@ -129,7 +129,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Attacking");
         Debug.Log("Speed : " + agent.velocity.magnitude);
-        agent.SetDestination(transform.position);
+        //agent.SetDestination(transform.position);
         transform.LookAt(playerTransform);
 
         if (!alreadyAttacked)

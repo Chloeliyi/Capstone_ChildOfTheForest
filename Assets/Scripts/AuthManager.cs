@@ -52,7 +52,6 @@ public class AuthManager : MonoBehaviour
     void Awake()
     {
         auth = FirebaseAuth.DefaultInstance;
-        Debug.Log("auth is: " + auth);
         mDatabaseRef = FirebaseDatabase.DefaultInstance.RootReference;     
     }
 
@@ -91,7 +90,7 @@ public class AuthManager : MonoBehaviour
                     
                     User user = new User(username, email, password, userStatus);
                     string json = JsonUtility.ToJson(user);
-                    Debug.Log(json);
+                    //Debug.Log(json);
                     mDatabaseRef.Child("Users").Child(userId).SetRawJsonValueAsync(json);
                     
                     GameManager gm = FindObjectOfType<GameManager>();

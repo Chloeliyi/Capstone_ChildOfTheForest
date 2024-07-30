@@ -9,6 +9,9 @@ public class FPSController : MonoBehaviour
 {
 
     public Camera playerCamera;
+    public GameObject playerSpawn;
+    public GameObject pause;
+    public bool paused = false;
     public float walkSpeed;
     public float runSpeed;
     public float jumpPower;
@@ -38,6 +41,7 @@ public class FPSController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        playerSpawn = GameObject.Find("playerSpawn");
     }
     
     void Start()
@@ -46,6 +50,10 @@ public class FPSController : MonoBehaviour
         terrain = Terrain.activeTerrain;
         CurrentStamina = MaxStamina;
         Staminaslider.value = CurrentStamina;
+        if (playerSpawn != null)
+        {
+            transform.position = playerSpawn.transform.position;
+        }
     }
 
     // Update is called once per frame
@@ -56,63 +64,82 @@ public class FPSController : MonoBehaviour
         Vector3 right = transform.TransformDirection(Vector3.right);
 
         isRunning = Input.GetKey(KeyCode.LeftShift);
-        float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
-        float movementDirectionY = moveDirection.y;
-        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
-
-        //Jumping
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        if (!paused)
         {
-            moveDirection.y = jumpPower;
-        }
-        else
-        {
-            moveDirection.y = movementDirectionY;
-        }
-        // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
-        // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
-        // as an acceleration (ms^-2)
-        if (characterController.transform.position.y - 0.69f >= terrain.SampleHeight(transform.position))
-        {
-            moveDirection.y -= gravity * Time.deltaTime;
-        }
+            float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
+            float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
+            float movementDirectionY = moveDirection.y;
+            moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        // Move the controller
-        characterController.Move(moveDirection * Time.deltaTime);
-
-        if (canMove)
-        {
-
-            if (isRunning && Staminaslider.value > 0)
+            //Jumping
+            if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
             {
-                runSpeed = runSpeed;
-                Staminaslider.value -= 3f * Time.deltaTime;
-                Debug.Log("Player is running");
-                //Debug.Log(Staminaslider.value);
-
+                moveDirection.y = jumpPower;
+            }
+            else
+            {
+                moveDirection.y = movementDirectionY;
+            }
+            // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
+            // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
+            // as an acceleration (ms^-2)
+            if (characterController.transform.position.y - 0.69f >= terrain.SampleHeight(transform.position))
+            {
+                moveDirection.y -= gravity * Time.deltaTime;
             }
 
-            // reduces movement speed to normal walking speed when stamina runs out
-            else if (isRunning && Staminaslider.value <= 0)
-            {
-                Debug.Log("No stamina left");
-                isRunning = false;
-                //runSpeed = walkSpeed;
-            }
+            // Move the controller
+            characterController.Move(moveDirection * Time.deltaTime);
 
-            // reduces movement speed to normal walking speed when shift key is not held down
-            else if (!isRunning && Staminaslider.value >= 0)
+            if (canMove)
             {
-                Debug.Log("Player is walking");
-                Staminaslider.value += 1f * Time.deltaTime;
-                //Debug.Log(Staminaslider.value);
-            }
 
-            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+                if (isRunning && Staminaslider.value > 0)
+                {
+                    runSpeed = runSpeed;
+                    Staminaslider.value -= 3f * Time.deltaTime;
+                    Debug.Log("Player is running");
+                    //Debug.Log(Staminaslider.value);
+
+                }
+
+                // reduces movement speed to normal walking speed when stamina runs out
+                else if (isRunning && Staminaslider.value <= 0)
+                {
+                    Debug.Log("No stamina left");
+                    isRunning = false;
+                    //runSpeed = walkSpeed;
+                }
+
+                // reduces movement speed to normal walking speed when shift key is not held down
+                else if (!isRunning && Staminaslider.value >= 0)
+                {
+                    Debug.Log("Player is walking");
+                    Staminaslider.value += 1f * Time.deltaTime;
+                    //Debug.Log(Staminaslider.value);
+                }
+
+                rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+                rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+                playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+                transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!paused)
+            {
+                pause.SetActive(true);
+                Time.timeScale = 0;
+                paused = true;
+            }
+            else
+            {
+                pause.SetActive(false);
+                Time.timeScale = 1;
+                paused = false;
+            }
         }
     }
 
