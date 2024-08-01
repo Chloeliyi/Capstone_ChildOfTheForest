@@ -140,14 +140,13 @@ public class HintController : MonoBehaviour
         if (examinedObject != null)
         {
             examinedObject.position = Vector3.Lerp(examinedObject.position, offset.transform.position, 0.1f);
-            //examinedObject.transform.rotation = new Quaternion(0, -90, 90, 0);
-            //Debug.Log(examinedObject.transform.rotation);
+            examinedObject.rotation = new Quaternion(0f, 0f, 90f, 0f);
 
-            Vector3 deltaMouse = Input.mousePosition - lastMousePosition;
+            /*Vector3 deltaMouse = Input.mousePosition - lastMousePosition;
             float rotationSpeed = 1.0f;
             examinedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);
             examinedObject.Rotate(deltaMouse.y * rotationSpeed * Vector3.left, Space.World);
-            lastMousePosition = Input.mousePosition;
+            lastMousePosition = Input.mousePosition;*/
         }
     }
 
