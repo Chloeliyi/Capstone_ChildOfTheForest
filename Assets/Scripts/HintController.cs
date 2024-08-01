@@ -85,8 +85,25 @@ public class HintController : MonoBehaviour
                 NonExamine(); StopExamination();
             }
         }
+
+        if (CheckAltarClose())
+        {
+            if (isExamining)
+            {
+                _canva.enabled = false;
+                Examine(); StartExamination();
+            }
+            else
+            {
+                _canva.enabled = true;
+                NonExamine(); StopExamination();
+            }
+        }
+
     else _canva.enabled = false;
     }
+
+    
 
     public void ToggleExamination()
     {
@@ -165,6 +182,10 @@ public class HintController : MonoBehaviour
 
         // Check if they are close based on the threshold
         return (distance < 2);
+    }
+
+    bool CheckAltarClose()
+    {
 
         seconddistance = Vector3.Distance(targetObject.transform.position, alterObject.transform.position);
         return (seconddistance < 2);
