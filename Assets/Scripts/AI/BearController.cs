@@ -89,6 +89,14 @@ public class BearController : MonoBehaviour
             animator.SetBool("Sleep", true);
         }
 
+        if (GameManager.Instance.CurrentHealth <= 0)
+        {
+            Debug.Log("Player has died");
+            playerInSightRange = false;
+            playerInAttackRange = false;
+            animator.SetBool("Idle", true);
+        }
+
     }
 
     public void Patroling()
@@ -214,14 +222,17 @@ public class BearController : MonoBehaviour
 
     public void GiveDamage()
     {
-        GameManager.Instance.HealthDamage(Beardamage);
+        if (GameManager.Instance.CurrentHealth >= 0)
+        {
+            GameManager.Instance.HealthDamage(Beardamage);
+        }
 
-        if (GameManager.Instance.CurrentHealth <= 0)
+        else 
         {
             Debug.Log("Animal stop");
             playerInSightRange = false;
             playerInAttackRange = false;
-            animator.SetBool("WalkForward", true);
+            animator.SetBool("Idle", true);
         }
 
         //StartCoroutine(AttackTime());

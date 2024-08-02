@@ -133,6 +133,14 @@ public class WolfController : MonoBehaviour
             Debug.Log("Corrupt Wolf is not active");
             //animator.SetBool("Sleep", true);
         }
+
+        if (GameManager.Instance.CurrentHealth <= 0)
+        {
+            Debug.Log("Player has died");
+            playerInSightRange = false;
+            playerInAttackRange = false;
+            animator.SetBool("Idle", true);
+        }
     }
 
     public void Patroling()
@@ -281,14 +289,16 @@ public class WolfController : MonoBehaviour
 
     public void GiveDamage()
     {
-        GameManager.Instance.HealthDamage(Wolfdamage);
-
-        if (GameManager.Instance.CurrentHealth <= 0)
+        if (GameManager.Instance.CurrentHealth >= 0)
         {
-            Debug.Log("Animal stop");
+            GameManager.Instance.HealthDamage(Wolfdamage);
+        }
+        else
+        {
+            Debug.Log("Wolf stop");
             playerInSightRange = false;
             playerInAttackRange = false;
-            animator.SetBool("WalkForward", true);
+            animator.SetBool("Idle", true);
         }
 
         //StartCoroutine(AttackTime());

@@ -86,6 +86,16 @@ public class Enemy : MonoBehaviour
         else
         {
             Debug.Log("Wendigo is not active");
+            activeWendigo = false;
+            animator.SetFloat("Speed", 0f);
+        }
+
+        if (GameManager.Instance.CurrentHealth <= 0)
+        {
+            Debug.Log("Player has died");
+            playerInSightRange = false;
+            playerInAttackRange = false;
+            activeWendigo = false;
             animator.SetFloat("Speed", 0f);
         }
 
@@ -131,7 +141,6 @@ public class Enemy : MonoBehaviour
         Debug.Log("Speed : " + agent.velocity.magnitude);
         //agent.SetDestination(transform.position);
         transform.LookAt(playerTransform);
-
         if (!alreadyAttacked)
         {
             //Code
@@ -180,14 +189,16 @@ public class Enemy : MonoBehaviour
 
     public void GiveDamage()
     {
-        GameManager.Instance.HealthDamage(Enemydamage);
-
-        if (GameManager.Instance.CurrentHealth <= 0)
+        if (GameManager.Instance.CurrentHealth >= 0)
+        {
+            GameManager.Instance.HealthDamage(Enemydamage);
+        }
+        else
         {
             Debug.Log("Wendigo stop");
             playerInSightRange = false;
             playerInAttackRange = false;
-            animator.SetFloat("Speed", 3f);
+            animator.SetFloat("Speed", 0f);
         }
 
         //StartCoroutine(AttackTime());

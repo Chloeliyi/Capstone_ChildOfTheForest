@@ -134,13 +134,15 @@ public class HintController : MonoBehaviour
     // This method is called when the player is examining an object.
     // It moves the examined object towards the offset object and allows the player to rotate it based on mouse movement.
 
-    public int rotation = 90;
+    //public int rotation = 90;
     void Examine()
     {
         if (examinedObject != null)
         {
             examinedObject.position = Vector3.Lerp(examinedObject.position, offset.transform.position, 0.1f);
-            examinedObject.rotation = new Quaternion(0f, 0f, 90f, 0f);
+            Debug.Log(examinedObject.rotation);
+            examinedObject.rotation = new Quaternion(0f, 270f, 90f, 0f);
+            Debug.Log(examinedObject.rotation);
 
             /*Vector3 deltaMouse = Input.mousePosition - lastMousePosition;
             float rotationSpeed = 1.0f;

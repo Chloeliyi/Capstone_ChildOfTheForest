@@ -181,9 +181,11 @@ public class YetiController : MonoBehaviour
 
     public void GiveDamage()
     {
-        GameManager.Instance.HealthDamage(Enemydamage);
-
-        if (GameManager.Instance.CurrentHealth <= 0)
+        if (GameManager.Instance.CurrentHealth >= 0)
+        {
+            GameManager.Instance.HealthDamage(Enemydamage);
+        }
+        else
         {
             Debug.Log("Yeti stop");
             playerInSightRange = false;
