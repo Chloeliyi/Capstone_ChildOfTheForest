@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public string username;
     public static GameManager Instance;
 
-    /*public Camera MenuCam;
-    public GameObject StartMenu;*/
+    public GameObject DeathCanvas;
+
     public Transform playerCamera;
 
     public GameObject playerSpawn;
@@ -141,6 +141,8 @@ public class GameManager : MonoBehaviour
         BigIvenMenu.SetActive(false);
         Axe.SetActive(false);
         //projectile.SetActive(false);
+
+        DeathCanvas.SetActive(false);
     }
 
     public void Awake()
@@ -350,14 +352,21 @@ public class GameManager : MonoBehaviour
 
         if (CurrentHealth <= 0)
         {
-            Healthslider.value = 0;
-            playerAnim.enabled = true; 
-            playerAnim.SetTrigger("isDead");
-            //Time.timeScale = 0f;
-            FPSController.Instance.canMove = false;
-            Debug.Log("You have died");
+            StartCoroutine(DeathAnim());
         }
         
+    }
+
+    IEnumerator DeathAnim()
+    {
+        Healthslider.value = 0;
+        playerAnim.enabled = true; 
+        playerAnim.SetTrigger("isDead");
+        Debug.Log("You have died");
+        yield return new WaitForSeconds(2f);
+        DeathCanvas.SetActive(true);
+        //FPSController.Instance.canMove = false;
+        Time.timeScale = 0f;
     }
 
     public void SpawnYeti()
