@@ -42,7 +42,7 @@ public class SaveData : MonoBehaviour
         float y = player.transform.position.y;
         float z = player.transform.position.z;
 
-        string userId = "testUser";
+        string userId = FindObjectOfType<GameManager>().username;
 
         // Save the player's position to the database
         DatabaseReference playerRef = DatabaseRef.Child("Users").Child(userId).Child("Location");
@@ -52,7 +52,7 @@ public class SaveData : MonoBehaviour
     }
 
     public void SaveInventoryData() {
-        string userId = "testUser";
+        string userId = FindObjectOfType<GameManager>().username;
         invList = inventoryManager.itemSlot;
 
         DatabaseReference invRef = DatabaseRef.Child("Users").Child(userId).Child("Inventory");
@@ -69,7 +69,7 @@ public class SaveData : MonoBehaviour
     }
 
     public void SaveStatsData() {
-        string userId = "testUser";
+        string userId = FindObjectOfType<GameManager>().username;
         int health = FindObjectOfType<GameManager>().CurrentHealth;
         int food = FindObjectOfType<GameManager>().CurrentFood;
         int water = FindObjectOfType<GameManager>().CurrentWater;
