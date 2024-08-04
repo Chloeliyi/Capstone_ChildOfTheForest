@@ -39,7 +39,7 @@ public class LoadGame : MonoBehaviour
 
     public void RetrieveSaveData()
     {
-        string userId = "testUser";
+        string userId = FindObjectOfType<GameManager>().username;
         dataRef.Child(userId).Child("Location").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
@@ -62,7 +62,7 @@ public class LoadGame : MonoBehaviour
 
     public void RetrieveInventoryData()
     {
-        string userId = "testUser";
+        string userId = FindObjectOfType<GameManager>().username;
         dataRef.Child(userId).Child("Inventory").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
@@ -98,7 +98,7 @@ public class LoadGame : MonoBehaviour
 
     public void RetrieveStatsData()
     {
-        string userId = "testUser";
+        string userId = FindObjectOfType<GameManager>().username;
         dataRef.Child(userId).Child("Stats").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)

@@ -94,7 +94,8 @@ public class AuthManager : MonoBehaviour
                     mDatabaseRef.Child("Users").Child(userId).SetRawJsonValueAsync(json);
                     
                     GameManager gm = FindObjectOfType<GameManager>();
-                    gm.username = user.userName;
+                    gm.username = userId;
+                    Debug.Log(gm.username);
 
                     /*profileName.text = username;
 
@@ -163,15 +164,15 @@ public class AuthManager : MonoBehaviour
                     }
                     else if (task.IsCompleted) 
                     {
+                        GameManager gm = FindObjectOfType<GameManager>();
+                        gm.username = userId;
+                        Debug.Log(gm.username);
+                        
                         string json = task.Result.GetRawJsonValue();
                         Debug.Log(json);
                         User user = JsonUtility.FromJson<User>(json);
-                        Debug.Log(user.userName);
 
                         profileName.text = user.userName;
-
-                        GameManager gm = FindObjectOfType<GameManager>();
-                        gm.username = user.userName;
                     }
                 });
 
