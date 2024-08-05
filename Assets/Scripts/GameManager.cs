@@ -148,24 +148,6 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
-
-        playerAnim.enabled = false;     
-        CurrentHealth = MaxHealth;
-        SetMaxHealth();
-
-        CurrentFood = MaxFood;
-        Debug.Log("Start food is: " + MaxFood);
-        SetMaxFood();
-
-        CurrentWater = MaxWater;
-        SetMaxWater();
-
-        RepairCounter.text = $"{Repaircount}";
-
-        BigIvenMenu.SetActive(false);
-        Axe.SetActive(false);
-
-        DeathCanvas.SetActive(false);
     }
 
     public void TimeStop()
