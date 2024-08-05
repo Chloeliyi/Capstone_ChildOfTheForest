@@ -365,6 +365,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         DeathCanvas.SetActive(true);
         //FPSController.Instance.canMove = false;
+        FindObjectOfType<FPSController>().paused = true;
         Time.timeScale = 0f;
     }
 

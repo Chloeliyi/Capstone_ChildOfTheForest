@@ -84,11 +84,11 @@ public class SaveData : MonoBehaviour
     void Update()
     {
         //Debug.Log("Player position: " + player.transform.position.x + ", " + player.transform.position.y + ", " + player.transform.position.z);
-        /*if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             //Debug.Log("Space key was pressed");
             SaveLocationData();
             SaveInventoryData();
-        }*/
+        }
     }
 }
