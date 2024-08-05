@@ -111,7 +111,7 @@ public class AxeController : MonoBehaviour
         AxeAttack.SetTrigger("Attack");
         PlayOnce = false;
 
-        if (wendigoController != null || bearController != null || wolfController != null)
+        if (wendigoController != null || bearController != null || wolfController != null ! || yetiController != null)
         {
             AxeDamage();
         }
