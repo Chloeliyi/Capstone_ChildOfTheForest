@@ -53,6 +53,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        playerTransform = GameObject.Find("Player Animations").GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         Wendigo = transform.gameObject;

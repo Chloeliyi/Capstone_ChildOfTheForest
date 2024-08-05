@@ -55,6 +55,7 @@ public class YetiController : MonoBehaviour
 
     void Start()
     {
+        playerTransform = GameObject.Find("Player Animations").GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         Yeti = transform.gameObject;
