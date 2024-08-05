@@ -140,7 +140,6 @@ public class GameManager : MonoBehaviour
 
         BigIvenMenu.SetActive(false);
         Axe.SetActive(false);
-        //projectile.SetActive(false);
 
         DeathCanvas.SetActive(false);
     }
@@ -149,6 +148,24 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
+
+        playerAnim.enabled = false;     
+        CurrentHealth = MaxHealth;
+        SetMaxHealth();
+
+        CurrentFood = MaxFood;
+        Debug.Log("Start food is: " + MaxFood);
+        SetMaxFood();
+
+        CurrentWater = MaxWater;
+        SetMaxWater();
+
+        RepairCounter.text = $"{Repaircount}";
+
+        BigIvenMenu.SetActive(false);
+        Axe.SetActive(false);
+
+        DeathCanvas.SetActive(false);
     }
 
     public void TimeStop()
@@ -773,10 +790,19 @@ public class GameManager : MonoBehaviour
 
     public void TakeFoodDamage(int damage)
     {
-        CurrentFood -= damage;
-        Foodslider.value = CurrentFood;
-        //FoodText.text = $"Food:{CurrentFood}";
-        Debug.Log("Food:" + CurrentFood);
+        if (CurrentFood >= 0)
+        {
+            CurrentFood -= damage;
+            Foodslider.value = CurrentFood;
+            //FoodText.text = $"Food:{CurrentFood}";
+            Debug.Log("Food:" + CurrentFood);
+        }
+        else
+        {
+            Debug.Log("Food is empty");
+            CurrentFood = 0;
+            Foodslider.value = CurrentFood;
+        }
     }
 
     public void SetFood()
@@ -817,9 +843,18 @@ public class GameManager : MonoBehaviour
 
     public void TakeWaterDamage(int damage)
     {
-        CurrentWater -= damage;
-        Waterslider.value = CurrentWater;
-        //StaminaText.text = $"Stamina:{CurrentStamina}";
+        if (CurrentWater >= 0)
+        {
+            CurrentWater -= damage;
+            Waterslider.value = CurrentWater;
+            //StaminaText.text = $"Stamina:{CurrentStamina}";
+        }
+        else
+        {
+            Debug.Log("Water is empty");
+            CurrentWater = 0;
+            Waterslider.value = CurrentWater;
+        }
     }
 
     public void SetWater()
