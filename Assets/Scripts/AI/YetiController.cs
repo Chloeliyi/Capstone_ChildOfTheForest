@@ -175,7 +175,6 @@ public class YetiController : MonoBehaviour
 
     public void DestroyEnemy()
     {
-        Destroy(Yeti);
         animator.SetFloat("Speed", 1.5f);
         StartCoroutine(DeathTime());
         //Instantiate(Meat, Yeti.gameObject.transform.position, Yeti.gameObject.transform.rotation);
