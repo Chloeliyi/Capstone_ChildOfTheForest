@@ -102,28 +102,31 @@ public class BearController : MonoBehaviour
 
     public void Patroling()
     {
-        Debug.Log("Patroling");
+        //Debug.Log("Patroling");
         animator.SetBool("Sleep", false);
         animator.SetBool("WalkForward", true);
 
         if (!walkPointSet) SearchWalkPoint();
 
-         if (walkPointSet) agent.SetDestination(walkPoint);
+        if (walkPointSet) agent.SetDestination(walkPoint);
 
-         Vector3 distanceToWalkPoint = transform.position - walkPoint;
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //Walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f) walkPointSet = false;
+        if (distanceToWalkPoint.magnitude < 5f) walkPointSet = false;
     }
 
      private void SearchWalkPoint()
      {
+        Debug.Log("Searching");
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround)) walkPointSet = true;
+        agent.SetDestination(walkPoint);
+        Debug.Log("Walkpoint set");
      }
 
     public void ChasePlayer()

@@ -96,7 +96,7 @@ public class YetiController : MonoBehaviour
 
     public void Patroling()
     {
-        Debug.Log("Patroling");
+        //Debug.Log("Patroling");
         animator.SetFloat("Speed", 0.5f);
         //Debug.Log("Speed : " + agent.velocity.magnitude);
 

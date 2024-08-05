@@ -1985,7 +1985,7 @@ MonoBehaviour:
     m_Bits: 128
   timeManager: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 5
+  walkPointRange: 15
   timeBetweenAttacks: 1
   sightRange: 10
   attackRange: 2
@@ -2004,7 +2004,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7962199819078159310}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.9
   m_Speed: 3
   m_Acceleration: 40
   avoidancePriority: 50
