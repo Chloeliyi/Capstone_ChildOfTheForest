@@ -370,7 +370,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnYeti()
     {
-        Vector3 SpawnPosition = new Vector3(Random.Range(-480, -520), 166, Random.Range(1850, 1890));
+        Vector3 SpawnPosition = new Vector3(-497,166,1873);
         Instantiate(Yeti, SpawnPosition, Quaternion.identity);
     }
 
