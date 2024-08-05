@@ -175,11 +175,9 @@ public class YetiController : MonoBehaviour
 
     public void DestroyEnemy()
     {
-        //animator.SetFloat("Speed", 1.5f);
-
         animator.SetBool("Death", true);
+        //animator.SetFloat("Speed", 1.5f);
         StartCoroutine(DeathTime());
-        //Instantiate(Meat, Yeti.gameObject.transform.position, Yeti.gameObject.transform.rotation);
     }
 
     public void GiveDamage()
@@ -201,7 +199,7 @@ public class YetiController : MonoBehaviour
 
     IEnumerator DeathTime()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         Destroy(Yeti);
         Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
     }
