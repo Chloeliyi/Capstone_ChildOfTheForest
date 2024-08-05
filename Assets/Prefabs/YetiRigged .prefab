@@ -1216,7 +1216,7 @@ MonoBehaviour:
   sightRange: 10
   attackRange: 2
   playerInSightRange: 0
-  playerInAttackRange: 0
+  playerInAttackRange: 1
   activeYeti: 0
   Meat: {fileID: 1289443223031083034, guid: bb7f0bfbc681a28428cf63b1ee8c4f6f, type: 3}
 --- !u!1 &5887881340288755803
