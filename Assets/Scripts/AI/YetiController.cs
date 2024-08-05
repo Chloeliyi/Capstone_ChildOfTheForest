@@ -158,7 +158,7 @@ public class YetiController : MonoBehaviour
 
         Debug.Log("Enemy health : " + health);
 
-        if (health <= 0)
+        if (health == 0)
             DestroyEnemy();
     }
 
@@ -167,7 +167,7 @@ public class YetiController : MonoBehaviour
         health -= axedamage;
 
         Debug.Log("Enemy health : " + health);
-        if (health <= 0)
+        if (health == 0)
         {
             DestroyEnemy();
         }
