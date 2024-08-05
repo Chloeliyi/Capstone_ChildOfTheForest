@@ -562,6 +562,18 @@ PrefabInstance:
       propertyPath: whatIsGround.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 4093149860193488157, guid: 232611d387293574abd26ed7294582ce, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093149860193488157, guid: 232611d387293574abd26ed7294582ce, type: 3}
+      propertyPath: m_Size.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093149860193488157, guid: 232611d387293574abd26ed7294582ce, type: 3}
+      propertyPath: m_Size.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4755574107309571899, guid: 232611d387293574abd26ed7294582ce, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
