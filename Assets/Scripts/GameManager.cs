@@ -105,6 +105,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void LoadGame()
+    {
+        SceneManager.LoadScene(2);
+    }
+
     public void Return()
     {
         SceneManager.LoadScene(0);
@@ -119,7 +124,7 @@ public class GameManager : MonoBehaviour
 
         if (playerSpawn.transform.position != Vector3.zero)
         {
-            //SceneManager.LoadScene(2);
+            LoadGame();
         }
     }
 
