@@ -102,7 +102,7 @@ public class Enemy : MonoBehaviour
 
     public void Patroling()
     {
-        Debug.Log("Patroling");
+        //Debug.Log("Patroling");
         animator.SetFloat("Speed", 3f);
         //Debug.Log("Speed : " + agent.velocity.magnitude);
 

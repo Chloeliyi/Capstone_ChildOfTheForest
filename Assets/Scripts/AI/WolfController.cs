@@ -148,7 +148,7 @@ public class WolfController : MonoBehaviour
     {
         if (Leader)
         {
-            Debug.Log("Patroling");
+            //Debug.Log("Patroling");
             //animator.SetBool("Sleep", false);
             animator.SetBool("WalkForward", true);
 

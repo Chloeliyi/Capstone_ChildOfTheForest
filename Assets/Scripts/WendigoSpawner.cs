@@ -12,6 +12,8 @@ public class WendigoSpawner : MonoBehaviour
     private float zPos;
     private bool stop = true;
     public float wendigoSpawnCooldown;
+    private int animCount;
+    public int maxAnimCount;
 
     public GameObject wendigoPrefab;
     public GameObject wendigo;
@@ -24,7 +26,7 @@ public class WendigoSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (wendigo == null)
+        if (animCount < maxAnimCount)
         {
             stop = true;
             StartCoroutine(Cooldown());
@@ -42,7 +44,7 @@ public class WendigoSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         
-        while(stop & wendigo == null)
+        while(stop & animCount < maxAnimCount)
         {
             xPos = Random.Range(minXPos, maxXPos);
             zPos = Random.Range(minZPos, maxZPos);
@@ -50,7 +52,7 @@ public class WendigoSpawner : MonoBehaviour
 
             Vector3 spawnPos = new Vector3(xPos, yPos, zPos);
 
-            wendigo = Instantiate (wendigoPrefab, spawnPos, wendigoPrefab.transform.rotation);
+            Instantiate (wendigoPrefab, spawnPos, wendigoPrefab.transform.rotation);
             yield return new WaitForSeconds(2);
         }
         StopCoroutine(waitSpawn());
