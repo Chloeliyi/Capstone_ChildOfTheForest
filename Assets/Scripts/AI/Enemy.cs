@@ -58,21 +58,19 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         Wendigo = transform.gameObject;
         health = 100;
+        activeWendigo = true;
     }
 
     void Update()
     {
-        //agent.destination = playerTransform.position;
-        //animator.SetFloat("Speed", agent.velocity.magnitude);
-
-        if (timeManager.hours >= 20 || timeManager.hours <= 6)
+        /*if (timeManager.hours >= 20 || timeManager.hours <= 6)
         {
             activeWendigo = true;
         } 
         else
         {
             activeWendigo = false;
-        }
+        }*/
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -182,10 +180,8 @@ public class Enemy : MonoBehaviour
 
     public void DestroyEnemy()
     {
-        Destroy(Wendigo);
-        //Wendigo.SetActive(false);
+        animator.SetBool("Death", true);
         StartCoroutine(DeathTime());
-        //Instantiate(Meat, Wendigo.gameObject.transform.position, Wendigo.gameObject.transform.rotation);
     }
 
     public void GiveDamage()

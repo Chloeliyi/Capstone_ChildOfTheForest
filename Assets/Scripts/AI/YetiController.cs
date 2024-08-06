@@ -64,17 +64,6 @@ public class YetiController : MonoBehaviour
 
     void Update()
     {
-        //agent.destination = playerTransform.position;
-        //animator.SetFloat("Speed", agent.velocity.magnitude);
-
-        /*if (timeManager.hours >= 20 || timeManager.hours <= 6)
-        {
-            activeYeti = true;
-        } 
-        else
-        {
-            activeYeti = false;
-        }*/
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);

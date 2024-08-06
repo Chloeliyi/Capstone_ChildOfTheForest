@@ -57,21 +57,20 @@ public class BearController : MonoBehaviour
         animator = GetComponent<Animator>();
         Bear = transform.gameObject;
         health = 100;
+        activeBear = true;
     }
 
     void Update()
     {
-        //agent.destination = playerTransform.position;
-        //animator.SetFloat("Speed", agent.velocity.magnitude);
 
-        if (timeManager.hours >= 8 || timeManager.hours <= 18)
+        /*if (timeManager.hours >= 8 || timeManager.hours <= 18)
         {
             activeBear = true;
         } 
         else
         {
             activeBear = false;
-        }
+        }*/
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);

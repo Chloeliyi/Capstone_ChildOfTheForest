@@ -69,14 +69,14 @@ public class WolfController : MonoBehaviour
         animator = GetComponent<Animator>();
         Wolf = transform.gameObject;
         health = 100;
+        activeWolf = true;
+        activeCorruptWolf = true;
     }
 
     void Update()
     {
-        //agent.destination = playerTransform.position;
-        //animator.SetFloat("Speed", agent.velocity.magnitude);
 
-        if (timeManager.hours >= 8 || timeManager.hours <= 18)
+        /*if (timeManager.hours >= 8 || timeManager.hours <= 18)
         {
             if (NormalWolf)
             {
@@ -104,7 +104,7 @@ public class WolfController : MonoBehaviour
             {
                 activeCorruptWolf = false;
             }
-        }
+        }*/
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
