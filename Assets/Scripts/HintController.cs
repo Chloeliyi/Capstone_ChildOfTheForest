@@ -21,6 +21,10 @@ public class HintController : MonoBehaviour
 
     public GameObject tableObject;
 
+    public GameObject tabletwoObject;
+
+    public GameObject tablethreeObject;
+
     public GameObject alterObject;
 
     private Vector3 lastMousePosition;
@@ -72,7 +76,35 @@ public class HintController : MonoBehaviour
         }
         //It then checks if the player is close to an interactable object using the CheckUserClose() method.
         //If the player is close, it calls either Examine() or NonExamine() and enables or disables the canvas component accordingly.
-        if (CheckUserClose())
+        if (CheckHintOneClose())
+        {
+            if (isExamining)
+            {
+                _canva.enabled = false;
+                Examine(); StartExamination();
+            }
+            else
+            {
+                _canva.enabled = true;
+                NonExamine(); StopExamination();
+            }
+        }
+
+        if (CheckHintTwoClose())
+        {
+            if (isExamining)
+            {
+                _canva.enabled = false;
+                Examine(); StartExamination();
+            }
+            else
+            {
+                _canva.enabled = true;
+                NonExamine(); StopExamination();
+            }
+        }
+
+        if (CheckHintThreeClose())
         {
             if (isExamining)
             {
@@ -171,25 +203,42 @@ public class HintController : MonoBehaviour
         }
     }
 
-    [SerializeField] private float distance;
-    [SerializeField] private float seconddistance;
+    [SerializeField] private float tableonedistance;
+    [SerializeField] private float tabletwodistance;
+    [SerializeField] private float tablethreedistance;
+    [SerializeField] private float altardistance;
 
    // This method calculates the distance between the player(targetObject) and 
    // an object called tableObject.If the distance is less than 2 units, it returns true, indicating that the player is close to the object.
-    bool CheckUserClose()
+    bool CheckHintOneClose()
     {
         // Calculate the distance between the two GameObjects
-        distance = Vector3.Distance(targetObject.transform.position, tableObject.transform.position);
+        tableonedistance = Vector3.Distance(targetObject.transform.position, tableObject.transform.position);
 
         // Check if they are close based on the threshold
-        return (distance < 2);
+        return (tableonedistance < 2);
+    }
+
+
+    bool CheckHintTwoClose()
+    {
+
+        tabletwodistance = Vector3.Distance(targetObject.transform.position, tabletwoObject.transform.position);
+        return (tabletwodistance < 2);
+    }
+
+    bool CheckHintThreeClose()
+    {
+
+        tablethreedistance = Vector3.Distance(targetObject.transform.position, tablethreeObject.transform.position);
+        return (tablethreedistance < 2);
     }
 
     bool CheckAltarClose()
     {
 
-        seconddistance = Vector3.Distance(targetObject.transform.position, alterObject.transform.position);
-        return (seconddistance < 2);
+        altardistance = Vector3.Distance(targetObject.transform.position, alterObject.transform.position);
+        return (altardistance < 2);
     }
 
 }
