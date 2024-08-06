@@ -19,6 +19,7 @@ public class SaveData : MonoBehaviour
     DatabaseReference statsRef;
 
     public GameObject player;
+    public GameManager gameManager;
     public InventoryManager inventoryManager;
     public InventoryItemController[] invList;
 
@@ -70,9 +71,9 @@ public class SaveData : MonoBehaviour
 
     public void SaveStatsData() {
         string userId = FindObjectOfType<GameManager>().username;
-        int health = FindObjectOfType<GameManager>().CurrentHealth;
-        int food = FindObjectOfType<GameManager>().CurrentFood;
-        int water = FindObjectOfType<GameManager>().CurrentWater;
+        int health = gameManager.CurrentHealth;
+        int food = gameManager.CurrentFood;
+        int water = gameManager.CurrentWater;
 
         DatabaseReference statsRef = DatabaseRef.Child("Users").Child(userId).Child("Stats");
         statsRef.Child("health").SetValueAsync(health);
@@ -84,11 +85,11 @@ public class SaveData : MonoBehaviour
     void Update()
     {
         //Debug.Log("Player position: " + player.transform.position.x + ", " + player.transform.position.y + ", " + player.transform.position.z);
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             //Debug.Log("Space key was pressed");
             SaveLocationData();
             SaveInventoryData();
-        }
+        }*/
     }
 }

@@ -115,31 +115,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void LoadSave()
-    {
-        playerSpawn.gameObject.SetActive(true);
-        playerSpawn.GetComponent<LoadGame>().RetrieveInventoryData();
-        playerSpawn.GetComponent<LoadGame>().RetrieveSaveData();
-        playerSpawn.GetComponent<LoadGame>().RetrieveStatsData();
-
-        if (playerSpawn.transform.position != Vector3.zero)
-        {
-            LoadGame();
-        }
-    }
-
     void Start()
     {   
-        playerAnim.enabled = false;     
-        CurrentHealth = MaxHealth;
-        SetMaxHealth();
-
-        CurrentFood = MaxFood;
-        Debug.Log("Start food is: " + MaxFood);
-        SetMaxFood();
-
-        CurrentWater = MaxWater;
-        SetMaxWater();
+        playerAnim.enabled = false;  
 
         RepairCounter.text = $"{Repaircount}";
 
@@ -153,6 +131,15 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
+        CurrentHealth = MaxHealth;
+        SetMaxHealth();
+
+        CurrentFood = MaxFood;
+        Debug.Log("Start food is: " + MaxFood);
+        SetMaxFood();
+
+        CurrentWater = MaxWater;
+        SetMaxWater();
     }
 
     public void TimeStop()

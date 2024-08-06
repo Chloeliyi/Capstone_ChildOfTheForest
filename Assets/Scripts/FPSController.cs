@@ -9,7 +9,7 @@ public class FPSController : MonoBehaviour
 {
 
     public Camera playerCamera;
-    public GameObject playerSpawn;
+    public Transform playerSpawn;
     public GameObject pause;
     public bool paused = false;
     public float walkSpeed;
@@ -43,7 +43,9 @@ public class FPSController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        playerSpawn = GameObject.Find("playerSpawn");
+        CurrentStamina = MaxStamina;
+        Staminaslider.value = CurrentStamina;
+        playerSpawn = GameObject.Find("playerSpawn").transform;
     }
     
     void Start()
@@ -51,11 +53,21 @@ public class FPSController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         terrain = Terrain.activeTerrain;
         //animator = GetComponent<Animator>();
-        CurrentStamina = MaxStamina;
-        Staminaslider.value = CurrentStamina;
+    }
+
+    public void SetPosition()
+    {
+        Debug.Log("Setting position");
         if (playerSpawn != null)
         {
-            transform.position = playerSpawn.transform.position;
+            Debug.Log("Player spawn is not null");
+            if (playerSpawn.position != Vector3.zero)
+            {
+                Debug.Log("Player spawn is not zero");
+                Debug.Log(playerSpawn.position);
+                this.transform.position = playerSpawn.position;
+                Debug.Log(this.transform.position);
+            }
         }
     }
 

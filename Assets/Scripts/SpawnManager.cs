@@ -50,7 +50,6 @@ public class SpawnManager : MonoBehaviour
             {
                 animCount++;
                 GameObject newSpawn = Instantiate (animalPrefabs[randAnim], spawnPos, animalPrefabs[randAnim].transform.rotation);
-                Debug.Log(newSpawn.name);
                 newSpawn.name = newSpawn.name.Replace("(Clone)", "");
             }
             else

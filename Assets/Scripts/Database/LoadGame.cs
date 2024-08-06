@@ -18,6 +18,7 @@ public class LoadGame : MonoBehaviour
 
     public GameObject playerSpawn;
     public GameObject player;
+    public GameManager gameManager;
     public InventoryManager inventoryManager;
 
     public Sprite branchSprite;
@@ -27,7 +28,7 @@ public class LoadGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerSpawn = this.gameObject;
+        
     }
 
     void Awake()
@@ -35,6 +36,13 @@ public class LoadGame : MonoBehaviour
         auth = FirebaseAuth.DefaultInstance;
         DatabaseRef = FirebaseDatabase.DefaultInstance.RootReference;
         dataRef = DatabaseRef.Child("Users");  
+        playerSpawn = GameObject.Find("playerSpawn");
+        if (playerSpawn != null)
+        {
+            RetrieveSaveData();
+            RetrieveInventoryData();
+            RetrieveStatsData();
+        }
     }
 
     public void RetrieveSaveData()
@@ -55,6 +63,8 @@ public class LoadGame : MonoBehaviour
                 Debug.Log("Location: " + location.x + ", " + location.y + ", " + location.z);
 
                 playerSpawn.transform.position = new Vector3(location.x, location.y, location.z);
+                Debug.Log("Player Spawn: " + playerSpawn.transform.position);
+                player.GetComponent<FPSController>().SetPosition();
             }
         });
         return;
@@ -78,15 +88,15 @@ public class LoadGame : MonoBehaviour
                 {
                     Inventory item = JsonUtility.FromJson<Inventory>(d.GetRawJsonValue());
                     Debug.Log("Item: " + item.itemName + ", " + item.quantity);
-                    if (item.itemName == "branch")
+                    if (item.itemName == "Branch")
                     {
                         inventoryManager.AddItem(item.itemName, item.quantity, branchSprite, item.itemDescription);
                     }
-                    else if (item.itemName == "crystal")
+                    else if (item.itemName == "Crystal")
                     {
                         inventoryManager.AddItem(item.itemName, item.quantity, crystalSprite, item.itemDescription);
                     }
-                    else if (item.itemName == "berry")
+                    else if (item.itemName == "Berry")
                     {
                         inventoryManager.AddItem(item.itemName, item.quantity, berrySprite, item.itemDescription);
                     }
@@ -112,9 +122,12 @@ public class LoadGame : MonoBehaviour
                 Debug.Log("DataSnapshot: " + dataSnapshot.GetRawJsonValue());
                 Stats stats = JsonUtility.FromJson<Stats>(dataSnapshot.GetRawJsonValue());
                 Debug.Log("Stats: " + stats.health + ", " + stats.food + ", " + stats.water);
-                FindObjectOfType<GameManager>().CurrentHealth = stats.health;
-                FindObjectOfType<GameManager>().CurrentFood = stats.food;
-                FindObjectOfType<GameManager>().CurrentWater = stats.water;
+                gameManager.CurrentHealth = stats.health;
+                gameManager.CurrentFood = stats.food;
+                gameManager.CurrentWater = stats.water;
+                gameManager.SetFood();
+                gameManager.SetHealth();
+                gameManager.SetWater();
             }
         });
         return;

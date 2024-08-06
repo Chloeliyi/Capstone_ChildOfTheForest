@@ -1763,12 +1763,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
+      propertyPath: CurrentFood
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
       propertyPath: playerSpawn
       value: 
       objectReference: {fileID: 906282528}
+    - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
+      propertyPath: CurrentWater
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1469536361621855191, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
+      propertyPath: CurrentHealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2496559281381319138, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425898658570419614, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5628329827598128583, guid: 77b31cf5011711d40a50abc8df570347, type: 3}
       propertyPath: m_Enabled
@@ -3691,7 +3711,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 906282529}
-  - component: {fileID: 906282530}
   m_Layer: 0
   m_Name: playerSpawn
   m_TagString: Untagged
@@ -3714,24 +3733,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 266542213}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &906282530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906282528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bfd295f50b992f4883d7bf2d0cfc978, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpawn: {fileID: 0}
-  player: {fileID: 0}
-  inventoryManager: {fileID: 0}
-  branchSprite: {fileID: 21300000, guid: 607f58ebe979a4d4abbe5fd7af1a6e1e, type: 3}
-  crystalSprite: {fileID: 21300000, guid: d23c832d61ef521419e2da65a6ce6a75, type: 3}
-  berrySprite: {fileID: 21300000, guid: f794f6745985d6a499d0baea906b9b4a, type: 3}
 --- !u!1 &953822402
 GameObject:
   m_ObjectHideFlags: 0
@@ -4864,9 +4865,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 906282528}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 266542212}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadSave
+        m_MethodName: LoadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

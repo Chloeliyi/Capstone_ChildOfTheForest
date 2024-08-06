@@ -17,21 +17,6 @@ public class InventoryManager : MonoBehaviour
 
     public int leftOverItems;
 
-    public GameObject playerSpawn;
-
-    public void Awake()
-    {
-        playerSpawn = GameObject.Find("playerSpawn");
-    }
-
-    void Start()
-    {
-        if (playerSpawn != null)
-        {
-            transform.position = playerSpawn.transform.position;
-        }
-    }
-
     public bool UseItem(string itemName)
     {
         for (int i = 0; i < itemSOs.Length; i++) 
