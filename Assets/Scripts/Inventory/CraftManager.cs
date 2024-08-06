@@ -56,7 +56,7 @@ public class CraftManager : MonoBehaviour
             {
                 Debug.Log("Branch");
                 Debug.Log("Index : " + i);
-                if (craftItemsQuantity[i] == 1)
+                if (craftItemsQuantity[i] >= 1)
                 {
                     for (int j = 0; j < craftItemName.Count; j++)
                     {
@@ -81,7 +81,7 @@ public class CraftManager : MonoBehaviour
                         }
                     }
                 }
-                else if (craftItemsQuantity[i] == 2)
+                else if (craftItemsQuantity[i] >= 2)
                 {
                     for (int a = 0; a < craftItemName.Count; a++)
                     {
