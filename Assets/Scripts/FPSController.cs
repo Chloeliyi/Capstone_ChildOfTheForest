@@ -45,7 +45,7 @@ public class FPSController : MonoBehaviour
         Instance = this;
         CurrentStamina = MaxStamina;
         Staminaslider.value = CurrentStamina;
-        playerSpawn = GameObject.Find("playerSpawn").transform;
+        //playerSpawn = GameObject.Find("playerSpawn").transform;
     }
     
     void Start()
@@ -53,6 +53,8 @@ public class FPSController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         terrain = Terrain.activeTerrain;
         //animator = GetComponent<Animator>();
+
+        Debug.Log("Can Move" + canMove );
     }
 
     public void SetPosition()
