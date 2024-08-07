@@ -36,8 +36,8 @@ public class AxeController : MonoBehaviour
         //box.isTrigger = true;
         AxeDurability = AxeItem.durability;
         PickUpAxe = false;
-        axeRb = gameObject.GetComponent<Rigidbody>();
-        axeRb.constraints = RigidbodyConstraints.FreezeAll;
+        /*axeRb = gameObject.GetComponent<Rigidbody>();
+        axeRb.constraints = RigidbodyConstraints.FreezeAll;*/
     }
 
     void Update()
