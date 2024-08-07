@@ -12,6 +12,7 @@ public class DoorController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _canva = GameObject.Find("InteractionCanvas").GetComponent<Canvas>();
         _canva.enabled = false;
     }
 
