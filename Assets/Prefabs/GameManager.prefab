@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   username: 
   DeathCanvas: {fileID: 0}
+  minimap: {fileID: 0}
   playerCamera: {fileID: 0}
   playerSpawn: {fileID: 0}
   playerAnim: {fileID: 0}
@@ -115,5 +116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  gameManager: {fileID: 0}
   inventoryManager: {fileID: 0}
   invList: []

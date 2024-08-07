@@ -12,9 +12,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject DeathCanvas;
 
-    public Transform playerCamera;
+    public GameObject minimap;
 
-    public GameObject playerSpawn;
+    public Transform playerCamera;
 
     public Animator playerAnim;
 
@@ -117,6 +117,24 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {   
+        /*DeathCanvas = GameObject.Find("DeathCanvas").GetComponent<GameObject>();
+        minimap = GameObject.Find("MiniMap").GetComponent<GameObject>();
+        playerCamera = GameObject.Find("PlayerCamera").GetComponent<Transform>();
+        playerAnim = GameObject.Find("Player Animations").GetComponent<Animator>();
+
+        Healthslider = GameObject.Find("Healthslider").GetComponent<Slider>();
+        Foodslider = GameObject.Find("Foodslider").GetComponent<Slider>();
+        Waterslider = GameObject.Find("Waterslider").GetComponent<Slider>();
+        Weapondurability = GameObject.Find("WeaponDurability").GetComponent<Slider>();
+        WeaponIcon = GameObject.Find("WeaponIcon").GetComponent<Image>();
+        RepairCounter = GameObject.Find("RepairCounter").GetComponent<TextMeshPro>();
+        BigIvenMenu = GameObject.Find("InventoryMenu").GetComponent<GameObject>();
+        ItemDescMenu = GameObject.Find("InventoryDescription").GetComponent<GameObject>();
+        CraftMenu = GameObject.Find("CraftingMenu").GetComponent<GameObject>();
+        Axe = GameObject.Find("Axe_Parent").GetComponent<GameObject>();
+        parent = GameObject.Find("Player Animations").GetComponent<Transform>();
+        attackPoint = GameObject.Find("ThrowAttackPoint").GetComponent<Transform>();*/
+
         playerAnim.enabled = false;  
 
         RepairCounter.text = $"{Repaircount}";
@@ -125,6 +143,7 @@ public class GameManager : MonoBehaviour
         Axe.SetActive(false);
 
         DeathCanvas.SetActive(false);
+        minimap.SetActive(false);
     }
 
     public void Awake()
@@ -194,6 +213,26 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("Close Inventory");
                 BigIvenMenu.SetActive(false);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            if (!BigIvenMenu.activeSelf)
+            {
+                if (!minimap.activeSelf)
+                {
+                    minimap.SetActive(true);
+                }
+
+                else if (minimap.activeSelf)
+                {
+                    minimap.SetActive(false);
+                }
+            }
+            else if (BigIvenMenu.activeSelf)
+            {
+                minimap.SetActive(false);
             }
         }
 
