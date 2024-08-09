@@ -95,6 +95,12 @@ public class GameManager : MonoBehaviour
 
     Coroutine increaseInProgress;
 
+    [Header("Portal")]
+    public GameObject Portal;
+    public GameObject portalAnim;
+    public bool nearPortal;
+    public ParticleSystem portalVFX;
+
     public void Quit()
     {
         Application.Quit();
@@ -144,6 +150,9 @@ public class GameManager : MonoBehaviour
 
         DeathCanvas.SetActive(false);
         minimap.SetActive(false);
+
+        Portal.SetActive(false);
+        portalAnim.SetActive(false);
     }
 
     public void Awake()
@@ -247,6 +256,11 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("Drink water");
                 IncreaseWater(2);
+            }
+
+            if (nearPortal)
+            {
+                SceneManager.LoadScene(4);
             }
         }
 
@@ -398,6 +412,13 @@ public class GameManager : MonoBehaviour
         //FPSController.Instance.canMove = false;
         FindObjectOfType<FPSController>().paused = true;
         Time.timeScale = 0f;
+    }
+
+    public void PlayEnding()
+    {
+        portalAnim.SetActive(true);
+        Portal.SetActive(true);
+        portalVFX.Play();
     }
 
     public void SpawnYeti()
