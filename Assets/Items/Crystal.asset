@@ -17,6 +17,6 @@ MonoBehaviour:
   value: 1
   durability: 1
   quantity: 1
-  icon: {fileID: 21300000, guid: d23c832d61ef521419e2da65a6ce6a75, type: 3}
+  icon: {fileID: 21300000, guid: b1333417268e34d4c923e4749f0256fb, type: 3}
   itemType: 9
   itemDesc: This is a crystal drop
