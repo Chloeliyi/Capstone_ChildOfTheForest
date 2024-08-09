@@ -23,6 +23,7 @@ TagManager:
   - Water
   - Yeti
   - Altar
+  - Portal
   layers:
   - Default
   - TransparentFX
