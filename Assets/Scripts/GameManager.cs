@@ -776,7 +776,7 @@ public class GameManager : MonoBehaviour
     {
         while (TakeHealthDamage > 0)
         {
-            HealthDamage(2);
+            HealthDamage(5);
             yield return new WaitForSeconds(time);
         }
         damageInProgress = null;
