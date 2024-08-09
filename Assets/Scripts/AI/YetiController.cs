@@ -191,5 +191,6 @@ public class YetiController : MonoBehaviour
         yield return new WaitForSeconds(4);
         Destroy(Yeti);
         Instantiate(Meat, gameObject.transform.position, gameObject.transform.rotation);
+        GameManager.Instance.PlayEnding();
     }
 }
