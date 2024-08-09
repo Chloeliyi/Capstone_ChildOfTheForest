@@ -260,7 +260,7 @@ public class GameManager : MonoBehaviour
 
             if (nearPortal)
             {
-                SceneManager.LoadScene(4);
+                SceneManager.LoadScene(3);
             }
         }
 
