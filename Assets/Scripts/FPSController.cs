@@ -202,6 +202,12 @@ public class FPSController : MonoBehaviour
             Debug.Log("Near altar");
             GameManager.Instance.Nearaltar = true;
         }
+
+        else if (other.gameObject.tag == "Portal")
+        {
+            Debug.Log("Near portal");
+            GameManager.Instance.nearPortal = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -238,6 +244,11 @@ public class FPSController : MonoBehaviour
         {
             Debug.Log("Not near altar");
             GameManager.Instance.Nearaltar = false;
+        }
+        else if (other.gameObject.tag == "Portal")
+        {
+            Debug.Log("not near portal");
+            GameManager.Instance.nearPortal = false;
         }
     }
 }
